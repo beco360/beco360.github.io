@@ -1,9 +1,5 @@
 ---
-import { Image } from 'astro:assets'
 import Badge from './Badge.astro'
-
-import ingenierosBrand from '../../public/assets/clients/Ingenieros AB.webp'
-import lsjBrand from '../../public/assets/clients/lsj.webp'
 
 const productos = [
   {
@@ -12,81 +8,96 @@ const productos = [
     badge: 'active' as const,
     badgeText: 'Activo',
     href: 'https://datos-co.com',
-    stack: 'Astro · AI · datos públicos · Colombia',
+    stack: 'Astro · AI · datos públicos',
   },
   {
     nombre: 'Cotejo',
-    descripcion: 'Plataforma de fútbol amateur. Conecta canchas, organizadores y jugadores con reservas, estadísticas y gamificación.',
+    descripcion: 'Plataforma de fútbol amateur. Reservas de canchas, estadísticas y gamificación para organizadores y jugadores.',
     badge: 'beta' as const,
     badgeText: 'Beta',
     href: 'https://cotejo.app',
     stack: 'Astro · pagos · gamificación · mapas',
   },
+  {
+    nombre: 'Chatbots que venden solos',
+    descripcion: 'Agentes de ventas entrenados con el conocimiento de tu negocio. Responden, califican y agendan — en WhatsApp o en tu sitio.',
+    badge: 'active' as const,
+    badgeText: 'Activo',
+    href: null,
+    stack: 'AI · WhatsApp · CRM',
+  },
+  {
+    nombre: 'lsjsas.com',
+    descripcion: 'E-commerce colombiano completo: catálogo, carrito, pagos PSE/Nequi/Wompi y panel de gestión de pedidos.',
+    badge: 'active' as const,
+    badgeText: 'Activo',
+    href: 'https://lsjsas.com',
+    stack: 'E-commerce · Wompi · inventario',
+  },
+  {
+    nombre: 'Facturación & Inventario',
+    descripcion: 'Factura electrónica que se genera sola al cerrar una venta. Stock bajo → alerta automática. Todo integrado al CRM.',
+    badge: 'active' as const,
+    badgeText: 'Activo',
+    href: null,
+    stack: 'DIAN · CRM · alertas · reportes',
+  },
 ]
 
-const clientes = [
-  {
-    nombre: 'Ingenieros AB',
-    sector: 'Ingeniería Civil',
-    imageSrc: ingenierosBrand,
-    imageAlt: 'Sitio web de Ingenieros AB',
-    entregado: [
-      'Rediseño completo del sitio web',
-      'Formularios de contacto conectados a WhatsApp',
-      'Galería de proyectos con filtros por categoría',
-    ],
-  },
-  {
-    nombre: 'LSJ',
-    sector: 'E-commerce',
-    imageSrc: lsjBrand,
-    imageAlt: 'Tienda online de LSJ',
-    entregado: [
-      'Tienda online con catálogo y carrito',
-      'Pasarela de pago integrada',
-      'Panel de gestión de pedidos',
-    ],
-  },
+// Duplicated for seamless infinite scroll
+const marqueeItems = [
+  { name: 'Ingenieros AB', sector: 'Ingeniería Civil' },
+  { name: 'LSJ', sector: 'E-commerce' },
+  { name: 'Alfil', sector: 'GovTech · AI' },
+  { name: 'Cotejo', sector: 'SportsApp' },
+  { name: 'Clientes internos', sector: 'Facturación' },
+  { name: 'Beco Bots', sector: 'Chatbots' },
 ]
+const track = [...marqueeItems, ...marqueeItems]
 ---
 
-<section id="trabajo" class="bg-surface-2" aria-labelledby="trabajo-heading">
+<section id="portafolio" class="bg-surface-2" aria-labelledby="portafolio-heading">
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 md:py-32">
 
-    <!-- Productos propios -->
-    <div class="mb-24">
-      <div class="text-center mb-12 reveal">
-        <p class="font-mono text-xs text-copper/70 tracking-[0.2em] uppercase mb-3">Productos propios</p>
-        <h2
-          id="trabajo-heading"
-          class="text-text-1 font-bold"
-          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
-        >
-          Software real funcionando hoy
-        </h2>
-        <p class="text-text-2 mt-3 max-w-xl mx-auto text-sm">
-          No solo construimos para clientes. Tenemos productos propios en producción.
-        </p>
-      </div>
+    <!-- Header -->
+    <div class="text-center mb-14 reveal">
+      <p class="font-mono text-xs text-copper/70 tracking-[0.2em] uppercase mb-3">Productos propios</p>
+      <h2
+        id="portafolio-heading"
+        class="text-text-1 font-bold"
+        style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
+      >
+        Software real funcionando hoy
+      </h2>
+      <p class="text-text-2 mt-3 max-w-xl mx-auto text-sm">
+        No solo construimos para clientes. Tenemos productos propios en producción.
+      </p>
+    </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {productos.map((p, i) => (
-          <a
-            href={p.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="product-card group reveal"
+    <!-- Products grid: 2 col → last card centered -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {productos.map((p, i) => {
+        const isLast = i === productos.length - 1
+        const Tag = p.href ? 'a' : 'div'
+        return (
+          <Tag
+            href={p.href ?? undefined}
+            target={p.href ? '_blank' : undefined}
+            rel={p.href ? 'noopener noreferrer' : undefined}
+            class={`product-card group reveal${isLast ? ' md:col-span-2 md:max-w-lg md:mx-auto md:w-full' : ''}`}
             style={`transition-delay: ${(i + 1) * 80}ms;`}
-            aria-label={`${p.nombre} — ${p.descripcion}`}
+            aria-label={p.href ? `${p.nombre} — ${p.descripcion}` : undefined}
           >
             <div class="flex items-start justify-between mb-6">
               <Badge text={p.badgeText} variant={p.badge} />
-              <span class="inline-flex items-center gap-1 text-xs text-text-3 group-hover:text-copper transition-colors duration-200">
-                Ver producto
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M7 17L17 7M17 7H7M17 7v10"/>
-                </svg>
-              </span>
+              {p.href && (
+                <span class="inline-flex items-center gap-1 text-xs text-text-3 group-hover:text-copper transition-colors duration-200">
+                  Ver producto
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                  </svg>
+                </span>
+              )}
             </div>
 
             <h3 class="text-text-1 text-2xl font-bold mb-3 group-hover:text-copper transition-colors duration-200">
@@ -99,74 +110,30 @@ const clientes = [
             <p class="font-mono text-[11px] text-text-3/60 tracking-wide mt-auto">
               {p.stack}
             </p>
-          </a>
-        ))}
-      </div>
-    </div>
-
-    <!-- Divider -->
-    <div class="border-t border-surface-3 mb-24" aria-hidden="true"></div>
-
-    <!-- Clientes -->
-    <div>
-      <div class="text-center mb-12 reveal">
-        <p class="font-mono text-xs text-copper/70 tracking-[0.2em] uppercase mb-3">Proyectos de clientes</p>
-        <h2
-          class="text-text-1 font-bold"
-          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
-        >
-          Empresas que nos eligieron
-        </h2>
-        <p class="text-text-2 mt-3 max-w-xl mx-auto text-sm">
-          Trabajo entregado. Sin humo.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {clientes.map((c, i) => (
-          <div class="client-card reveal" style={`transition-delay: ${(i + 1) * 80}ms;`}>
-            <!-- Screenshot -->
-            <div class="client-image-wrap">
-              <Image
-                src={c.imageSrc}
-                alt={c.imageAlt}
-                width={640}
-                height={320}
-                class="w-full h-full object-cover"
-              />
-            </div>
-
-            <!-- Info -->
-            <div class="p-6">
-              <div class="flex items-center justify-between mb-4">
-                <div>
-                  <h3 class="text-text-1 font-bold text-lg">{c.nombre}</h3>
-                  <p class="text-text-3 text-xs mt-0.5 font-mono">{c.sector}</p>
-                </div>
-                <span class="inline-flex items-center gap-1.5 text-xs font-medium text-status-active bg-status-active/10 border border-status-active/20 rounded-full px-2.5 py-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-status-active inline-block" aria-hidden="true"></span>
-                  Activo
-                </span>
-              </div>
-
-              <p class="text-text-3 text-xs font-mono uppercase tracking-wider mb-3">Lo que construimos</p>
-              <ul class="space-y-2" role="list">
-                {c.entregado.map((item) => (
-                  <li class="flex items-start gap-2 text-text-2 text-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper mt-0.5 shrink-0" aria-hidden="true">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ))}
-      </div>
+          </Tag>
+        )
+      })}
     </div>
 
   </div>
+
+  <!-- Logo marquee -->
+  <div class="border-t border-surface-3 py-12 overflow-hidden" aria-hidden="true">
+    <p class="text-center font-mono text-xs text-text-3/50 tracking-[0.2em] uppercase mb-8">
+      Usado por equipos en Colombia
+    </p>
+    <div class="marquee-viewport">
+      <ul class="marquee-track" role="list">
+        {track.map((item) => (
+          <li class="marquee-item">
+            <span class="marquee-name">{item.name}</span>
+            <span class="marquee-sector">{item.sector}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
 </section>
 
 <style>
@@ -186,7 +153,7 @@ const clientes = [
         color-mix(in srgb, var(--color-copper) 10%, transparent)
       ) border-box;
     transition: box-shadow 250ms ease, transform 250ms ease;
-    min-height: 240px;
+    min-height: 220px;
     text-decoration: none;
   }
 
@@ -197,32 +164,69 @@ const clientes = [
     transform: translateY(-2px);
   }
 
-  /* Client cards */
-  .client-card {
-    border-radius: 1rem;
-    border: 1px solid var(--color-surface-3);
-    background: var(--color-surface);
-    overflow: hidden;
-    transition: border-color 250ms ease, box-shadow 250ms ease;
+  /* Marquee */
+  .marquee-viewport {
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
   }
 
-  .client-card:hover {
-    border-color: color-mix(in srgb, var(--color-copper) 30%, transparent);
-    box-shadow: 0 8px 32px color-mix(in srgb, var(--color-copper) 8%, transparent);
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: marquee-scroll 28s linear infinite;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  .client-image-wrap {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    background: var(--color-surface-3);
+  .marquee-track:hover {
+    animation-play-state: paused;
   }
 
-  .client-image-wrap img {
-    transition: transform 400ms ease;
+  .marquee-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3rem;
+    border-right: 1px solid var(--color-surface-3);
+    gap: 0.25rem;
   }
 
-  .client-card:hover .client-image-wrap img {
-    transform: scale(1.03);
+  .marquee-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-3);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    opacity: 0.5;
+    transition: opacity 200ms;
+  }
+
+  .marquee-item:hover .marquee-name {
+    opacity: 0.85;
+  }
+
+  .marquee-sector {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.65rem;
+    color: var(--color-text-3);
+    opacity: 0.3;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
   }
 </style>
