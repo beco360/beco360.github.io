@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.58",
+    "@ai-sdk/google": "^3.0.43",
     "@ai-sdk/react": "^3.0.118",
     "@astrojs/check": "^0.9.7",
     "@astrojs/react": "^5.0.0",

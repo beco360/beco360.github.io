@@ -1,6 +1,6 @@
 export const prerender = false
 
-import { createAnthropic } from '@ai-sdk/anthropic'
+import { createGoogleGenerativeAI } from '@ai-sdk/google'
 import { streamText, convertToModelMessages } from 'ai'
 import type { APIRoute } from 'astro'
 
@@ -8,12 +8,12 @@ export const POST: APIRoute = async ({ request }) => {
   const body = await request.json()
   const messages = body.messages ?? []
 
-  const anthropic = createAnthropic({
-    apiKey: import.meta.env.ANTHROPIC_API_KEY,
+  const google = createGoogleGenerativeAI({
+    apiKey: import.meta.env.GEMINI_API_KEY,
   })
 
   const result = streamText({
-    model: anthropic('claude-haiku-4-5-20251001'),
+    model: google('gemini-2.0-flash'),
     system: `Eres el asistente virtual de Beco 360, un estudio de desarrollo de software colombiano que ofrece features de software bajo un modelo de retainer mensual.
 
 Tu objetivo es ayudar a visitantes del sitio a entender qué es Beco, si algo cuenta como una feature, cuánto cuesta, y animarlos a agendar una llamada gratuita.
