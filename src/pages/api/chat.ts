@@ -87,7 +87,7 @@ Si alguien no está seguro si algo cuenta como feature, diles que lo describan e
 - No inventes capacidades que no están listadas arriba
 - Si preguntan por soporte técnico post-entrega, di que está incluido en el retainer mensual`,
     messages: await convertToModelMessages(messages),
-    maxOutputTokens: 400,
+    maxOutputTokens: 600,
   })
 
   return result.toUIMessageStreamResponse()
