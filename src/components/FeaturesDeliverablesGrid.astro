@@ -1,0 +1,94 @@
+---
+// Opción B: Features como entregables con resultado de negocio
+const deliverables = [
+  {
+    emoji: '💬',
+    pedido: '"Quiero que cuando alguien pida un presupuesto me llegue un WhatsApp"',
+    entregado: 'Bot de cotización por WhatsApp',
+    resultado: 'Califica leads, responde preguntas frecuentes y agenda llamadas. Solo. 24/7.',
+  },
+  {
+    emoji: '🧾',
+    pedido: '"Quiero que la factura se genere sola cuando cierro una venta"',
+    entregado: 'Facturación automática integrada al CRM',
+    resultado: 'Cierras la venta → la factura llega al cliente en segundos. Sin copiar nada.',
+  },
+  {
+    emoji: '📈',
+    pedido: '"Quiero ver las ventas del mes sin abrir Excel"',
+    entregado: 'Dashboard de KPIs en tiempo real',
+    resultado: 'Una pantalla con todo: ventas, top clientes y comparativo vs. mes anterior.',
+  },
+  {
+    emoji: '🗓️',
+    pedido: '"Quiero que mis clientes puedan agendar citas solos"',
+    entregado: 'Sistema de agenda online con confirmación por WhatsApp',
+    resultado: 'El cliente elige horario, paga si aplica, y vos recibís la confirmación.',
+  },
+  {
+    emoji: '🛒',
+    pedido: '"Quiero vender por mi web pero no sé cómo montar un e-commerce"',
+    entregado: 'Catálogo con carrito y pasarela de pago (Wompi/PSE/Nequi)',
+    resultado: 'Tus productos online, con cobro real. Sin plataformas terceras de por medio.',
+  },
+  {
+    emoji: '📦',
+    pedido: '"Quiero saber cuándo me queda poco inventario antes de quedarme sin stock"',
+    entregado: 'Sistema de inventario con alertas automáticas',
+    resultado: 'Cuando un producto baja del mínimo, te llega un WhatsApp. Sin revisar nada.',
+  },
+]
+---
+
+<section class="bg-surface" aria-labelledby="features-b-heading">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 md:py-32">
+
+    <div class="text-center mb-16">
+      <h2
+        id="features-b-heading"
+        class="text-text-1 font-bold"
+        style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
+      >
+        Una feature = una solución lista para usar
+      </h2>
+      <p class="text-text-2 mt-4 max-w-2xl mx-auto">
+        Describís lo que necesitás. En días tenés algo funcionando en tu negocio.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {deliverables.map((d) => (
+        <div class="flex flex-col rounded-xl border border-surface-3 bg-surface-2 p-6 hover:border-copper/30 transition-colors duration-200">
+          <!-- Emoji + "pedido" en voz del cliente -->
+          <div class="flex items-start gap-3 mb-5">
+            <span class="text-2xl shrink-0 mt-0.5" aria-hidden="true">{d.emoji}</span>
+            <p class="text-text-3 text-sm italic leading-relaxed">
+              {d.pedido}
+            </p>
+          </div>
+
+          <!-- Lo que se entrega -->
+          <div class="border-t border-surface-3 pt-4 flex-1">
+            <p class="text-text-1 font-semibold text-sm mb-2">{d.entregado}</p>
+            <p class="text-text-2 text-sm leading-relaxed">{d.resultado}</p>
+          </div>
+
+          <!-- Badge -->
+          <div class="mt-5 pt-4 border-t border-surface-3">
+            <span class="inline-flex items-center gap-1.5 text-xs font-medium text-text-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              1 feature · entrega en 5 días hábiles
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-text-3 text-sm text-center mt-10">
+      Estos son ejemplos reales. Si lo puedes describir, lo podemos construir.
+    </p>
+
+  </div>
+</section>
