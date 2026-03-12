@@ -74,10 +74,20 @@ const { title, description } = Astro.props
       ]}
     />
 
-    <!-- Analytics — solo en producción (GTM es el punto de entrada; GA4 vía GTM) -->
-    {import.meta.env.PROD && (
+    {/*
+      TODO: Verificar y activar analytics antes de lanzar.
+      Los IDs abajo vienen del sitio anterior — confirmar que siguen activos
+      en Google Tag Manager y Meta Business antes de descomentar.
+
+      GTM:        GTM-TMJ9B58  → https://tagmanager.google.com/
+      FB Pixel:   1333394283480495 → https://business.facebook.com/events_manager
+      GA4:        Crear propiedad nueva en https://analytics.google.com/ y configurar via GTM
+
+      Para activar: descomentar el bloque de abajo y reemplazar los IDs si cambiaron.
+    */}
+
+    {/* {import.meta.env.PROD && (
       <>
-        {/* GTM — ID: GTM-TMJ9B58 */}
         <script is:inline>
           (function(w,d,s,l,i){
             w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
@@ -86,8 +96,6 @@ const { title, description } = Astro.props
             f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-TMJ9B58');
         </script>
-
-        {/* Facebook Pixel — ID: 1333394283480495 */}
         <script is:inline>
           !function(f,b,e,v,n,t,s){
             if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -98,19 +106,15 @@ const { title, description } = Astro.props
           fbq('init','1333394283480495');fbq('track','PageView');
         </script>
       </>
-    )}
+    )} */}
   </head>
   <body class="bg-surface text-text-1 antialiased">
-    {import.meta.env.PROD && (
+    {/* GTM noscript — descomentar junto con el bloque de analytics del <head> */}
+    {/* {import.meta.env.PROD && (
       <noscript>
-        <iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-TMJ9B58"
-          height="0"
-          width="0"
-          style="display:none;visibility:hidden"
-        ></iframe>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TMJ9B58" height="0" width="0" style="display:none;visibility:hidden"></iframe>
       </noscript>
-    )}
+    )} */}
 
     <slot />
 
