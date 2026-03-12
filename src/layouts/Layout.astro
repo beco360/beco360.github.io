@@ -74,62 +74,43 @@ const { title, description } = Astro.props
       ]}
     />
 
-    <!-- GA4 — TODO: reemplazar G-XXXXXXXXXX con el ID real de GA4 -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      // @ts-ignore
-      window.dataLayer = window.dataLayer || [];
-      // @ts-ignore
-      function gtag(...args: unknown[]) { window.dataLayer.push(args); }
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
+    <!-- Analytics — solo en producción (GTM es el punto de entrada; GA4 vía GTM) -->
+    {import.meta.env.PROD && (
+      <>
+        {/* GTM — ID: GTM-TMJ9B58 */}
+        <script is:inline>
+          (function(w,d,s,l,i){
+            w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+            j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-TMJ9B58');
+        </script>
 
-    <!-- Facebook Pixel — ID: 1333394283480495 -->
-    <script>
-      (function(f: Window & typeof globalThis, b: Document, e: string, v: string) {
-        // @ts-ignore
-        if (f.fbq) return;
-        // @ts-ignore
-        const n = f.fbq = function() { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
-        // @ts-ignore
-        if (!f._fbq) f._fbq = n;
-        // @ts-ignore
-        n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
-        const t = b.createElement(e) as HTMLScriptElement;
-        t.async = true; t.src = v;
-        const s = b.getElementsByTagName(e)[0];
-        s.parentNode?.insertBefore(t, s);
-      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-      // @ts-ignore
-      fbq('init', '1333394283480495');
-      // @ts-ignore
-      fbq('track', 'PageView');
-    </script>
-
-    <!-- GTM — ID: GTM-TMJ9B58 -->
-    <script>
-      (function(w: Window & typeof globalThis, d: Document, s: string, l: string, i: string) {
-        // @ts-ignore
-        w[l] = w[l] || []; w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-        const f = d.getElementsByTagName(s)[0];
-        const j = d.createElement(s) as HTMLScriptElement;
-        const dl = l !== 'dataLayer' ? '&l=' + l : '';
-        j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode?.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-TMJ9B58');
-    </script>
+        {/* Facebook Pixel — ID: 1333394283480495 */}
+        <script is:inline>
+          !function(f,b,e,v,n,t,s){
+            if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+            t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)
+          }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init','1333394283480495');fbq('track','PageView');
+        </script>
+      </>
+    )}
   </head>
   <body class="bg-surface text-text-1 antialiased">
-    <!-- GTM noscript fallback -->
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-TMJ9B58"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"
-      ></iframe>
-    </noscript>
+    {import.meta.env.PROD && (
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-TMJ9B58"
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"
+        ></iframe>
+      </noscript>
+    )}
 
     <slot />
 
