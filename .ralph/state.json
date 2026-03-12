@@ -1,0 +1,22 @@
+{
+  "prd": "docs/prompts/2026-03-12-sitio-web-rebrand.md",
+  "branch": "feature/astro-rebuild",
+  "currentPhase": 4,
+  "iteration": 5,
+  "iterationProfile": "ui-enhanced-complex",
+  "maxIterations": 40,
+  "noProgressCount": 0,
+  "phases": [
+    { "name": "Phase 1: Setup Astro + Tailwind + Tokens + GitHub Actions", "status": "complete", "iterations": 1 },
+    { "name": "Phase 2: Layout + Nav + Footer + componentes base", "status": "complete", "iterations": 1 },
+    { "name": "Phase 3: Homepage completo (todas las secciones)", "status": "complete", "iterations": 1 },
+    { "name": "Phase 4: Páginas secundarias (FAQs, Cultura, Legal, 404)", "status": "complete", "iterations": 1 },
+    { "name": "Phase 5: Animaciones + Cal.com + Analytics + Polish", "status": "complete", "iterations": 1 }
+  ],
+  "guardianApprovals": {},
+  "guardianFindings": [],
+  "errors": [],
+  "startedAt": "2026-03-12T00:00:00.000Z",
+  "completedAt": "2026-03-12T02:00:00.000Z",
+  "lastCommitSha": "2c0ed28"
+}
