@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Nav from '../../components/Nav.astro'
+import Footer from '../../components/Footer.astro'
+import Section from '../../components/Section.astro'
+
+const lastUpdated = '12 de marzo de 2026'
+---
+
+<Layout
+  title="Términos y Condiciones | Beco 360"
+  description="Términos y condiciones del servicio de retainer mensual de Beco 360. Colombia."
+>
+  <Nav />
+
+  <main>
+    <Section bg="surface" labelledby="terms-heading">
+      <div class="max-w-3xl mx-auto prose-custom">
+        <div class="pt-16 pb-8">
+          <h1
+            id="terms-heading"
+            class="text-text-1 font-bold text-3xl md:text-4xl reveal"
+          >
+            Términos y Condiciones
+          </h1>
+          <p class="text-text-3 text-sm mt-2 reveal" style="transition-delay: 80ms;">
+            Última actualización: {lastUpdated}
+          </p>
+        </div>
+
+        <div class="space-y-8 text-text-2 text-sm leading-relaxed reveal" style="transition-delay: 160ms;">
+          <section aria-labelledby="terms-1">
+            <h2 id="terms-1" class="text-text-1 font-semibold text-lg mb-3">1. Partes del Contrato</h2>
+            <p>
+              Estos términos regulan la relación entre <strong class="text-text-1">Beco 360</strong> (en adelante "el Proveedor"), empresa colombiana de desarrollo de software e implementación de inteligencia artificial, y el <strong class="text-text-1">Cliente</strong>, persona natural o jurídica que contrata los servicios bajo el modelo de retainer mensual.
+            </p>
+          </section>
+
+          <section aria-labelledby="terms-2">
+            <h2 id="terms-2" class="text-text-1 font-semibold text-lg mb-3">2. Descripción del Servicio</h2>
+            <p>
+              Beco 360 presta servicios de desarrollo de software, automatizaciones e implementación de AI bajo un modelo de <strong class="text-text-1">retainer por capacidad mensual</strong>. El cliente contrata una capacidad mensual expresada en "features" — unidades de trabajo acotables ejecutables en aproximadamente 3 horas con ayuda de herramientas de inteligencia artificial.
+            </p>
+            <p class="mt-3">
+              Los planes disponibles son: Plan Mínimo, Plan Estándar y Plan Pro. Las características específicas de cada plan están publicadas en el sitio web y pueden ser actualizadas con 30 días de anticipación.
+            </p>
+          </section>
+
+          <section aria-labelledby="terms-3">
+            <h2 id="terms-3" class="text-text-1 font-semibold text-lg mb-3">3. Facturación y Pago</h2>
+            <p>
+              El pago del retainer es mensual y se realiza en los primeros 5 días hábiles del mes. El incumplimiento en el pago suspende la prestación del servicio hasta que se regularice la situación.
+            </p>
+            <p class="mt-3">
+              Los precios están denominados en pesos colombianos (COP) e incluyen todos los impuestos aplicables. Beco 360 se reserva el derecho de ajustar tarifas con 30 días de anticipación escrita.
+            </p>
+          </section>
+
+          <section aria-labelledby="terms-4">
+            <h2 id="terms-4" class="text-text-1 font-semibold text-lg mb-3">4. Política de Cancelación</h2>
+            <p>
+              El Cliente puede cancelar el servicio en cualquier momento mediante notificación escrita con <strong class="text-text-1">15 días calendario de anticipación</strong>. No hay penalizaciones por cancelación. Las features del mes en curso quedan disponibles hasta la fecha de terminación.
+            </p>
+            <p class="mt-3">
+              La capacidad mensual no es acumulable ni reembolsable. Las features no utilizadas en un período no se transfieren al siguiente mes.
+            </p>
+          </section>
+
+          <section aria-labelledby="terms-5">
+            <h2 id="terms-5" class="text-text-1 font-semibold text-lg mb-3">5. Entregables y Revisiones</h2>
+            <p>
+              Cada feature incluye una (1) ronda de revisión y ajustes sin costo adicional. Solicitudes de cambio que modifiquen sustancialmente el alcance original se consideran nuevas features.
+            </p>
+            <p class="mt-3">
+              El turnaround (tiempo de entrega) aplica desde que el Cliente confirma formalmente la feature en el sync mensual o por el canal de comunicación acordado.
+            </p>
+          </section>
+
+          <section aria-labelledby="terms-6">
+            <h2 id="terms-6" class="text-text-1 font-semibold text-lg mb-3">6. Propiedad Intelectual</h2>
+            <p>
+              Una vez completado el pago del mes correspondiente, el Cliente recibe los derechos de uso completos sobre el código y entregables producidos durante ese período. Beco 360 retiene el derecho de reutilizar componentes genéricos no específicos del negocio del Cliente.
+            </p>
+          </section>
+
+          <section aria-labelledby="terms-7">
+            <h2 id="terms-7" class="text-text-1 font-semibold text-lg mb-3">7. Confidencialidad</h2>
+            <p>
+              Beco 360 se compromete a tratar como confidencial toda información del negocio del Cliente que no sea pública. Esta obligación persiste 2 años después de la terminación del contrato.
+            </p>
+          </section>
+
+          <section aria-labelledby="terms-8">
+            <h2 id="terms-8" class="text-text-1 font-semibold text-lg mb-3">8. Limitación de Responsabilidad</h2>
+            <p>
+              La responsabilidad de Beco 360 se limita al valor del mes de retainer correspondiente. El Proveedor no asume responsabilidad por daños indirectos, lucro cesante o pérdida de datos derivados del uso de los entregables.
+            </p>
+          </section>
+
+          <section aria-labelledby="terms-9">
+            <h2 id="terms-9" class="text-text-1 font-semibold text-lg mb-3">9. Ley Aplicable</h2>
+            <p>
+              Este contrato se rige por las leyes de la República de Colombia. Para cualquier controversia, las partes se someten a la jurisdicción de los jueces competentes de la ciudad de Medellín, Antioquia.
+            </p>
+          </section>
+
+          <section aria-labelledby="terms-10">
+            <h2 id="terms-10" class="text-text-1 font-semibold text-lg mb-3">10. Contacto</h2>
+            <p>
+              Para consultas sobre estos términos: <a href="mailto:team@beco360.com" class="text-copper hover:text-copper-dark transition-colors">team@beco360.com</a>
+            </p>
+          </section>
+        </div>
+      </div>
+    </Section>
+  </main>
+
+  <Footer />
+</Layout>

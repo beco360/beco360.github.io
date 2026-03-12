@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+import Section from '../components/Section.astro'
+
+const valores = [
+  {
+    emoji: '🤖',
+    titulo: 'AI-first',
+    descripcion:
+      'Usamos las mejores herramientas para entregar más rápido y mejor. AI no es una palabra de moda para nosotros — es la forma en que trabajamos todos los días. Si hay una herramienta mejor, la adoptamos.',
+  },
+  {
+    emoji: '⏰',
+    titulo: 'Asincrónico por defecto',
+    descripcion:
+      'Resultados, no reuniones. Trabajamos en bloques de concentración sin interrupciones. Los syncs están programados y son cortos. La comunicación fluye por WhatsApp cuando tiene sentido, no como reflejo.',
+  },
+  {
+    emoji: '🔍',
+    titulo: 'Transparencia total',
+    descripcion:
+      'Sabes exactamente qué obtienes y cuándo. Sin sorpresas. Si algo toma más tiempo de lo esperado, te avisamos antes de que preguntes. Nuestros precios son públicos y nuestros compromisos son escritos.',
+  },
+  {
+    emoji: '✅',
+    titulo: 'Calidad antes de velocidad',
+    descripcion:
+      'Cada feature pasa por revisión antes de entregarse. Rápido no significa descuidado — significa que usamos AI para hacer en horas lo que antes tomaba días, con el mismo estándar de calidad.',
+  },
+  {
+    emoji: '🇨🇴',
+    titulo: 'Colombiano de raíz',
+    descripcion:
+      'Somos de Colombia y construimos para Colombia. Entendemos el mercado, el idioma, las regulaciones y la cultura. Cuando hablas con Beco, hablas con alguien que conoce tu contexto.',
+  },
+  {
+    emoji: '📦',
+    titulo: 'El producto como protagonista',
+    descripcion:
+      'No vendemos slides ni presentaciones. Vendemos software que funciona. Alfil y Cotejo existen porque creemos en construir — no solo en consultar. Nuestro portafolio habla por nosotros.',
+  },
+]
+---
+
+<Layout
+  title="Cultura — Cómo trabajamos | Beco 360"
+  description="Los valores y la forma de trabajar de Beco 360: AI-first, asincrónico, transparente. Construimos productos, no promesas."
+>
+  <Nav />
+
+  <main>
+    <Section bg="surface" labelledby="cultura-heading">
+      <div class="max-w-3xl mx-auto">
+        <div class="pt-16 pb-8 text-center">
+          <h1
+            id="cultura-heading"
+            class="text-text-1 font-bold reveal"
+            style="font-size: clamp(2rem, 4vw, 3rem);"
+          >
+            Cultura Beco 360
+          </h1>
+          <p class="text-text-2 mt-4 max-w-lg mx-auto reveal" style="transition-delay: 80ms;">
+            No somos una agencia tradicional. Esto es lo que nos define.
+          </p>
+        </div>
+
+        <div class="mt-12 space-y-8">
+          {valores.map((valor, i) => (
+            <div
+              class="flex gap-6 p-6 rounded-xl border border-surface-3 hover:border-copper/30 transition-colors duration-200 reveal"
+              style={`transition-delay: ${(i + 1) * 80}ms;`}
+            >
+              <span class="text-3xl shrink-0" role="img" aria-label={valor.titulo}>
+                {valor.emoji}
+              </span>
+              <div>
+                <h2 class="text-text-1 font-bold text-lg mb-2">{valor.titulo}</h2>
+                <p class="text-text-2 text-sm leading-relaxed">{valor.descripcion}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-16 text-center border border-surface-3 rounded-xl p-8 reveal" style="transition-delay: 160ms;">
+          <p class="text-text-1 font-semibold text-lg mb-2">
+            ¿Esto resuena contigo?
+          </p>
+          <p class="text-text-2 text-sm mb-6">
+            Construyamos algo juntos.
+          </p>
+          <button
+            type="button"
+            class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-sm bg-copper text-surface hover:bg-copper-dark transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer"
+            data-cal-link="beco360/llamada-inicial"
+            data-cal-config='{"layout":"month_view"}'
+          >
+            Agenda una llamada
+          </button>
+        </div>
+      </div>
+    </Section>
+  </main>
+
+  <Footer />
+</Layout>
