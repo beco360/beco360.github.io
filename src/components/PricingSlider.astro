@@ -1,0 +1,277 @@
+---
+// No props — all data is internal
+---
+
+<section id="planes" class="bg-surface-2" aria-labelledby="planes-heading">
+  <div class="max-w-2xl mx-auto px-6 md:px-8 py-24 md:py-32">
+
+    <div class="text-center mb-14">
+      <h2
+        id="planes-heading"
+        class="text-text-1 font-bold reveal"
+        style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
+      >
+        Elige tu capacidad mensual
+      </h2>
+      <p class="text-text-2 mt-4 reveal" style="transition-delay: 80ms;">
+        Sin contratos. Sin permanencia. Cancelas cuando quieras.
+      </p>
+    </div>
+
+    <!-- Slider card -->
+    <div class="rounded-2xl border border-surface-3 bg-surface p-8 md:p-10 reveal" style="transition-delay: 160ms;">
+
+      <!-- Label + value -->
+      <div class="flex items-center justify-between mb-3">
+        <label for="features-slider" class="text-text-2 text-sm font-medium">
+          Features por mes
+        </label>
+        <span id="features-value" class="text-copper font-bold text-lg tabular-nums">4</span>
+      </div>
+
+      <!-- Slider -->
+      <div class="relative mb-2">
+        <input
+          id="features-slider"
+          type="range"
+          min="1"
+          max="12"
+          value="4"
+          step="1"
+          class="pricing-slider w-full h-2 rounded-full appearance-none cursor-pointer bg-surface-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-copper"
+          aria-label="Selecciona la cantidad de features por mes"
+          aria-valuemin="1"
+          aria-valuemax="12"
+          aria-valuenow="4"
+        />
+        <!-- Tick marks at tier boundaries -->
+        <div class="flex justify-between mt-2 px-0.5" aria-hidden="true">
+          <span class="text-text-3 text-xs">1</span>
+          <span class="text-text-3 text-xs">3</span>
+          <span class="text-text-3 text-xs">6</span>
+          <span class="text-text-3 text-xs">10</span>
+          <span class="text-text-3 text-xs">12</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-surface-3 my-8"></div>
+
+      <!-- Price display -->
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+        <div>
+          <div class="flex items-baseline gap-3">
+            <span
+              id="price-total"
+              class="text-text-1 font-extrabold tabular-nums"
+              style="font-size: clamp(2rem, 5vw, 3rem);"
+            >
+              COP $5,200,000
+            </span>
+            <span class="text-text-3 text-sm">/mes</span>
+          </div>
+          <p id="price-per-feature" class="text-text-3 text-sm mt-1 tabular-nums">
+            $1,300,000 por feature
+          </p>
+          <p id="price-usd" class="text-text-3 text-xs mt-0.5 tabular-nums">
+            ~$1,576 USD/mes
+          </p>
+        </div>
+
+        <!-- Savings badge — hidden at feature=1 -->
+        <div
+          id="savings-badge"
+          class="inline-flex items-center gap-1.5 rounded-full border border-copper/30 bg-copper/10 px-3 py-1.5 text-copper text-sm font-semibold self-start sm:self-auto"
+          aria-live="polite"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+          </svg>
+          <span id="savings-text">Ahorras 28%</span>
+        </div>
+      </div>
+
+      <!-- Included perks -->
+      <ul class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8" role="list">
+        <li class="flex items-center gap-2 text-text-2 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper shrink-0" aria-hidden="true">
+            <path d="M15 10l-4 4l-2-2"/><circle cx="12" cy="12" r="10"/>
+          </svg>
+          <span id="perk-syncs">2 × 45 min sync/mes</span>
+        </li>
+        <li class="flex items-center gap-2 text-text-2 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper shrink-0" aria-hidden="true">
+            <path d="M15 10l-4 4l-2-2"/><circle cx="12" cy="12" r="10"/>
+          </svg>
+          <span>Entrega en 5 días hábiles</span>
+        </li>
+        <li class="flex items-center gap-2 text-text-2 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper shrink-0" aria-hidden="true">
+            <path d="M15 10l-4 4l-2-2"/><circle cx="12" cy="12" r="10"/>
+          </svg>
+          <span id="perk-comms">Async prioritario</span>
+        </li>
+      </ul>
+
+      <!-- CTA -->
+      <button
+        type="button"
+        class="w-full inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 font-semibold text-sm bg-copper text-surface hover:bg-copper-dark transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer"
+        data-cal-link="beco360/llamada-inicial"
+        data-cal-config='{"layout":"month_view"}'
+        aria-label="Agenda mi llamada gratis con Beco 360"
+      >
+        Agenda mi llamada gratis →
+      </button>
+
+      <p class="text-text-3 text-xs text-center mt-3">
+        20 minutos · Sin compromiso · Sin tarjeta de crédito
+      </p>
+    </div>
+
+    <!-- Footer note -->
+    <p class="text-text-3 text-sm text-center mt-8 reveal" style="transition-delay: 240ms;">
+      El plan de 1 feature cuesta lo mismo que contratar un empleado al salario mínimo — incluyendo prestaciones, ARL y todo lo demás.
+    </p>
+
+  </div>
+</section>
+
+<style>
+  /* Slider thumb — copper colored */
+  .pricing-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--color-copper);
+    cursor: pointer;
+    border: 3px solid var(--color-surface);
+    box-shadow: 0 0 0 2px var(--color-copper);
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+  .pricing-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--color-copper);
+    cursor: pointer;
+    border: 3px solid var(--color-surface);
+    box-shadow: 0 0 0 2px var(--color-copper);
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+  .pricing-slider:hover::-webkit-slider-thumb,
+  .pricing-slider:focus::-webkit-slider-thumb {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 3px var(--color-copper);
+  }
+  .pricing-slider:hover::-moz-range-thumb,
+  .pricing-slider:focus::-moz-range-thumb {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 3px var(--color-copper);
+  }
+
+  /* Fill track up to thumb */
+  .pricing-slider {
+    background: linear-gradient(
+      to right,
+      var(--color-copper) 0%,
+      var(--color-copper) var(--fill, 27%),
+      var(--color-surface-3) var(--fill, 27%),
+      var(--color-surface-3) 100%
+    );
+  }
+
+  /* Smooth price transition */
+  #price-total {
+    transition: opacity 120ms ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #price-total { transition: none; }
+  }
+</style>
+
+<script>
+  const tiers = [
+    { max: 1,  precioUnitario: 1_800_000, syncs: '1 × 30 min sync/mes', comms: 'Async (WhatsApp)',  ahorro: 0  },
+    { max: 3,  precioUnitario: 1_500_000, syncs: '1 × 30 min sync/mes', comms: 'Async (WhatsApp)',  ahorro: 17 },
+    { max: 6,  precioUnitario: 1_300_000, syncs: '2 × 45 min sync/mes', comms: 'Async prioritario', ahorro: 28 },
+    { max: 10, precioUnitario: 1_100_000, syncs: '4 × 60 min sync/mes', comms: 'Canal dedicado',    ahorro: 39 },
+    { max: 12, precioUnitario: 1_000_000, syncs: '4 × 60 min sync/mes', comms: 'Canal dedicado',    ahorro: 44 },
+  ]
+
+  const USD_RATE = 4200 // approximate COP per USD
+
+  function getTier(features: number) {
+    return tiers.find(t => features <= t.max) ?? tiers[tiers.length - 1]
+  }
+
+  function formatCOP(n: number): string {
+    return 'COP $' + n.toLocaleString('es-CO')
+  }
+
+  function updateSlider() {
+    const slider = document.getElementById('features-slider') as HTMLInputElement
+    if (!slider) return
+
+    const features = parseInt(slider.value, 10)
+    const tier = getTier(features)
+    const total = features * tier.precioUnitario
+
+    // Update fill
+    const pct = ((features - 1) / 11) * 100
+    slider.style.setProperty('--fill', `${pct}%`)
+    slider.setAttribute('aria-valuenow', String(features))
+
+    // Feature count
+    const featVal = document.getElementById('features-value')
+    if (featVal) featVal.textContent = String(features)
+
+    // Price — flash transition
+    const priceEl = document.getElementById('price-total')
+    if (priceEl) {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      if (!prefersReduced) {
+        priceEl.style.opacity = '0.4'
+        requestAnimationFrame(() => {
+          priceEl.textContent = formatCOP(total)
+          priceEl.style.opacity = '1'
+        })
+      } else {
+        priceEl.textContent = formatCOP(total)
+      }
+    }
+
+    const perFeature = document.getElementById('price-per-feature')
+    if (perFeature) perFeature.textContent = `${formatCOP(tier.precioUnitario)} por feature`
+
+    const usd = document.getElementById('price-usd')
+    if (usd) usd.textContent = `~$${Math.round(total / USD_RATE).toLocaleString('en-US')} USD/mes`
+
+    // Savings badge
+    const badge = document.getElementById('savings-badge')
+    const savingsText = document.getElementById('savings-text')
+    if (badge && savingsText) {
+      if (tier.ahorro === 0) {
+        badge.classList.add('hidden')
+      } else {
+        badge.classList.remove('hidden')
+        savingsText.textContent = `Ahorras ${tier.ahorro}%`
+      }
+    }
+
+    // Perks
+    const syncEl = document.getElementById('perk-syncs')
+    if (syncEl) syncEl.textContent = tier.syncs
+
+    const commsEl = document.getElementById('perk-comms')
+    if (commsEl) commsEl.textContent = tier.comms
+  }
+
+  const slider = document.getElementById('features-slider') as HTMLInputElement
+  if (slider) {
+    slider.addEventListener('input', updateSlider)
+    updateSlider() // init
+  }
+</script>

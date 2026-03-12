@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro'
 import Nav from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
 import Section from '../components/Section.astro'
-import PlanCard from '../components/PlanCard.astro'
+import PricingSlider from '../components/PricingSlider.astro'
 import ProductCard from '../components/ProductCard.astro'
 import FeatureCategory from '../components/FeatureCategory.astro'
 import PortfolioItem from '../components/PortfolioItem.astro'
@@ -12,38 +12,6 @@ import FaqItem from '../components/FaqItem.astro'
 import ingenierosBrand from '../../public/assets/clients/Ingenieros AB.webp'
 import lsjBrand from '../../public/assets/clients/lsj.webp'
 
-const planes = [
-  {
-    nombre: 'Mínimo',
-    precio: 'COP $2,921,000',
-    precioUSD: '~$885',
-    features: ['2 features/mes (1 cada 15 días)'],
-    syncs: '1 × 30 min',
-    turnaround: '7 días hábiles',
-    comunicacion: 'Async (WhatsApp)',
-    popular: false,
-  },
-  {
-    nombre: 'Estándar',
-    precio: 'COP $5,800,000',
-    precioUSD: '~$1,758',
-    features: ['4 features/mes (1 por semana)'],
-    syncs: '2 × 45 min',
-    turnaround: '5 días hábiles',
-    comunicacion: 'Async prioritario',
-    popular: true,
-  },
-  {
-    nombre: 'Pro',
-    precio: 'COP $11,600,000',
-    precioUSD: '~$3,515',
-    features: ['8 features/mes (2 por semana)'],
-    syncs: '4 × 60 min',
-    turnaround: '3 días hábiles',
-    comunicacion: 'Canal dedicado',
-    popular: false,
-  },
-]
 
 const featureCategories = [
   {
@@ -272,41 +240,7 @@ const faqsHome = [
     </Section>
 
     <!-- PLANES -->
-    <Section id="planes" bg="surface-2" labelledby="planes-heading">
-      <div class="text-center mb-16">
-        <h2
-          id="planes-heading"
-          class="text-text-1 font-bold reveal"
-          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
-        >
-          Elige tu capacidad mensual
-        </h2>
-        <p class="text-text-2 mt-4 max-w-xl mx-auto reveal" style="transition-delay: 80ms;">
-          Sin contratos. Sin permanencia. Cancelas cuando quieras.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        {planes.map((plan, i) => (
-          <div class="reveal" style={`transition-delay: ${(i + 1) * 80}ms;`}>
-            <PlanCard
-              nombre={plan.nombre}
-              precio={plan.precio}
-              precioUSD={plan.precioUSD}
-              features={plan.features}
-              syncs={plan.syncs}
-              turnaround={plan.turnaround}
-              comunicacion={plan.comunicacion}
-              popular={plan.popular}
-            />
-          </div>
-        ))}
-      </div>
-
-      <p class="text-text-3 text-sm text-center mt-10 max-w-2xl mx-auto reveal" style="transition-delay: 400ms;">
-        El plan Mínimo cuesta exactamente lo mismo que contratar un empleado al salario mínimo — incluyendo prestaciones, ARL y todo lo demás.
-      </p>
-    </Section>
+    <PricingSlider />
 
     <!-- FEATURES / EJEMPLOS -->
     <Section id="features" bg="surface" labelledby="features-heading">
