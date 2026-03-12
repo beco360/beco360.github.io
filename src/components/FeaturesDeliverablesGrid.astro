@@ -1,94 +1,158 @@
 ---
-// Opción B: Features como entregables con resultado de negocio
 const deliverables = [
   {
-    emoji: '💬',
+    id: '01',
     pedido: '"Quiero que cuando alguien pida un presupuesto me llegue un WhatsApp"',
-    entregado: 'Bot de cotización por WhatsApp',
-    resultado: 'Califica leads, responde preguntas frecuentes y agenda llamadas. Solo. 24/7.',
+    titulo: 'Bot de cotización por WhatsApp',
+    resultado: 'Califica leads, responde preguntas y agenda citas. Solo. 24/7. Sin contratar a nadie.',
   },
   {
-    emoji: '🧾',
+    id: '02',
     pedido: '"Quiero que la factura se genere sola cuando cierro una venta"',
-    entregado: 'Facturación automática integrada al CRM',
-    resultado: 'Cierras la venta → la factura llega al cliente en segundos. Sin copiar nada.',
+    titulo: 'Facturación automática',
+    resultado: 'Cierras la venta → la factura llega al cliente en segundos.',
   },
   {
-    emoji: '📈',
+    id: '03',
     pedido: '"Quiero ver las ventas del mes sin abrir Excel"',
-    entregado: 'Dashboard de KPIs en tiempo real',
-    resultado: 'Una pantalla con todo: ventas, top clientes y comparativo vs. mes anterior.',
+    titulo: 'Dashboard de KPIs en tiempo real',
+    resultado: 'Ventas, top clientes y comparativo mensual. En una pantalla.',
   },
   {
-    emoji: '🗓️',
-    pedido: '"Quiero que mis clientes puedan agendar citas solos"',
-    entregado: 'Sistema de agenda online con confirmación por WhatsApp',
-    resultado: 'El cliente elige horario, paga si aplica, y vos recibís la confirmación.',
+    id: '04',
+    pedido: '"Quiero que mis clientes agenden solos"',
+    titulo: 'Agenda online con confirmación automática',
+    resultado: 'El cliente elige horario, paga si aplica. Vos recibís la confirmación.',
   },
   {
-    emoji: '🛒',
-    pedido: '"Quiero vender por mi web pero no sé cómo montar un e-commerce"',
-    entregado: 'Catálogo con carrito y pasarela de pago (Wompi/PSE/Nequi)',
-    resultado: 'Tus productos online, con cobro real. Sin plataformas terceras de por medio.',
+    id: '05',
+    pedido: '"Quiero vender por mi web pero no sé cómo"',
+    titulo: 'E-commerce con pasarela de pago',
+    resultado: 'Catálogo + carrito + Wompi/PSE/Nequi. Sin plataformas de terceros.',
   },
   {
-    emoji: '📦',
-    pedido: '"Quiero saber cuándo me queda poco inventario antes de quedarme sin stock"',
-    entregado: 'Sistema de inventario con alertas automáticas',
-    resultado: 'Cuando un producto baja del mínimo, te llega un WhatsApp. Sin revisar nada.',
+    id: '06',
+    pedido: '"Quiero saber cuándo me queda poco inventario"',
+    titulo: 'Inventario con alertas automáticas',
+    resultado: 'Stock bajo → WhatsApp al instante. Sin revisar nada.',
   },
 ]
 ---
 
-<section class="bg-surface" aria-labelledby="features-b-heading">
+<section class="bg-surface" aria-labelledby="features-heading">
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 md:py-32">
 
     <div class="text-center mb-16">
+      <p class="text-copper font-mono text-xs tracking-[0.2em] uppercase mb-4">Lo que construimos</p>
       <h2
-        id="features-b-heading"
+        id="features-heading"
         class="text-text-1 font-bold"
         style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
       >
-        Una feature = una solución lista para usar
+        Una feature = una solución lista<br class="hidden sm:block" /> para usar en tu negocio
       </h2>
-      <p class="text-text-2 mt-4 max-w-2xl mx-auto">
-        Describís lo que necesitás. En días tenés algo funcionando en tu negocio.
+      <p class="text-text-2 mt-4 max-w-xl mx-auto">
+        Describís lo que necesitás. En días tenés algo funcionando.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <!-- Bento grid -->
+    <div class="bento-grid">
       {deliverables.map((d) => (
-        <div class="flex flex-col rounded-xl border border-surface-3 bg-surface-2 p-6 hover:border-copper/30 transition-colors duration-200">
-          <!-- Emoji + "pedido" en voz del cliente -->
-          <div class="flex items-start gap-3 mb-5">
-            <span class="text-2xl shrink-0 mt-0.5" aria-hidden="true">{d.emoji}</span>
-            <p class="text-text-3 text-sm italic leading-relaxed">
-              {d.pedido}
-            </p>
-          </div>
+        <article class="bento-card group" data-id={d.id}>
+          <!-- Counter -->
+          <span class="font-mono text-xs text-copper/60 tracking-widest mb-auto block">
+            {d.id}
+          </span>
 
-          <!-- Lo que se entrega -->
-          <div class="border-t border-surface-3 pt-4 flex-1">
-            <p class="text-text-1 font-semibold text-sm mb-2">{d.entregado}</p>
-            <p class="text-text-2 text-sm leading-relaxed">{d.resultado}</p>
-          </div>
+          <!-- Quote (client voice) -->
+          <p class="text-text-3 text-sm italic leading-relaxed mt-4 mb-5 flex-1">
+            {d.pedido}
+          </p>
+
+          <!-- Deliverable title -->
+          <h3 class="text-text-1 font-bold text-base leading-snug mb-2">
+            {d.titulo}
+          </h3>
+
+          <!-- Result -->
+          <p class="text-text-2 text-sm leading-relaxed mb-5">
+            {d.resultado}
+          </p>
 
           <!-- Badge -->
-          <div class="mt-5 pt-4 border-t border-surface-3">
-            <span class="inline-flex items-center gap-1.5 text-xs font-medium text-text-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper" aria-hidden="true">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              1 feature · entrega en 5 días hábiles
-            </span>
+          <div class="flex items-center gap-1.5 mt-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper shrink-0" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span class="font-mono text-[11px] text-text-3 tracking-wide">1 feature · 5 días hábiles</span>
           </div>
-        </div>
+        </article>
       ))}
     </div>
 
-    <p class="text-text-3 text-sm text-center mt-10">
-      Estos son ejemplos reales. Si lo puedes describir, lo podemos construir.
+    <p class="text-text-3 text-sm text-center mt-12">
+      Estos son ejemplos. Si lo podés describir en una oración, lo podemos construir.
     </p>
 
   </div>
 </section>
+
+<style>
+  /* Bento asymmetric grid */
+  .bento-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+    }
+
+    /* 01 spans 2 cols */
+    .bento-card:nth-child(1) { grid-column: span 2; }
+    /* 04 spans 2 cols */
+    .bento-card:nth-child(4) { grid-column: span 2; }
+    /* 05 goes full first on its row — stays 1 col */
+    /* 06 spans 2 cols */
+    .bento-card:nth-child(6) { grid-column: span 2; }
+  }
+
+  /* Card base */
+  .bento-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(var(--color-surface-2), var(--color-surface-2)) padding-box,
+      linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--color-copper) 20%, transparent),
+        transparent 50%,
+        color-mix(in srgb, var(--color-copper) 8%, transparent)
+      ) border-box;
+    transition: box-shadow 250ms ease, transform 250ms ease;
+    min-height: 220px;
+  }
+
+  .bento-card:hover {
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-copper) 25%, transparent),
+      0 8px 32px color-mix(in srgb, var(--color-copper) 10%, transparent),
+      0 2px 8px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Large cards get a bigger quote */
+  .bento-card:nth-child(1) p:nth-child(2),
+  .bento-card:nth-child(4) p:nth-child(2),
+  .bento-card:nth-child(6) p:nth-child(2) {
+    font-size: 1rem;
+  }
+</style>
