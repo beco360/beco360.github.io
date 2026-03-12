@@ -4,6 +4,7 @@ import Badge from './Badge.astro'
 const productos = [
   {
     nombre: 'Alfil',
+    tagline: 'Análisis electoral',
     descripcion: 'Inteligencia política para Colombia. Contratos públicos, sanciones y redes de empresas — todo en tiempo real, impulsado por AI.',
     badge: 'active' as const,
     badgeText: 'Activo',
@@ -12,14 +13,16 @@ const productos = [
   },
   {
     nombre: 'Cotejo',
+    tagline: 'Fútbol amateur',
     descripcion: 'Plataforma de fútbol amateur. Reservas de canchas, estadísticas y gamificación para organizadores y jugadores.',
     badge: 'beta' as const,
     badgeText: 'Beta',
-    href: 'https://cotejo.app',
+    href: 'https://cotejo.co',
     stack: 'Astro · pagos · gamificación · mapas',
   },
   {
     nombre: 'Chatbots que venden solos',
+    tagline: 'Ventas automatizadas',
     descripcion: 'Agentes de ventas entrenados con el conocimiento de tu negocio. Responden, califican y agendan — en WhatsApp o en tu sitio.',
     badge: 'active' as const,
     badgeText: 'Activo',
@@ -27,8 +30,9 @@ const productos = [
     stack: 'AI · WhatsApp · CRM',
   },
   {
-    nombre: 'lsjsas.com',
-    descripcion: 'E-commerce colombiano completo: catálogo, carrito, pagos PSE/Nequi/Wompi y panel de gestión de pedidos.',
+    nombre: 'LSJ',
+    tagline: 'E-commerce colombiano',
+    descripcion: 'Tienda online con catálogo, carrito y pagos PSE/Nequi/Wompi. Panel de gestión de pedidos integrado.',
     badge: 'active' as const,
     badgeText: 'Activo',
     href: 'https://lsjsas.com',
@@ -36,6 +40,7 @@ const productos = [
   },
   {
     nombre: 'Facturación & Inventario',
+    tagline: 'Operaciones sin fricciones',
     descripcion: 'Factura electrónica que se genera sola al cerrar una venta. Stock bajo → alerta automática. Todo integrado al CRM.',
     badge: 'active' as const,
     badgeText: 'Activo',
@@ -61,7 +66,7 @@ const track = [...marqueeItems, ...marqueeItems]
 
     <!-- Header -->
     <div class="text-center mb-14 reveal">
-      <p class="font-mono text-xs text-copper/70 tracking-[0.2em] uppercase mb-3">Productos propios</p>
+      <p class="font-mono text-xs text-copper/70 tracking-[0.2em] uppercase mb-3">Lo que hemos construido</p>
       <h2
         id="portafolio-heading"
         class="text-text-1 font-bold"
@@ -100,9 +105,12 @@ const track = [...marqueeItems, ...marqueeItems]
               )}
             </div>
 
-            <h3 class="text-text-1 text-2xl font-bold mb-3 group-hover:text-copper transition-colors duration-200">
-              {p.nombre}
-            </h3>
+            <div class="mb-3">
+              <h3 class="text-text-1 text-2xl font-bold group-hover:text-copper transition-colors duration-200">
+                {p.nombre}
+              </h3>
+              <p class="text-text-3 text-xs font-mono mt-1 tracking-wide">{p.tagline}</p>
+            </div>
             <p class="text-text-2 text-sm leading-relaxed mb-6 flex-1">
               {p.descripcion}
             </p>
