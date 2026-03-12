@@ -1,0 +1,24 @@
+---
+interface Props {
+  icon: string
+  title: string
+  items: string[]
+}
+
+const { icon, title, items } = Astro.props
+---
+
+<div class="rounded-xl border border-surface-3 bg-surface p-6 transition-all duration-200 hover:border-copper/30">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="text-2xl" role="img" aria-label={title}>{icon}</span>
+    <h3 class="text-text-1 font-semibold text-sm">{title}</h3>
+  </div>
+  <ul class="space-y-2" role="list">
+    {items.map((item) => (
+      <li class="flex items-start gap-2 text-text-2 text-xs leading-relaxed">
+        <span class="text-copper mt-0.5 shrink-0" aria-hidden="true">–</span>
+        {item}
+      </li>
+    ))}
+  </ul>
+</div>

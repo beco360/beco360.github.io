@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: #0F0F0F;
+  --color-surface-2: #1A1A1A;
+  --color-surface-3: #2A2A2A;
+  --color-copper: #D4755E;
+  --color-copper-dark: #C4654E;
+  --color-text-1: #F5F5F5;
+  --color-text-2: #9B9B9B;
+  --color-text-3: #6B6B6B;
+
+  /* Status badge tokens */
+  --color-status-active: #4ade80;
+  --color-status-beta: #facc15;
+
+  --font-family-jakarta: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Reveal animations — only active when JS is loaded (html.js class added by script) */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+html.js .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal {
+    transition-duration: 0ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* Nav underline animation */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-copper);
+  transition: width 200ms ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}

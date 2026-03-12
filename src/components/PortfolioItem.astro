@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets'
+
+interface Props {
+  nombre: string
+  sector: string
+  imageSrc?: ImageMetadata
+  imageAlt?: string
+}
+
+const { nombre, sector, imageSrc, imageAlt } = Astro.props
+---
+
+<div class="flex flex-col rounded-xl border border-surface-3 bg-surface-2 overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:border-copper/40">
+  <!-- Image area -->
+  <div class="h-40 overflow-hidden bg-surface-3 flex items-center justify-center">
+    {imageSrc ? (
+      <Image
+        src={imageSrc}
+        alt={imageAlt ?? `Logo de ${nombre}`}
+        width={320}
+        height={160}
+        class="w-full h-full object-cover"
+      />
+    ) : (
+      <span class="text-text-3 text-sm font-medium" aria-label={`Imagen de ${nombre} próximamente`}>
+        {nombre}
+      </span>
+    )}
+  </div>
+
+  <!-- Info -->
+  <div class="p-6">
+    <h3 class="text-text-1 font-semibold">{nombre}</h3>
+    <p class="text-text-3 text-sm mt-1">{sector}</p>
+  </div>
+</div>

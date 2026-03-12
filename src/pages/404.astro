@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<Layout
+  title="404 — Página no encontrada | Beco 360"
+  description="Esta página no existe todavía. Pero si tienes una idea, podemos construirla."
+>
+  <Nav />
+
+  <main>
+    <section class="bg-surface min-h-screen flex items-center" aria-labelledby="not-found-heading">
+      <div class="max-w-2xl mx-auto px-6 md:px-8 py-24 text-center">
+        <p class="text-copper font-mono text-6xl font-extrabold mb-6" aria-hidden="true">404</p>
+
+        <h1
+          id="not-found-heading"
+          class="text-text-1 font-bold leading-tight"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
+        >
+          Esta página no existe... todavía.
+        </h1>
+
+        <p class="text-text-2 text-xl mt-4">
+          Pero si tienes una idea, podemos construirla.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+          <a
+            href="/"
+            class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-sm border border-surface-3 text-text-1 hover:border-copper hover:text-copper transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper"
+          >
+            ← Volver al inicio
+          </a>
+          <button
+            type="button"
+            class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-sm bg-copper text-surface hover:bg-copper-dark transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer"
+            data-cal-link="beco360/llamada-inicial"
+            data-cal-config='{"layout":"month_view"}'
+          >
+            Agenda una llamada
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

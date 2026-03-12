@@ -1,0 +1,50 @@
+---
+interface Props {
+  variant?: 'primary' | 'outline'
+  href?: string
+  calLink?: string
+  class?: string
+  type?: 'button' | 'submit'
+}
+
+const {
+  variant = 'primary',
+  href,
+  calLink,
+  class: className = '',
+  type = 'button',
+} = Astro.props
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-sm transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer'
+
+const variants = {
+  primary:
+    'bg-copper text-surface hover:bg-copper-dark',
+  outline:
+    'border border-surface-3 text-text-1 hover:border-copper hover:text-copper bg-transparent',
+}
+
+const classes = `${base} ${variants[variant]} ${className}`
+---
+
+{
+  calLink ? (
+    <button
+      type={type}
+      class={classes}
+      data-cal-link={calLink}
+      data-cal-config='{"layout":"month_view"}'
+    >
+      <slot />
+    </button>
+  ) : href ? (
+    <a href={href} class={classes}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes}>
+      <slot />
+    </button>
+  )
+}

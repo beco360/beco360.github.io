@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+import Section from '../components/Section.astro'
+import FaqItem from '../components/FaqItem.astro'
+
+const faqs = [
+  {
+    pregunta: '¿Qué es una "feature"?',
+    respuesta:
+      'Una feature es cualquier mejora o funcionalidad descrita en 1 oración con un resultado claro. Por ejemplo: "Quiero que me llegue un WhatsApp cuando alguien llene el formulario de contacto." Si se puede describir en una oración y el resultado es medible, es una feature.',
+  },
+  {
+    pregunta: '¿Qué pasa si mi idea es muy grande para 1 feature?',
+    respuesta:
+      'La dividimos juntos en el sync mensual. Tú priorizas cuál va primero. Un e-commerce completo, por ejemplo, son 8-10 features. Las construimos en el orden que más valor te genere.',
+  },
+  {
+    pregunta: '¿Puedo cancelar cuando quiera?',
+    respuesta:
+      'Sí. Sin contratos de permanencia. Cancelas con 15 días de anticipación y listo. No hay penalizaciones ni letras pequeñas.',
+  },
+  {
+    pregunta: '¿Las features que no uso en el mes se acumulan?',
+    respuesta:
+      'No. El modelo es como un gimnasio: la capacidad no acumula. Úsala o la pierdes. Esto nos permite planificar mejor y darte un servicio más predecible.',
+  },
+  {
+    pregunta: '¿Qué tecnologías usan?',
+    respuesta:
+      'Las que mejor resuelven tu problema. Web, mobile, automatizaciones, AI, integraciones — sin restricción de stack. Usamos las herramientas más modernas y las que AI puede acelerar mejor.',
+  },
+  {
+    pregunta: '¿Cuánto tarda cada feature?',
+    respuesta:
+      'El turnaround depende del plan: 7 días hábiles (Plan Mínimo), 5 días hábiles (Plan Estándar), 3 días hábiles (Plan Pro). Empezamos a contar desde que confirmas la feature en el sync o por WhatsApp.',
+  },
+  {
+    pregunta: '¿Cómo les digo qué quiero?',
+    respuesta:
+      'Por WhatsApp o en el sync mensual. No necesitas saber de tecnología — describes el problema que tienes o el resultado que quieres, nosotros lo traducimos a código.',
+  },
+  {
+    pregunta: '¿Qué pasa si la feature no queda como esperaba?',
+    respuesta:
+      'Incluye 1 ronda de ajustes sin costo adicional. Si describiste claramente el resultado esperado y no lo logramos, lo corregimos. Eso es parte del compromiso.',
+  },
+  {
+    pregunta: '¿Tienen experiencia con empresas de mi sector?',
+    respuesta:
+      'Hemos trabajado con ingeniería civil, e-commerce, política, deportes y más. Cada sector tiene sus particularidades — agenda una llamada y cuéntanos tu caso específico.',
+  },
+  {
+    pregunta: '¿Por qué "1 salario mínimo"?',
+    respuesta:
+      'Porque eso es exactamente lo que te cuesta un empleado al mínimo cuando sumas prestaciones, ARL y todo lo demás: COP $2,921,000 al mes. Por ese mismo valor tienes un desarrollador senior con AI — sin los dolores de cabeza de tener un empleado directo.',
+  },
+]
+---
+
+<Layout
+  title="FAQs — Preguntas frecuentes | Beco 360"
+  description="Respuestas a las preguntas más comunes sobre el modelo de retainer de Beco 360: features, planes, cancelación y más."
+>
+  <Nav />
+
+  <main>
+    <Section bg="surface" labelledby="faqs-heading">
+      <div class="max-w-3xl mx-auto">
+        <div class="pt-16 pb-8 text-center">
+          <h1
+            id="faqs-heading"
+            class="text-text-1 font-bold reveal"
+            style="font-size: clamp(2rem, 4vw, 3rem);"
+          >
+            Preguntas frecuentes
+          </h1>
+          <p class="text-text-2 mt-4 max-w-lg mx-auto reveal" style="transition-delay: 80ms;">
+            Todo lo que necesitas saber antes de contratar a Beco.
+          </p>
+        </div>
+
+        <div class="mt-8 space-y-3">
+          {faqs.map((faq, i) => (
+            <div class="reveal" style={`transition-delay: ${(i + 1) * 60}ms;`}>
+              <FaqItem
+                pregunta={faq.pregunta}
+                respuesta={faq.respuesta}
+                index={i}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-16 text-center border border-surface-3 rounded-xl p-8 reveal" style="transition-delay: 160ms;">
+          <p class="text-text-2 mb-6">
+            ¿No encontraste tu respuesta? Agenda una llamada — la primera es gratis.
+          </p>
+          <button
+            type="button"
+            class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-sm bg-copper text-surface hover:bg-copper-dark transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer"
+            data-cal-link="beco360/llamada-inicial"
+            data-cal-config='{"layout":"month_view"}'
+          >
+            Agenda una llamada
+          </button>
+        </div>
+      </div>
+    </Section>
+  </main>
+
+  <Footer />
+</Layout>

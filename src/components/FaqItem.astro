@@ -1,0 +1,92 @@
+---
+interface Props {
+  pregunta: string
+  respuesta: string
+  index: number
+}
+
+const { pregunta, respuesta, index } = Astro.props
+const id = `faq-${index}`
+const panelId = `faq-panel-${index}`
+---
+
+<div class="border border-surface-3 rounded-xl overflow-hidden transition-colors duration-200 hover:border-copper/30">
+  <button
+    type="button"
+    id={id}
+    class="w-full flex items-center justify-between gap-4 px-6 py-5 text-left text-text-1 font-medium hover:bg-surface-3/50 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-copper"
+    aria-expanded="false"
+    aria-controls={panelId}
+  >
+    <span class="text-sm md:text-base">{pregunta}</span>
+    <svg
+      class="faq-chevron shrink-0 text-text-3 transition-transform duration-300"
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </button>
+
+  <div
+    id={panelId}
+    role="region"
+    aria-labelledby={id}
+    class="faq-panel overflow-hidden"
+  >
+    <div class="px-6 pb-5 text-text-2 text-sm leading-relaxed">
+      {respuesta}
+    </div>
+  </div>
+</div>
+
+<script>
+  // Accordion logic: close all panels initially via JS so they're visible without JS
+  document.querySelectorAll('[id^="faq-"]:not([id^="faq-panel"])').forEach((btn) => {
+    const button = btn as HTMLButtonElement
+    const panelId = button.getAttribute('aria-controls')
+    if (!panelId) return
+    const panel = document.getElementById(panelId)
+    if (!panel) return
+    const chevron = button.querySelector('.faq-chevron') as SVGElement | null
+
+    // Set initial collapsed state via JS (without JS, panels remain visible)
+    panel.style.maxHeight = '0px'
+
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true'
+
+      // Close all others
+      document.querySelectorAll('[id^="faq-"]:not([id^="faq-panel"])').forEach((otherBtn) => {
+        const other = otherBtn as HTMLButtonElement
+        if (other === button) return
+        const otherId = other.getAttribute('aria-controls')
+        if (!otherId) return
+        const otherPanel = document.getElementById(otherId)
+        const otherChevron = other.querySelector('.faq-chevron') as SVGElement | null
+        other.setAttribute('aria-expanded', 'false')
+        if (otherPanel) otherPanel.style.maxHeight = '0px'
+        if (otherChevron) otherChevron.style.transform = 'rotate(0deg)'
+      })
+
+      // Toggle this one
+      if (isExpanded) {
+        button.setAttribute('aria-expanded', 'false')
+        panel.style.maxHeight = '0px'
+        if (chevron) chevron.style.transform = 'rotate(0deg)'
+      } else {
+        button.setAttribute('aria-expanded', 'true')
+        panel.style.maxHeight = panel.scrollHeight + 'px'
+        if (chevron) chevron.style.transform = 'rotate(180deg)'
+      }
+    })
+  })
+</script>

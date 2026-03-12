@@ -1,0 +1,172 @@
+---
+import { AstroFont } from 'astro-font'
+import '../styles/global.css'
+
+interface Props {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+---
+
+<!doctype html>
+<html lang="es" class="bg-surface font-jakarta scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="canonical" href={Astro.url.href} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" href="/assets/brand/favicon.ico" type="image/x-icon" />
+
+    <title>{title}</title>
+
+    <!-- Plus Jakarta Sans via astro-font -->
+    <AstroFont
+      config={[
+        {
+          name: 'Plus Jakarta Sans',
+          src: [
+            {
+              weight: '400',
+              style: 'normal',
+              path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_KU7NSg.woff2',
+            },
+            {
+              weight: '500',
+              style: 'normal',
+              path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_qk7NSg.woff2',
+            },
+            {
+              weight: '600',
+              style: 'normal',
+              path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Rk9NSg.woff2',
+            },
+            {
+              weight: '700',
+              style: 'normal',
+              path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_f09NSg.woff2',
+            },
+            {
+              weight: '800',
+              style: 'normal',
+              path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_UE9NSg.woff2',
+            },
+          ],
+          display: 'swap',
+          selector: 'html',
+          fallback: 'sans-serif',
+        },
+      ]}
+    />
+
+    <!-- GTM — ID: GTM-TMJ9B58 (verificado activo) -->
+    <!-- TODO: verificar FB Pixel 1333394283480495 en Meta Business Manager antes de activar -->
+    {import.meta.env.PROD && (
+      <script is:inline>
+        (function(w,d,s,l,i){
+          w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+          var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+          j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+          f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TMJ9B58');
+      </script>
+    )}
+
+    <!-- FB Pixel — ID: 1333394283480495 (verificado activo) -->
+    {import.meta.env.PROD && (
+      <script is:inline>
+        !function(f,b,e,v,n,t,s){
+          if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+          t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)
+        }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init','1333394283480495');fbq('track','PageView');
+      </script>
+    )}
+  </head>
+  <body class="bg-surface text-text-1 antialiased">
+    {import.meta.env.PROD && (
+      <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TMJ9B58" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+      </noscript>
+    )}
+
+    <slot />
+
+    <!-- Cal.com embed script -->
+    <script>
+      (function (C: Window & typeof globalThis, A: string, L: string) {
+        // @ts-ignore
+        let p = function (a: unknown, ar: unknown) { a.q.push(ar); };
+        const d = C.document;
+        // @ts-ignore
+        C.Cal = C.Cal || function () {
+          // @ts-ignore
+          const cal = C.Cal;
+          const ar = arguments;
+          // @ts-ignore
+          if (!cal.loaded) {
+            // @ts-ignore
+            cal.ns = {}; cal.q = cal.q || [];
+            (d.head.appendChild(d.createElement('script')) as HTMLScriptElement).src = A;
+            // @ts-ignore
+            cal.loaded = true;
+          }
+          if (ar[0] === L) {
+            // @ts-ignore
+            const api = function () { p(api, arguments); };
+            const namespace = ar[1];
+            // @ts-ignore
+            api.q = api.q || [];
+            // @ts-ignore
+            typeof namespace === 'string' ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar);
+            return;
+          }
+          p(cal, ar);
+        };
+      })(window, 'https://app.cal.com/embed/embed.js', 'init');
+      // @ts-ignore
+      Cal('init', { origin: 'https://app.cal.com' });
+      // @ts-ignore
+      Cal('ui', { hideEventTypeDetails: false, layout: 'month_view' });
+    </script>
+
+    <!-- Reveal animations: mark JS as loaded, then activate -->
+    <script>
+      document.documentElement.classList.add('js');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                observer.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      }
+    </script>
+  </body>
+</html>

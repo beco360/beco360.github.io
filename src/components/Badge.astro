@@ -1,0 +1,21 @@
+---
+interface Props {
+  text: string
+  variant?: 'active' | 'beta' | 'coming-soon' | 'popular'
+}
+
+const { text, variant = 'active' } = Astro.props
+
+const variants = {
+  active: 'bg-status-active/15 text-status-active border border-status-active/30',
+  beta: 'bg-status-beta/15 text-status-beta border border-status-beta/30',
+  'coming-soon': 'bg-surface-3 text-text-3 border border-surface-3',
+  popular: 'bg-copper/20 text-copper border border-copper/40',
+}
+---
+
+<span
+  class={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${variants[variant]}`}
+>
+  {text}
+</span>
