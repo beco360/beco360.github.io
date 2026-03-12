@@ -18,16 +18,24 @@
     "lint:fix": "biome check --write ."
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^3.0.58",
+    "@ai-sdk/react": "^3.0.118",
     "@astrojs/check": "^0.9.7",
+    "@astrojs/react": "^5.0.0",
     "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/vercel": "^10.0.0",
     "@tailwindcss/vite": "^4.2.1",
+    "ai": "^6.0.116",
     "astro": "^6.0.3",
     "astro-font": "^1.1.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.6",
+    "@types/react": "^19.2.14",
     "typescript": "^5.4.5"
   },
   "packageManager": "pnpm@9.2.0"

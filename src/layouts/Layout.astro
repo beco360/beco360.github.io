@@ -1,6 +1,7 @@
 ---
 import { AstroFont } from 'astro-font'
 import '../styles/global.css'
+import ChatWidget from '../components/ChatWidget'
 
 interface Props {
   title: string
@@ -108,6 +109,9 @@ const { title, description } = Astro.props
     )}
 
     <slot />
+
+    <!-- Chat widget -->
+    <ChatWidget client:load />
 
     <!-- Cal.com embed script -->
     <script>
