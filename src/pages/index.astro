@@ -4,13 +4,9 @@ import Nav from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
 import Section from '../components/Section.astro'
 import PricingSlider from '../components/PricingSlider.astro'
-import ProductCard from '../components/ProductCard.astro'
 import FeaturesDeliverablesGrid from '../components/FeaturesDeliverablesGrid.astro'
-import PortfolioItem from '../components/PortfolioItem.astro'
+import SocialProof from '../components/SocialProof.astro'
 import FaqItem from '../components/FaqItem.astro'
-
-import ingenierosBrand from '../../public/assets/clients/Ingenieros AB.webp'
-import lsjBrand from '../../public/assets/clients/lsj.webp'
 
 
 
@@ -168,80 +164,8 @@ const faqsHome = [
     <!-- FEATURES / EJEMPLOS -->
     <FeaturesDeliverablesGrid />
 
-    <!-- PRODUCTOS -->
-    <Section id="productos" bg="surface-2" labelledby="productos-heading">
-      <div class="text-center mb-16">
-        <h2
-          id="productos-heading"
-          class="text-text-1 font-bold reveal"
-          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
-        >
-          Lo que construimos
-        </h2>
-        <p class="text-text-2 mt-4 max-w-xl mx-auto reveal" style="transition-delay: 80ms;">
-          Productos propios que demuestran que sabemos lo que hacemos.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-        <div class="reveal" style="transition-delay: 80ms;">
-          <ProductCard
-            nombre="Alfil"
-            descripcion="Plataforma de inteligencia política para Colombia, impulsada por AI y datos públicos."
-            badge="active"
-            badgeText="Activo"
-            href="https://datos-co.com"
-          />
-        </div>
-        <div class="reveal" style="transition-delay: 160ms;">
-          <ProductCard
-            nombre="Cotejo"
-            descripcion="Conecta canchas, organizadores y jugadores de fútbol con gamificación."
-            badge="beta"
-            badgeText="Beta"
-            href="https://cotejo.app"
-          />
-        </div>
-      </div>
-    </Section>
-
-    <!-- PORTAFOLIO -->
-    <Section id="portafolio" bg="surface" labelledby="portafolio-heading">
-      <div class="text-center mb-16">
-        <h2
-          id="portafolio-heading"
-          class="text-text-1 font-bold reveal"
-          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
-        >
-          Empresas que confían en Beco
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="reveal" style="transition-delay: 80ms;">
-          <PortfolioItem
-            nombre="Ingenieros AB"
-            sector="Ingeniería Civil"
-            imageSrc={ingenierosBrand}
-            imageAlt="Logo de Ingenieros AB — firma de ingeniería civil colombiana"
-          />
-        </div>
-        <div class="reveal" style="transition-delay: 160ms;">
-          <PortfolioItem
-            nombre="LSJ"
-            sector="E-commerce"
-            imageSrc={lsjBrand}
-            imageAlt="Logo de LSJ — tienda e-commerce colombiana"
-          />
-        </div>
-        <div class="reveal" style="transition-delay: 240ms;">
-          <PortfolioItem
-            nombre="Real State"
-            sector="Inmobiliaria"
-          />
-        </div>
-      </div>
-    </Section>
+    <!-- SOCIAL PROOF -->
+    <SocialProof />
 
     <!-- FAQs INLINE — MANEJO DE OBJECIONES -->
     <Section bg="surface-2" labelledby="faqs-inline-heading">
