@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro'
 import Section from '../components/Section.astro'
 import PricingSlider from '../components/PricingSlider.astro'
 import ProductCard from '../components/ProductCard.astro'
-import FeatureCategory from '../components/FeatureCategory.astro'
+import FeaturesDeliverablesGrid from '../components/FeaturesDeliverablesGrid.astro'
 import PortfolioItem from '../components/PortfolioItem.astro'
 import FaqItem from '../components/FaqItem.astro'
 
@@ -13,83 +13,6 @@ import ingenierosBrand from '../../public/assets/clients/Ingenieros AB.webp'
 import lsjBrand from '../../public/assets/clients/lsj.webp'
 
 
-const featureCategories = [
-  {
-    icon: '🌐',
-    title: 'Web y presencia',
-    items: [
-      'Rediseño de homepage',
-      'Formulario a WhatsApp',
-      'Calculadora de precios',
-      'Galería con filtros',
-      'Sección de testimonios',
-      'FAQ interactivo',
-    ],
-  },
-  {
-    icon: '⚡',
-    title: 'Automatizaciones',
-    items: [
-      'Bot WhatsApp 24/7',
-      'Email de bienvenida automático',
-      'Recordatorio de citas',
-      'Factura automática',
-      'Reporte semanal',
-      'Alerta de inventario',
-    ],
-  },
-  {
-    icon: '🔌',
-    title: 'Integraciones',
-    items: [
-      'Pasarela de pago (Wompi/PSE/Nequi)',
-      'Sincronización con Google Sheets',
-      'Conexión CRM',
-      'WhatsApp Business API',
-    ],
-  },
-  {
-    icon: '🤖',
-    title: 'AI y datos',
-    items: [
-      'Chatbot con conocimiento del negocio',
-      'Resumen automático de correos',
-      'Categorización de pedidos',
-      'Análisis de reseñas de clientes',
-      'Transcripción de llamadas',
-    ],
-  },
-  {
-    icon: '📊',
-    title: 'Dashboards',
-    items: [
-      'Ventas del mes',
-      'KPIs en tiempo real',
-      'Comparativo mensual',
-      'Top clientes',
-    ],
-  },
-  {
-    icon: '🛠️',
-    title: 'Herramientas internas',
-    items: [
-      'Cotizador automático',
-      'Inventario con alertas',
-      'Generador de contratos PDF',
-      'Registro de asistencia',
-    ],
-  },
-  {
-    icon: '🛒',
-    title: 'E-commerce',
-    items: [
-      'Catálogo con filtros',
-      'Cupones de descuento',
-      'Seguimiento de pedidos',
-      'Pasarela completa',
-    ],
-  },
-]
 
 const pasos = [
   {
@@ -243,28 +166,7 @@ const faqsHome = [
     <PricingSlider />
 
     <!-- FEATURES / EJEMPLOS -->
-    <Section id="features" bg="surface" labelledby="features-heading">
-      <div class="text-center mb-16">
-        <h2
-          id="features-heading"
-          class="text-text-1 font-bold reveal"
-          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
-        >
-          ¿Qué puedes pedirle a Beco?
-        </h2>
-        <p class="text-text-2 mt-4 max-w-2xl mx-auto reveal" style="transition-delay: 80ms;">
-          Una feature es cualquier mejora descrita en una oración con un resultado claro.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {featureCategories.map((cat, i) => (
-          <div class="reveal" style={`transition-delay: ${(i + 1) * 80}ms;`}>
-            <FeatureCategory icon={cat.icon} title={cat.title} items={cat.items} />
-          </div>
-        ))}
-      </div>
-    </Section>
+    <FeaturesDeliverablesGrid />
 
     <!-- PRODUCTOS -->
     <Section id="productos" bg="surface-2" labelledby="productos-heading">
