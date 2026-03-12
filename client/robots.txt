@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://beco360.co/sitemap-index.xml

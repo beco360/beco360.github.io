@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0F0F0F"/>
+
+  <!-- Subtle copper accent line top -->
+  <rect x="0" y="0" width="1200" height="3" fill="#D4755E"/>
+
+  <!-- Logo B mark (scaled ~3x from original, centered left) -->
+  <g transform="translate(80, 190) scale(1.35)">
+    <path fill="#D4755E" fill-rule="evenodd" d="M0 0L48.751 0.086C72.796 -0.021 99.247 -3.167 115.793 18.417C122.814 27.559 125.826 39.158 124.139 50.56C122.442 62.876 116.379 71.715 106.669 79.087C114.2 80.889 123.021 84.977 129.533 89.138C143.417 97.955 153.211 111.946 156.741 128.009C160.807 146.753 157.169 166.345 146.645 182.38C144.231 185.9 141.502 189.193 138.492 192.218C114.855 216 83.851 211.699 53.081 211.644L0.222 211.667C-0.641 141.491 0.501 70.371 0 0Z M18.699 18.17L54.483 18.137C69.367 18.125 87.264 16.179 98.899 27.257C109.088 36.959 108.093 54.38 98.381 64.03C87.266 75.073 71.176 73.686 56.759 73.614C48.524 73.552 40.29 73.544 32.055 73.591L32.118 90.805C69.48 91.401 116.818 83.051 136.055 123.375C146.618 151.075 132.514 184.692 102.584 191.528C89.762 194.457 73.536 193.376 60.151 193.292L18.801 193.209L18.699 18.17Z"/>
+  </g>
+
+  <!-- Wordmark "beco 360" text -->
+  <text x="80" y="470" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="700" fill="#F5F5F5" letter-spacing="-2">beco</text>
+  <text x="310" y="455" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="36" font-weight="600" fill="#D4755E" letter-spacing="-1">360</text>
+
+  <!-- Divider -->
+  <rect x="80" y="500" width="480" height="1" fill="#2A2A2A"/>
+
+  <!-- Tagline -->
+  <text x="80" y="545" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="400" fill="#9B9B9B">Programador experimentado · 1 salario mínimo/mes</text>
+
+  <!-- Right side decorative element -->
+  <rect x="900" y="120" width="1" height="390" fill="#2A2A2A"/>
+  <text x="940" y="220" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="500" fill="#6B6B6B">Features en 5 días hábiles</text>
+  <text x="940" y="280" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="500" fill="#6B6B6B">Sin contratos de permanencia</text>
+  <text x="940" y="340" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="500" fill="#6B6B6B">Impulsado por AI</text>
+  <text x="940" y="400" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="500" fill="#6B6B6B">Bogotá, Colombia</text>
+
+  <!-- Domain -->
+  <text x="940" y="510" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="600" fill="#D4755E">beco360.co</text>
+</svg>
