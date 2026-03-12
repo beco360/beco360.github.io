@@ -37,7 +37,7 @@ Cada mes incluye syncs (videoconferencias) según el volumen:
 - 4–6 features: 2 syncs de 45 minutos
 - 7+ features: 4 syncs de 60 minutos
 
-Turnaround fijo: 5 días hábiles por feature, sin importar cuántas.
+Turnaround fijo: 5 días hábiles por feature, y las features corren en paralelo — no en secuencia. Si contratas 2 features, ambas se entregan en 5 días hábiles, no en 10. Nunca digas que N features toman N×5 días.
 
 No hay contratos de permanencia. Se puede cancelar con 15 días de anticipación.
 
