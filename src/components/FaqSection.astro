@@ -1,0 +1,220 @@
+---
+interface Props {
+  faqs: { pregunta: string; respuesta: string }[]
+}
+
+const { faqs } = Astro.props
+---
+
+<section class="bg-surface-2" aria-labelledby="faq-section-heading">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 md:py-32">
+
+    <div class="text-center mb-16 reveal">
+      <p class="font-mono text-xs text-copper/70 tracking-[0.2em] uppercase mb-3">FAQ</p>
+      <h2
+        id="faq-section-heading"
+        class="text-text-1 font-bold"
+        style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
+      >
+        Preguntas frecuentes
+      </h2>
+    </div>
+
+    <!-- Two-column layout — desktop only -->
+    <div class="faq-desktop hidden md:grid grid-cols-[2fr_3fr] gap-12 reveal" style="transition-delay: 80ms;">
+
+      <!-- Left: question list -->
+      <div
+        role="tablist"
+        aria-label="Preguntas frecuentes"
+        class="flex flex-col gap-1"
+      >
+        {faqs.map((faq, i) => (
+          <button
+            type="button"
+            role="tab"
+            id={`ftab-${i}`}
+            aria-controls={`fpanel-${i}`}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            data-index={i}
+            class="faq-tab group text-left px-5 py-4 rounded-lg border border-transparent transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-copper"
+          >
+            <div class="flex items-start gap-3">
+              <span class="faq-tab-num font-mono text-xs mt-0.5 shrink-0 tabular-nums transition-colors duration-200">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span class="faq-tab-text text-sm font-medium leading-snug transition-colors duration-200">
+                {faq.pregunta}
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <!-- Right: answer panel -->
+      <div class="relative">
+        {faqs.map((faq, i) => (
+          <div
+            role="tabpanel"
+            id={`fpanel-${i}`}
+            aria-labelledby={`ftab-${i}`}
+            class="faq-panel-desktop absolute inset-0 transition-all duration-300"
+            data-index={i}
+          >
+            <div class="border-l-2 border-copper pl-8 pt-1">
+              <p class="font-mono text-xs text-copper/70 tracking-[0.15em] uppercase mb-4">
+                {String(i + 1).padStart(2, '0')} / {String(faqs.length).padStart(2, '0')}
+              </p>
+              <h3 class="text-text-1 font-bold text-xl leading-snug mb-5">
+                {faq.pregunta}
+              </h3>
+              <p class="text-text-2 text-sm leading-relaxed">
+                {faq.respuesta}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Mobile: compact accordion -->
+    <div class="faq-mobile md:hidden space-y-2 reveal" style="transition-delay: 80ms;">
+      {faqs.map((faq, i) => (
+        <div class="border border-surface-3 rounded-xl overflow-hidden hover:border-copper/30 transition-colors duration-200">
+          <button
+            type="button"
+            class="faq-mob-btn w-full flex items-center justify-between gap-4 px-5 py-4 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-copper"
+            aria-expanded="false"
+            data-mob-index={i}
+          >
+            <div class="flex items-center gap-3">
+              <span class="font-mono text-xs text-copper/60 shrink-0 tabular-nums">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span class="text-text-1 text-sm font-medium">{faq.pregunta}</span>
+            </div>
+            <svg class="faq-mob-chevron shrink-0 text-text-3 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-mob-panel overflow-hidden">
+            <p class="px-5 pb-4 text-text-2 text-sm leading-relaxed">{faq.respuesta}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-text-3 text-sm text-center mt-12 reveal" style="transition-delay: 160ms;">
+      ¿Tienes más preguntas? <a href="/faqs" class="text-copper hover:text-copper-dark underline underline-offset-4 transition-colors">Ver todas las FAQs →</a>
+    </p>
+
+  </div>
+</section>
+
+<style>
+  /* Desktop tab — default state */
+  .faq-tab {
+    color: var(--color-text-3);
+  }
+  .faq-tab-num {
+    color: var(--color-text-3);
+  }
+
+  /* Desktop tab — hover */
+  .faq-tab:hover {
+    background: color-mix(in srgb, var(--color-copper) 6%, transparent);
+    border-color: color-mix(in srgb, var(--color-copper) 15%, transparent);
+  }
+  .faq-tab:hover .faq-tab-num {
+    color: var(--color-copper);
+  }
+  .faq-tab:hover .faq-tab-text {
+    color: var(--color-text-2);
+  }
+
+  /* Desktop tab — active */
+  .faq-tab[aria-selected="true"] {
+    background: color-mix(in srgb, var(--color-copper) 8%, transparent);
+    border-color: color-mix(in srgb, var(--color-copper) 20%, transparent);
+  }
+  .faq-tab[aria-selected="true"] .faq-tab-num {
+    color: var(--color-copper);
+  }
+  .faq-tab[aria-selected="true"] .faq-tab-text {
+    color: var(--color-text-1);
+    font-weight: 600;
+  }
+
+  /* Desktop panels: hidden by default, shown when active */
+  .faq-panel-desktop {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(6px);
+  }
+  .faq-panel-desktop[data-active="true"] {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* Mobile panel collapsed */
+  .faq-mob-panel {
+    max-height: 0;
+    transition: max-height 300ms ease;
+  }
+</style>
+
+<script>
+  // ── Desktop two-column ──────────────────────────────────────────────
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.faq-tab')
+  const panels = document.querySelectorAll<HTMLElement>('.faq-panel-desktop')
+
+  function activateTab(index: number) {
+    tabs.forEach((t, i) => {
+      const isActive = i === index
+      t.setAttribute('aria-selected', isActive ? 'true' : 'false')
+    })
+    panels.forEach((p, i) => {
+      p.dataset.active = String(i === index)
+    })
+  }
+
+  // Init first tab
+  activateTab(0)
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => activateTab(i))
+    tab.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); activateTab(Math.min(i + 1, tabs.length - 1)) }
+      if (e.key === 'ArrowUp')   { e.preventDefault(); activateTab(Math.max(i - 1, 0)) }
+      if (e.key === 'Home')      { e.preventDefault(); activateTab(0) }
+      if (e.key === 'End')       { e.preventDefault(); activateTab(tabs.length - 1) }
+    })
+  })
+
+  // ── Mobile accordion ────────────────────────────────────────────────
+  document.querySelectorAll<HTMLButtonElement>('.faq-mob-btn').forEach((btn) => {
+    const panel = btn.nextElementSibling as HTMLElement
+    const chevron = btn.querySelector('.faq-mob-chevron') as SVGElement | null
+    if (!panel) return
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true'
+
+      // Close all
+      document.querySelectorAll<HTMLButtonElement>('.faq-mob-btn').forEach((b) => {
+        b.setAttribute('aria-expanded', 'false')
+        const p = b.nextElementSibling as HTMLElement
+        const c = b.querySelector('.faq-mob-chevron') as SVGElement | null
+        if (p) p.style.maxHeight = '0'
+        if (c) c.style.transform = 'rotate(0deg)'
+      })
+
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true')
+        panel.style.maxHeight = panel.scrollHeight + 'px'
+        if (chevron) chevron.style.transform = 'rotate(180deg)'
+      }
+    })
+  })
+</script>

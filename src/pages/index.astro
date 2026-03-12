@@ -6,7 +6,7 @@ import Section from '../components/Section.astro'
 import PricingSlider from '../components/PricingSlider.astro'
 import FeaturesDeliverablesGrid from '../components/FeaturesDeliverablesGrid.astro'
 import SocialProof from '../components/SocialProof.astro'
-import FaqItem from '../components/FaqItem.astro'
+import FaqSection from '../components/FaqSection.astro'
 
 
 
@@ -167,39 +167,8 @@ const faqsHome = [
     <!-- SOCIAL PROOF -->
     <SocialProof />
 
-    <!-- FAQs INLINE — MANEJO DE OBJECIONES -->
-    <Section bg="surface-2" labelledby="faqs-inline-heading">
-      <div class="max-w-3xl mx-auto">
-        <div class="text-center mb-12">
-          <h2
-            id="faqs-inline-heading"
-            class="text-text-1 font-bold reveal"
-            style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
-          >
-            Preguntas frecuentes
-          </h2>
-          <p class="text-text-2 mt-4 reveal" style="transition-delay: 80ms;">
-            Todo lo que necesitas saber antes de agendar.
-          </p>
-        </div>
-
-        <div class="space-y-3">
-          {faqsHome.map((faq, i) => (
-            <div class="reveal" style={`transition-delay: ${(i + 1) * 60}ms;`}>
-              <FaqItem
-                pregunta={faq.pregunta}
-                respuesta={faq.respuesta}
-                index={100 + i}
-              />
-            </div>
-          ))}
-        </div>
-
-        <p class="text-text-3 text-sm text-center mt-8 reveal" style="transition-delay: 400ms;">
-          ¿Tienes más preguntas? <a href="/faqs" class="text-copper hover:text-copper-dark underline underline-offset-4 transition-colors">Ver todas las FAQs →</a>
-        </p>
-      </div>
-    </Section>
+    <!-- FAQs -->
+    <FaqSection faqs={faqsHome} />
 
     <!-- CTA FINAL -->
     <Section bg="surface" labelledby="cta-final-heading">
