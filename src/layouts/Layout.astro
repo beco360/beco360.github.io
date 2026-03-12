@@ -18,11 +18,18 @@ const { title, description } = Astro.props
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
 
+    <link rel="canonical" href={Astro.url.href} />
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://www.beco360.com" />
+    <meta property="og:url" content={Astro.url.href} />
     <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
 
     <link rel="icon" href="/assets/brand/favicon.ico" type="image/x-icon" />
 
@@ -164,17 +171,26 @@ const { title, description } = Astro.props
       Cal('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     </script>
 
-    <!-- IntersectionObserver reveal animations -->
+    <!-- Reveal animations: mark JS as loaded, then activate -->
     <script>
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) e.target.classList.add('visible');
-          });
-        },
-        { threshold: 0.1 }
-      );
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      document.documentElement.classList.add('js');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                observer.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      }
     </script>
   </body>
 </html>

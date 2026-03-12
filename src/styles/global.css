@@ -10,21 +10,28 @@
   --color-text-2: #9B9B9B;
   --color-text-3: #6B6B6B;
 
+  /* Status badge tokens */
+  --color-status-active: #4ade80;
+  --color-status-beta: #facc15;
+
   --font-family-jakarta: 'Plus Jakarta Sans', sans-serif;
 }
 
-/* Reveal animations */
-.reveal {
+/* Reveal animations — only active when JS is loaded (html.js class added by script) */
+html.js .reveal {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 300ms ease, transform 300ms ease;
 }
-.reveal.visible {
+html.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
 @media (prefers-reduced-motion: reduce) {
-  .reveal { transition-duration: 0ms !important; }
+  html.js .reveal {
+    transition-duration: 0ms !important;
+    transition-delay: 0ms !important;
+  }
 }
 
 /* Nav underline animation */

@@ -144,6 +144,21 @@ const navLinks = [
     }
   }, { passive: true });
 
+  const focusableSelectors = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+  function trapFocus(e: KeyboardEvent) {
+    if (!drawer || e.key !== 'Tab') return;
+    const focusable = Array.from(drawer.querySelectorAll<HTMLElement>(focusableSelectors));
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }
+
   function openDrawer() {
     if (!drawer || !backdrop || !btn) return;
     drawer.classList.remove('translate-x-full');
@@ -153,6 +168,10 @@ const navLinks = [
     hamburgerIcon?.classList.add('hidden');
     closeIcon?.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', trapFocus);
+    // Move focus into drawer
+    const firstFocusable = drawer.querySelector<HTMLElement>(focusableSelectors);
+    firstFocusable?.focus();
   }
 
   function closeDrawer() {
@@ -164,6 +183,8 @@ const navLinks = [
     hamburgerIcon?.classList.remove('hidden');
     closeIcon?.classList.add('hidden');
     document.body.style.overflow = '';
+    document.removeEventListener('keydown', trapFocus);
+    btn.focus();
   }
 
   btn?.addEventListener('click', openDrawer);

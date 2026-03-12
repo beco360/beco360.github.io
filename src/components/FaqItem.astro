@@ -41,7 +41,6 @@ const panelId = `faq-panel-${index}`
     role="region"
     aria-labelledby={id}
     class="faq-panel overflow-hidden"
-    style="max-height: 0px;"
   >
     <div class="px-6 pb-5 text-text-2 text-sm leading-relaxed">
       {respuesta}
@@ -50,7 +49,7 @@ const panelId = `faq-panel-${index}`
 </div>
 
 <script>
-  // Accordion logic: each FaqItem is self-contained
+  // Accordion logic: close all panels initially via JS so they're visible without JS
   document.querySelectorAll('[id^="faq-"]:not([id^="faq-panel"])').forEach((btn) => {
     const button = btn as HTMLButtonElement
     const panelId = button.getAttribute('aria-controls')
@@ -58,6 +57,9 @@ const panelId = `faq-panel-${index}`
     const panel = document.getElementById(panelId)
     if (!panel) return
     const chevron = button.querySelector('.faq-chevron') as SVGElement | null
+
+    // Set initial collapsed state via JS (without JS, panels remain visible)
+    panel.style.maxHeight = '0px'
 
     button.addEventListener('click', () => {
       const isExpanded = button.getAttribute('aria-expanded') === 'true'
