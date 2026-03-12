@@ -7,8 +7,8 @@
   --color-copper: #D4755E;
   --color-copper-dark: #C4654E;
   --color-text-1: #F5F5F5;
-  --color-text-2: #9B9B9B;
-  --color-text-3: #6B6B6B;
+  --color-text-2: #ADADAD;
+  --color-text-3: #888888;
 
   /* Status badge tokens */
   --color-status-active: #4ade80;
@@ -22,6 +22,10 @@ html.js .reveal {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 300ms ease, transform 300ms ease;
+  will-change: opacity, transform;
+}
+html.js .reveal.visible {
+  will-change: auto;
 }
 html.js .reveal.visible {
   opacity: 1;

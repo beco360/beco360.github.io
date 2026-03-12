@@ -65,7 +65,20 @@ const faqs = [
 >
   <Nav />
 
-  <main>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.pregunta,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.respuesta
+      }
+    }))
+  })} />
+
+  <main id="main-content">
     <Section bg="surface" labelledby="faqs-heading">
       <div class="max-w-3xl mx-auto">
         <div class="pt-16 pb-8 text-center">

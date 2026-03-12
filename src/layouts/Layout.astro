@@ -26,14 +26,23 @@ const { title, description } = Astro.props
     <meta property="og:description" content={description} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://beco360.co/og.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Beco 360 — Programador experimentado por 1 salario mínimo al mes" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content="Beco 360" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://beco360.co/og.svg" />
+    <meta name="twitter:image:alt" content="Beco 360 — Programador experimentado por 1 salario mínimo al mes" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/assets/brand/favicon.ico" type="image/x-icon" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
     <title>{title}</title>
 
@@ -49,11 +58,6 @@ const { title, description } = Astro.props
               path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_KU7NSg.woff2',
             },
             {
-              weight: '500',
-              style: 'normal',
-              path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_qk7NSg.woff2',
-            },
-            {
               weight: '600',
               style: 'normal',
               path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Rk9NSg.woff2',
@@ -63,11 +67,6 @@ const { title, description } = Astro.props
               style: 'normal',
               path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_f09NSg.woff2',
             },
-            {
-              weight: '800',
-              style: 'normal',
-              path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_UE9NSg.woff2',
-            },
           ],
           display: 'swap',
           selector: 'html',
@@ -75,6 +74,46 @@ const { title, description } = Astro.props
         },
       ]}
     />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Beco 360",
+      "url": "https://beco360.co",
+      "logo": "https://beco360.co/assets/brand/logo-dark.svg",
+      "image": "https://beco360.co/og.svg",
+      "description": "Estudio de desarrollo de software colombiano. Features de software entregadas en 5 días hábiles bajo modelo de retainer mensual, impulsado por AI.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bogotá",
+        "addressRegion": "D.C.",
+        "addressCountry": "CO"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "team@beco360.com",
+        "contactType": "customer service",
+        "availableLanguage": "Spanish"
+      },
+      "offers": {
+        "@type": "Offer",
+        "name": "Retainer mensual de features",
+        "description": "Desarrollo de software por features. Desde COP $950,000 por feature al mes.",
+        "priceCurrency": "COP",
+        "price": "950000",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "priceCurrency": "COP",
+          "price": "950000",
+          "unitText": "feature/mes"
+        }
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Colombia"
+      }
+    })} />
 
     <!-- GTM — ID: GTM-TMJ9B58 (verificado activo) -->
     <!-- TODO: verificar FB Pixel 1333394283480495 en Meta Business Manager antes de activar -->
@@ -103,6 +142,14 @@ const { title, description } = Astro.props
     )}
   </head>
   <body class="bg-surface text-text-1 antialiased">
+    <!-- Skip to main content (keyboard / screen reader) -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-md focus:bg-copper focus:text-surface focus:font-semibold focus:text-sm focus:outline-none"
+    >
+      Saltar al contenido principal
+    </a>
+
     {import.meta.env.PROD && (
       <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TMJ9B58" height="0" width="0" style="display:none;visibility:hidden"></iframe>
@@ -112,7 +159,7 @@ const { title, description } = Astro.props
     <slot />
 
     <!-- Chat widget -->
-    <ChatWidget client:load />
+    <ChatWidget client:idle />
 
     <!-- Cal.com embed script -->
     <script>
