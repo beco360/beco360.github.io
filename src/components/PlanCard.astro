@@ -1,0 +1,89 @@
+---
+import Badge from './Badge.astro'
+
+interface Props {
+  nombre: string
+  precio: string
+  precioUSD: string
+  features: string[]
+  syncs: string
+  turnaround: string
+  comunicacion: string
+  popular?: boolean
+}
+
+const {
+  nombre,
+  precio,
+  precioUSD,
+  features,
+  syncs,
+  turnaround,
+  comunicacion,
+  popular = false,
+} = Astro.props
+---
+
+<div
+  class={`relative flex flex-col rounded-xl border p-8 transition-all duration-200 hover:-translate-y-1 ${
+    popular
+      ? 'border-copper bg-surface-2 shadow-[0_0_0_1px_theme(colors.copper/0.3)]'
+      : 'border-surface-3 bg-surface-2 hover:border-copper/40'
+  }`}
+>
+  {popular && (
+    <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+      <Badge text="Más popular" variant="popular" />
+    </div>
+  )}
+
+  <div class="mb-6">
+    <h3 class="text-text-1 text-lg font-bold mb-3">{nombre}</h3>
+    <div class="flex items-baseline gap-2">
+      <span class="text-text-1 text-3xl font-extrabold">{precio}</span>
+    </div>
+    <p class="text-text-3 text-xs mt-1">{precioUSD} USD/mes</p>
+  </div>
+
+  <ul class="space-y-3 mb-8 flex-1" role="list">
+    {features.map((feature) => (
+      <li class="flex items-start gap-3 text-text-2 text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper mt-0.5 shrink-0" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {feature}
+      </li>
+    ))}
+    <li class="flex items-start gap-3 text-text-2 text-sm">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper mt-0.5 shrink-0" aria-hidden="true">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      {syncs} de sync/mes
+    </li>
+    <li class="flex items-start gap-3 text-text-2 text-sm">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper mt-0.5 shrink-0" aria-hidden="true">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      Turnaround {turnaround}
+    </li>
+    <li class="flex items-start gap-3 text-text-2 text-sm">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper mt-0.5 shrink-0" aria-hidden="true">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      {comunicacion}
+    </li>
+  </ul>
+
+  <button
+    type="button"
+    class={`w-full inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-sm transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer ${
+      popular
+        ? 'bg-copper text-surface hover:bg-copper-dark'
+        : 'border border-surface-3 text-text-1 hover:border-copper hover:text-copper bg-transparent'
+    }`}
+    data-cal-link="beco360/llamada-inicial"
+    data-cal-config='{"layout":"month_view"}'
+  >
+    Agendar llamada
+  </button>
+</div>
