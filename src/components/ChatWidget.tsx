@@ -52,7 +52,7 @@ function renderMessageContent(text: string) {
         <button
           type="button"
           data-cal-link="beco360/llamada-inicial"
-          data-cal-config='{"layout":"month_view"}'
+          data-cal-config='{"layout":"column_view"}'
           className="mt-2 block w-full rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-150 active:scale-[0.97]"
           style={{ background: 'var(--color-copper)', color: 'var(--color-surface)' }}
         >
