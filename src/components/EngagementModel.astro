@@ -6,7 +6,6 @@ const fases = [
   {
     paso: '01',
     nombre: 'Diagnóstico',
-    precio: 'COP $3.500.000',
     formato: 'Pago único · 1–2 semanas',
     descripcion:
       'Nos incrustamos en tu operación, mapeamos tus procesos y te entregamos un roadmap priorizado de qué construir y por dónde empezar.',
@@ -21,7 +20,6 @@ const fases = [
   {
     paso: '02',
     nombre: 'Construcción',
-    precio: 'Desde $8.000.000',
     formato: 'Por proyecto · precio cerrado',
     descripcion:
       'Tomamos la oportunidad de mayor retorno del roadmap y la construimos: del prototipo a un sistema funcionando dentro de tu operación.',
@@ -36,7 +34,6 @@ const fases = [
   {
     paso: '03',
     nombre: 'Evolución',
-    precio: 'Desde $2.500.000',
     formato: 'Mensual · opcional, sin permanencia',
     descripcion:
       'Una vez el sistema vive en producción, lo mantenemos, lo escalamos y construimos lo siguiente del roadmap. A tu ritmo.',
@@ -83,17 +80,8 @@ const fases = [
             )}
           </div>
 
-          <h3 class="text-text-1 text-lg font-semibold mb-1">{fase.nombre}</h3>
+          <h3 class="text-text-1 text-xl font-semibold mb-1">{fase.nombre}</h3>
           <p class="text-text-3 text-xs font-mono mb-6">{fase.formato}</p>
-
-          <div class="mb-6">
-            <span
-              class="font-display text-text-1"
-              style="font-size: clamp(1.5rem, 2.6vw, 1.875rem); font-weight: 500; letter-spacing: -0.02em;"
-            >
-              {fase.precio}
-            </span>
-          </div>
 
           <p class="text-text-2 text-sm leading-relaxed mb-7">{fase.descripcion}</p>
 
