@@ -1,0 +1,202 @@
+---
+// Visual comparison: the same process (handling a WhatsApp order) without AI vs with AI.
+const ICON = {
+  message: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  edit: '<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z"/>',
+  file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>',
+  ai: '<path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>',
+  calendar:
+    '<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/>',
+};
+
+const before = [
+  { icon: ICON.message, label: 'Llega un pedido por WhatsApp' },
+  { icon: ICON.clock, label: 'Alguien lo ve cuando puede' },
+  { icon: ICON.edit, label: 'Responde y cotiza a mano' },
+  { icon: ICON.file, label: 'Lo anota en una hoja' },
+];
+
+const after = [
+  { icon: ICON.message, label: 'Llega un pedido por WhatsApp' },
+  { icon: ICON.ai, label: 'La IA responde y cotiza al instante' },
+  { icon: ICON.calendar, label: 'Agenda y registra solo' },
+];
+
+const metrics = [
+  { value: '−90%', label: 'tiempo de respuesta' },
+  { value: '24/7', label: 'siempre disponible' },
+  { value: '3×', label: 'más capacidad de atención' },
+];
+---
+
+<section id="impact" class="bg-surface-2 border-y hairline" aria-labelledby="impact-heading">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 md:py-32">
+
+    <div class="max-w-2xl mb-14">
+      <p class="eyebrow text-copper mb-4 reveal">El impacto</p>
+      <h2
+        id="impact-heading"
+        class="font-display text-text-1 reveal"
+        style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; line-height: 1.06; transition-delay: 60ms;"
+      >
+        Lo que cambia cuando entra la <em class="text-copper">IA</em>.
+      </h2>
+      <p class="text-text-2 mt-5 leading-relaxed reveal" style="transition-delay: 120ms;">
+        El mismo proceso — atender un pedido que llega por WhatsApp — antes y después de integrarle IA.
+      </p>
+    </div>
+
+    <!-- Without AI -->
+    <div class="flow flow--before reveal" style="transition-delay: 80ms;">
+      <span class="flow-label">Sin IA</span>
+      <ol class="flow-steps" role="list">
+        {before.map((s, i) => (
+          <li class="flow-step">
+            <svg class="flow-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={s.icon} />
+            <span>{s.label}</span>
+            {i < before.length - 1 && <span class="flow-arrow" aria-hidden="true">→</span>}
+          </li>
+        ))}
+      </ol>
+      <p class="flow-outcome">Pasan horas · solo en horario laboral · de noche, el cliente se enfría.</p>
+    </div>
+
+    <!-- With AI -->
+    <div class="flow flow--after reveal" style="transition-delay: 160ms;">
+      <span class="flow-label flow-label--on">Con IA</span>
+      <ol class="flow-steps" role="list">
+        {after.map((s, i) => (
+          <li class="flow-step">
+            <svg class="flow-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={s.icon} />
+            <span>{s.label}</span>
+            {i < after.length - 1 && <span class="flow-arrow" aria-hidden="true">→</span>}
+          </li>
+        ))}
+      </ol>
+      <p class="flow-outcome flow-outcome--on">Segundos · 24/7 · responde aunque sea domingo a medianoche.</p>
+    </div>
+
+    <!-- Improvement metrics -->
+    <dl class="impact-metrics reveal" style="transition-delay: 240ms;">
+      {metrics.map((m) => (
+        <div class="impact-metric">
+          <dt class="font-display impact-metric-value">{m.value}</dt>
+          <dd class="impact-metric-label">{m.label}</dd>
+        </div>
+      ))}
+    </dl>
+
+  </div>
+</section>
+
+<style>
+  .flow {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1.5rem 2rem;
+    align-items: start;
+    padding: 1.75rem 0;
+  }
+  .flow--before {
+    border-bottom: 1px dashed color-mix(in srgb, var(--color-text-3) 28%, transparent);
+  }
+
+  .flow-label {
+    font-family: var(--font-family-jakarta);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-3);
+    padding-top: 0.5rem;
+  }
+  .flow-label--on {
+    color: var(--color-copper);
+  }
+
+  .flow-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0;
+  }
+  .flow-step {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: var(--color-text-3);
+    font-size: 0.9375rem;
+  }
+  .flow--after .flow-step {
+    color: var(--color-text-1);
+  }
+  .flow-ico {
+    color: var(--color-text-3);
+    flex-shrink: 0;
+  }
+  .flow--after .flow-ico {
+    color: var(--color-copper);
+  }
+  .flow-arrow {
+    color: color-mix(in srgb, var(--color-text-3) 60%, transparent);
+    margin: 0 1rem;
+  }
+  .flow--after .flow-arrow {
+    color: color-mix(in srgb, var(--color-copper) 55%, transparent);
+  }
+  .flow-outcome {
+    grid-column: 2;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-3);
+  }
+  .flow-outcome--on {
+    color: var(--color-text-2);
+  }
+
+  .impact-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-text-3) 18%, transparent);
+  }
+  .impact-metric-value {
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-copper);
+    letter-spacing: -0.02em;
+  }
+  .impact-metric-label {
+    margin-top: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--color-text-2);
+  }
+
+  @media (max-width: 720px) {
+    .flow {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .flow-outcome {
+      grid-column: 1;
+    }
+    .flow-step {
+      width: 100%;
+    }
+    .flow-arrow {
+      display: none;
+    }
+    .impact-metrics {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      text-align: left;
+    }
+  }
+</style>

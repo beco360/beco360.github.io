@@ -1,10 +1,10 @@
 ---
 
-const productos = [
+const products = [
   {
-    nombre: 'Alfil',
+    name: 'Alfil',
     tagline: 'Análisis electoral',
-    descripcion:
+    description:
       'Inteligencia política para Colombia. Contratos públicos, sanciones y redes de empresas — todo en tiempo real, impulsado por AI.',
     badge: 'active' as const,
     badgeText: 'Activo',
@@ -12,9 +12,9 @@ const productos = [
     stack: 'Astro · AI · datos públicos',
   },
   {
-    nombre: 'Cotejo',
+    name: 'Cotejo',
     tagline: 'Fútbol amateur',
-    descripcion:
+    description:
       'Plataforma de fútbol amateur. Reservas de canchas, estadísticas y gamificación para organizadores y jugadores.',
     badge: 'beta' as const,
     badgeText: 'Beta',
@@ -22,9 +22,9 @@ const productos = [
     stack: 'Astro · pagos · gamificación · mapas',
   },
   {
-    nombre: 'Chatbots que venden solos',
+    name: 'Chatbots que venden solos',
     tagline: 'Ventas automatizadas',
-    descripcion:
+    description:
       'Agentes de ventas entrenados con el conocimiento de tu negocio. Responden, califican y agendan — en WhatsApp o en tu sitio.',
     badge: 'active' as const,
     badgeText: 'Activo',
@@ -32,9 +32,9 @@ const productos = [
     stack: 'AI · WhatsApp · CRM',
   },
   {
-    nombre: 'LSJ',
+    name: 'LSJ',
     tagline: 'E-commerce colombiano',
-    descripcion:
+    description:
       'Tienda online con catálogo, carrito y pagos PSE/Nequi/Wompi. Panel de gestión de pedidos integrado.',
     badge: 'active' as const,
     badgeText: 'Activo',
@@ -42,9 +42,9 @@ const productos = [
     stack: 'E-commerce · Wompi · inventario',
   },
   {
-    nombre: 'Facturación & Inventario',
+    name: 'Facturación & Inventario',
     tagline: 'Operaciones sin fricciones',
-    descripcion:
+    description:
       'Factura electrónica que se genera sola al cerrar una venta. Stock bajo → alerta automática. Todo integrado al CRM.',
     badge: 'active' as const,
     badgeText: 'Activo',
@@ -66,14 +66,14 @@ const marqueeItems = [
 const track = [...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItems];
 ---
 
-<section id="portafolio" class="bg-surface-2" aria-labelledby="portafolio-heading">
+<section id="portfolio" class="bg-surface-2" aria-labelledby="portfolio-heading">
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 md:py-32">
 
     <!-- Header -->
     <div class="text-center mb-14 reveal">
       <p class="eyebrow text-copper mb-4">Lo que hemos construido</p>
       <h2
-        id="portafolio-heading"
+        id="portfolio-heading"
         class="font-display text-text-1"
         style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; line-height: 1.08;"
       >
@@ -86,8 +86,8 @@ const track = [...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItem
 
     <!-- Products grid: 2 col → last card centered -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      {productos.map((p, i) => {
-        const isLast = i === productos.length - 1
+      {products.map((p, i) => {
+        const isLast = i === products.length - 1
         const Tag = p.href ? 'a' : 'div'
         return (
           <Tag
@@ -96,7 +96,7 @@ const track = [...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItem
             rel={p.href ? 'noopener noreferrer' : undefined}
             class={`product-card group reveal${isLast ? ' md:col-span-2 md:max-w-lg md:mx-auto md:w-full' : ''}`}
             style={`transition-delay: ${(i + 1) * 80}ms;`}
-            aria-label={p.href ? `${p.nombre} — ${p.descripcion}` : undefined}
+            aria-label={p.href ? `${p.name} — ${p.description}` : undefined}
           >
             <div class="flex items-start justify-between mb-6">
               <span class="inline-flex items-center gap-2">
@@ -118,12 +118,12 @@ const track = [...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItem
 
             <div class="mb-3">
               <h3 class="text-text-1 text-2xl font-bold group-hover:text-copper transition-colors duration-200">
-                {p.nombre}
+                {p.name}
               </h3>
               <p class="text-text-3 text-xs font-mono mt-1 tracking-wide">{p.tagline}</p>
             </div>
             <p class="text-text-2 text-sm leading-relaxed mb-6 flex-1">
-              {p.descripcion}
+              {p.description}
             </p>
 
             <p class="font-mono text-[11px] text-text-2 tracking-wide mt-auto">

@@ -5,41 +5,41 @@ import Nav from '../components/Nav.astro';
 import Section from '../components/Section.astro';
 import Layout from '../layouts/Layout.astro';
 
-const valores = [
+const values = [
   {
     emoji: '🤖',
-    titulo: 'AI-first',
-    descripcion:
+    title: 'AI-first',
+    description:
       'Usamos las mejores herramientas para entregar más rápido y mejor. AI no es una palabra de moda para nosotros — es la forma en que trabajamos todos los días. Si hay una herramienta mejor, la adoptamos.',
   },
   {
     emoji: '⏰',
-    titulo: 'Asincrónico por defecto',
-    descripcion:
+    title: 'Asincrónico por defecto',
+    description:
       'Resultados, no reuniones. Trabajamos en bloques de concentración sin interrupciones. Las reuniones de avance están programadas y son cortas. La comunicación es async por email — directa y sin ruido.',
   },
   {
     emoji: '🔍',
-    titulo: 'Transparencia total',
-    descripcion:
+    title: 'Transparencia total',
+    description:
       'Sabes exactamente qué obtienes y cuándo. Sin sorpresas. Si algo toma más tiempo de lo esperado, te avisamos antes de que preguntes. Nuestros precios son públicos y nuestros compromisos son escritos.',
   },
   {
     emoji: '✅',
-    titulo: 'Calidad antes de velocidad',
-    descripcion:
+    title: 'Calidad antes de velocidad',
+    description:
       'Cada entrega pasa por revisión antes de salir a producción. Rápido no significa descuidado — significa que usamos AI para hacer en horas lo que antes tomaba días, con el mismo estándar de calidad.',
   },
   {
     emoji: '🇨🇴',
-    titulo: 'Colombiano de raíz',
-    descripcion:
+    title: 'Colombiano de raíz',
+    description:
       'Somos de Colombia y construimos para Colombia. Entendemos el mercado, el idioma, las regulaciones y la cultura. Cuando hablas con Beco, hablas con alguien que conoce tu contexto.',
   },
   {
     emoji: '📦',
-    titulo: 'Diagnosticamos para construir',
-    descripcion:
+    title: 'Diagnosticamos para construir',
+    description:
       'No entregamos un PDF con recomendaciones y desaparecemos. Diagnosticamos para construir lo que recomendamos y dejarlo funcionando. Alfil y Cotejo existen porque creemos en construir, no solo en aconsejar. Nuestro portafolio habla por nosotros.',
   },
 ];
@@ -52,11 +52,11 @@ const valores = [
   <Nav />
 
   <main id="main-content">
-    <Section bg="surface" labelledby="cultura-heading">
+    <Section bg="surface" labelledby="culture-heading">
       <div class="max-w-3xl mx-auto">
         <div class="pt-16 pb-8 text-center">
           <h1
-            id="cultura-heading"
+            id="culture-heading"
             class="font-display text-text-1 reveal"
             style="font-size: clamp(2.25rem, 4.5vw, 3.25rem); font-weight: 500; line-height: 1.06;"
           >
@@ -68,17 +68,17 @@ const valores = [
         </div>
 
         <div class="mt-12 space-y-8">
-          {valores.map((valor, i) => (
+          {values.map((value, i) => (
             <div
               class="flex gap-6 p-6 rounded-xl border border-surface-3 hover:border-copper/30 transition-colors duration-200 reveal"
               style={`transition-delay: ${(i + 1) * 80}ms;`}
             >
-              <span class="text-3xl shrink-0" role="img" aria-label={valor.titulo}>
-                {valor.emoji}
+              <span class="text-3xl shrink-0" role="img" aria-label={value.title}>
+                {value.emoji}
               </span>
               <div>
-                <h2 class="text-text-1 font-bold text-lg mb-2">{valor.titulo}</h2>
-                <p class="text-text-2 text-sm leading-relaxed">{valor.descripcion}</p>
+                <h2 class="text-text-1 font-bold text-lg mb-2">{value.title}</h2>
+                <p class="text-text-2 text-sm leading-relaxed">{value.description}</p>
               </div>
             </div>
           ))}

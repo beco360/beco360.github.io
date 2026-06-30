@@ -8,53 +8,53 @@ import Layout from '../layouts/Layout.astro';
 
 const faqs = [
   {
-    pregunta: '¿Qué hace Beco exactamente?',
-    respuesta:
+    question: '¿Qué hace Beco exactamente?',
+    answer:
       'Somos una consultoría de tecnología "forward-deployed" para PyMEs colombianas. En vez de venderte features sueltas, nos metemos en tu operación, diagnosticamos dónde pierdes tiempo y plata, y construimos el sistema con IA que lo resuelve — y lo dejamos funcionando en producción.',
   },
   {
-    pregunta: '¿Qué es el diagnóstico y por qué se paga?',
-    respuesta:
+    question: '¿Qué es el diagnóstico y por qué se paga?',
+    answer:
       'Es la puerta de entrada: 1–2 semanas en las que nos incrustamos en tu operación, entrevistamos a tu equipo, mapeamos procesos y te entregamos un roadmap priorizado de qué construir y por dónde empezar. Tiene un precio fijo que se acredita al primer proyecto de construcción si avanzas. Se paga porque construir sin entender el problema casi siempre termina en software que no mueve la aguja.',
   },
   {
-    pregunta: '¿Cuánto cuesta trabajar con Beco?',
-    respuesta:
+    question: '¿Cuánto cuesta trabajar con Beco?',
+    answer:
       'Depende de tu caso, y por eso arrancamos con un diagnóstico de precio fijo (que se acredita si avanzas). Ahí definimos el alcance y te damos un número cerrado para la construcción, sin sorpresas. La evolución es un mensual opcional. Lo conversamos en la llamada, sin compromiso.',
   },
   {
-    pregunta: '¿Cuánto tardan en entregar?',
-    respuesta:
+    question: '¿Cuánto tardan en entregar?',
+    answer:
       'Del diagnóstico salimos con un roadmap en 1–2 semanas; el primer prototipo funcionando en días. Con AI como parte del equipo ejecutamos en un sprint lo que una agencia tradicional haría en meses.',
   },
   {
-    pregunta: '¿Necesito saber de tecnología?',
-    respuesta:
+    question: '¿Necesito saber de tecnología?',
+    answer:
       'Para nada. Tú describes el problema de negocio que tienes; nosotros diagnosticamos y construimos la solución. Si algo no es claro, preguntamos antes de empezar.',
   },
   {
-    pregunta: '¿Y si lo que necesito es muy grande (un e-commerce, una app)?',
-    respuesta:
+    question: '¿Y si lo que necesito es muy grande (un e-commerce, una app)?',
+    answer:
       'Justo para eso es el diagnóstico. En vez de construir todo de una, identificamos qué parte resolver primero por mayor retorno — casi siempre hay una oportunidad puntual y de alto impacto dentro del pedido grande. Después seguimos con el resto del roadmap a tu ritmo.',
   },
   {
-    pregunta: '¿Qué tecnologías usan?',
-    respuesta:
+    question: '¿Qué tecnologías usan?',
+    answer:
       'Las que mejor resuelven tu problema. Web, mobile, automatizaciones, IA, integraciones — sin restricción de stack. Usamos las herramientas más modernas y las que AI puede acelerar mejor.',
   },
   {
-    pregunta: '¿Puedo cancelar la evolución cuando quiera?',
-    respuesta:
+    question: '¿Puedo cancelar la evolución cuando quiera?',
+    answer:
       'Sí. La fase de Evolución no tiene permanencia: continúa porque el sistema te sigue dando valor, no porque te ata un contrato. Cancelas con 15 días de anticipación y listo. No hay penalizaciones ni letras pequeñas.',
   },
   {
-    pregunta: '¿Qué pasa si el sistema no queda como esperaba?',
-    respuesta:
+    question: '¿Qué pasa si el sistema no queda como esperaba?',
+    answer:
       'La construcción se cierra contra el alcance que definimos juntos en el diagnóstico. Ajustamos hasta cumplir esa definición sin costo adicional. Si quieres algo distinto a lo acordado, eso es un nuevo sprint — pero siempre lo conversamos antes.',
   },
   {
-    pregunta: '¿Tienen experiencia con empresas de mi sector?',
-    respuesta:
+    question: '¿Tienen experiencia con empresas de mi sector?',
+    answer:
       'Hemos trabajado con ingeniería civil, e-commerce, política, deportes y más. Cada sector tiene sus particularidades — agenda una llamada y cuéntanos tu caso específico.',
   },
 ];
@@ -71,10 +71,10 @@ const faqs = [
     "@type": "FAQPage",
     "mainEntity": faqs.map(faq => ({
       "@type": "Question",
-      "name": faq.pregunta,
+      "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.respuesta
+        "text": faq.answer
       }
     }))
   })} />
@@ -99,8 +99,8 @@ const faqs = [
           {faqs.map((faq, i) => (
             <div class="reveal" style={`transition-delay: ${(i + 1) * 60}ms;`}>
               <FaqItem
-                pregunta={faq.pregunta}
-                respuesta={faq.respuesta}
+                question={faq.question}
+                answer={faq.answer}
                 index={i}
               />
             </div>

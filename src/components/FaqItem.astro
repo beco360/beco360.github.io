@@ -1,11 +1,11 @@
 ---
 interface Props {
-  pregunta: string;
-  respuesta: string;
+  question: string;
+  answer: string;
   index: number;
 }
 
-const { pregunta, respuesta, index } = Astro.props;
+const { question, answer, index } = Astro.props;
 const id = `faq-${index}`;
 const panelId = `faq-panel-${index}`;
 ---
@@ -18,7 +18,7 @@ const panelId = `faq-panel-${index}`;
     aria-expanded="false"
     aria-controls={panelId}
   >
-    <span class="text-sm md:text-base">{pregunta}</span>
+    <span class="text-sm md:text-base">{question}</span>
     <svg
       class="faq-chevron shrink-0 text-text-3 transition-transform duration-300"
       xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@ const panelId = `faq-panel-${index}`;
     class="faq-panel overflow-hidden"
   >
     <div class="px-6 pb-5 text-text-2 text-sm leading-relaxed">
-      {respuesta}
+      {answer}
     </div>
   </div>
 </div>

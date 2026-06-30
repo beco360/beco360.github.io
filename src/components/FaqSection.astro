@@ -1,6 +1,6 @@
 ---
 interface Props {
-  faqs: { pregunta: string; respuesta: string }[];
+  faqs: { question: string; answer: string }[];
 }
 
 const { faqs } = Astro.props;
@@ -44,7 +44,7 @@ const { faqs } = Astro.props;
                 {String(i + 1).padStart(2, '0')}
               </span>
               <span class="faq-tab-text text-sm font-medium leading-snug transition-colors duration-200">
-                {faq.pregunta}
+                {faq.question}
               </span>
             </div>
           </button>
@@ -66,10 +66,10 @@ const { faqs } = Astro.props;
                 {String(i + 1).padStart(2, '0')} / {String(faqs.length).padStart(2, '0')}
               </p>
               <h3 class="text-text-1 font-bold text-xl leading-snug mb-5">
-                {faq.pregunta}
+                {faq.question}
               </h3>
               <p class="text-text-2 text-sm leading-relaxed">
-                {faq.respuesta}
+                {faq.answer}
               </p>
             </div>
           </div>
@@ -91,14 +91,14 @@ const { faqs } = Astro.props;
               <span class="font-mono text-xs text-copper shrink-0 tabular-nums">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <span class="text-text-1 text-sm font-medium">{faq.pregunta}</span>
+              <span class="text-text-1 text-sm font-medium">{faq.question}</span>
             </div>
             <svg class="faq-mob-chevron shrink-0 text-text-3 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
           <div class="faq-mob-panel overflow-hidden">
-            <p class="px-5 pb-4 text-text-2 text-sm leading-relaxed">{faq.respuesta}</p>
+            <p class="px-5 pb-4 text-text-2 text-sm leading-relaxed">{faq.answer}</p>
           </div>
         </div>
       ))}

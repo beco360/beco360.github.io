@@ -1,4 +1,5 @@
 ---
+import BeforeAfter from '../components/BeforeAfter.astro';
 import CalButton from '../components/CalButton.astro';
 import EngagementModel from '../components/EngagementModel.astro';
 import FaqSection from '../components/FaqSection.astro';
@@ -9,60 +10,60 @@ import Section from '../components/Section.astro';
 import SocialProof from '../components/SocialProof.astro';
 import Layout from '../layouts/Layout.astro';
 
-const diferenciadores = [
+const differentiators = [
   {
     n: '01',
-    titulo: 'Empezamos por tu proceso, no por la herramienta',
+    title: 'Empezamos por tu proceso, no por la herramienta',
     desc: 'No llegamos con la IA de moda a ver dónde encaja. Primero entendemos tu operación y dónde de verdad te da retorno.',
   },
   {
     n: '02',
-    titulo: 'La IA vive dentro de lo que ya usas',
+    title: 'La IA vive dentro de lo que ya usas',
     desc: 'La integramos a tus herramientas — WhatsApp, Excel, tu CRM — sin obligarte a cambiar de plataforma ni a aprender algo nuevo.',
   },
   {
     n: '03',
-    titulo: 'Funcionando en días, no en meses',
+    title: 'Funcionando en días, no en meses',
     desc: 'Del diagnóstico a algo corriendo en producción en una fracción del tiempo de una agencia tradicional.',
   },
   {
     n: '04',
-    titulo: 'Te hablamos de resultados, no de modelos',
+    title: 'Te hablamos de resultados, no de modelos',
     desc: 'Cada automatización se ata a una métrica: horas que recuperas, ventas, errores que desaparecen. No vendemos slides.',
   },
 ];
 
 const stats = [
-  { valor: '3+', label: 'empresas activas' },
-  { valor: '20+', label: 'automatizaciones en producción' },
-  { valor: 'Días', label: 'del diagnóstico al prototipo' },
-  { valor: '100%', label: 'enfocados en tu resultado' },
+  { value: '3+', label: 'empresas activas' },
+  { value: '20+', label: 'automatizaciones en producción' },
+  { value: 'Días', label: 'del diagnóstico al prototipo' },
+  { value: '100%', label: 'enfocados en tu resultado' },
 ];
 
 const faqsHome = [
   {
-    pregunta: '¿Qué es exactamente el diagnóstico?',
-    respuesta:
+    question: '¿Qué es exactamente el diagnóstico?',
+    answer:
       'Nos incrustamos 1–2 semanas en tu operación: entrevistamos a tu equipo, observamos cómo trabajan hoy y mapeamos tus sistemas. Salimos con un roadmap priorizado de qué automatizar o construir y por dónde empezar, con el retorno estimado. Es tuyo, lo contrates o no el resto a Beco.',
   },
   {
-    pregunta: '¿Cuánto cuesta trabajar con Beco?',
-    respuesta:
+    question: '¿Cuánto cuesta trabajar con Beco?',
+    answer:
       'Depende de tu caso — por eso arrancamos con un diagnóstico. Ahí entendemos el alcance y te damos un número cerrado antes de construir nada, sin sorpresas. La construcción se cotiza por proyecto y la evolución es un mensual opcional. Lo conversamos en la llamada, sin compromiso.',
   },
   {
-    pregunta: '¿Necesito saber de tecnología para trabajar con Beco?',
-    respuesta:
+    question: '¿Necesito saber de tecnología para trabajar con Beco?',
+    answer:
       'Para nada. Tú describes el problema de negocio en español normal — "se me va media mañana pasando pedidos a Excel" — y nosotros diagnosticamos y construimos la solución. Si algo no es claro, preguntamos antes de empezar.',
   },
   {
-    pregunta: '¿Por qué pagar por un diagnóstico y no solo cotizar lo que pido?',
-    respuesta:
+    question: '¿Por qué pagar por un diagnóstico y no solo cotizar lo que pido?',
+    answer:
       'Porque construir lo que pediste sin entender el problema casi siempre termina en software que no mueve la aguja. El diagnóstico asegura que invertimos en la oportunidad de mayor retorno primero. Y si avanzas a construir, se acredita — no lo pagas dos veces.',
   },
   {
-    pregunta: '¿Puedo cancelar la evolución cuando quiera?',
-    respuesta:
+    question: '¿Puedo cancelar la evolución cuando quiera?',
+    answer:
       'Sí, sin permanencia ni penalidad. La evolución continúa porque el sistema te sigue dando valor, no porque te ata un contrato. Avisas con 15 días de anticipación y cerramos el mes en curso.',
   },
 ];
@@ -104,7 +105,7 @@ const faqsHome = [
                 Agenda tu llamada gratis →
               </CalButton>
               <a
-                href="#modelo"
+                href="#model"
                 class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-4 font-semibold text-sm border border-surface-3 text-text-2 hover:border-copper hover:text-copper transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper"
               >
                 Cómo trabajamos ↓
@@ -148,7 +149,7 @@ const faqsHome = [
       </div>
     </section>
 
-    <!-- PRUEBA SOCIAL — STATS -->
+    <!-- SOCIAL PROOF — STATS -->
     <section class="bg-surface-2 border-y hairline" aria-label="Estadísticas Beco 360">
       <div class="max-w-6xl mx-auto px-6 md:px-8 py-12">
         <dl class="grid grid-cols-2 md:grid-cols-4">
@@ -161,7 +162,7 @@ const faqsHome = [
                 class="font-display text-text-1"
                 style="font-size: clamp(2.25rem, 4vw, 3.25rem); font-weight: 500; line-height: 1;"
               >
-                {stat.valor}
+                {stat.value}
               </dd>
               <dt class="eyebrow text-text-3 mt-3">{stat.label}</dt>
             </div>
@@ -170,14 +171,14 @@ const faqsHome = [
       </div>
     </section>
 
-    <!-- POR QUÉ BECO -->
-    <Section id="por-que" bg="surface" labelledby="porque-heading">
+    <!-- WHY BECO -->
+    <Section id="why" bg="surface" labelledby="why-heading">
       <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-20">
         <!-- Left: intro -->
         <div>
           <p class="eyebrow text-copper reveal">Por qué Beco</p>
           <h2
-            id="porque-heading"
+            id="why-heading"
             class="font-display text-text-1 mt-5 reveal"
             style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; line-height: 1.08; transition-delay: 60ms;"
           >
@@ -190,14 +191,14 @@ const faqsHome = [
 
         <!-- Right: editorial index -->
         <ul class="border-t hairline" role="list">
-          {diferenciadores.map((d, i) => (
+          {differentiators.map((d, i) => (
             <li
               class="grid grid-cols-[auto_1fr] gap-5 md:gap-8 py-7 border-b hairline reveal"
               style={`transition-delay: ${i * 70}ms;`}
             >
               <span class="font-mono text-sm text-copper pt-1 tabular-nums">{d.n}</span>
               <div>
-                <h3 class="text-text-1 font-bold text-lg mb-1.5">{d.titulo}</h3>
+                <h3 class="text-text-1 font-bold text-lg mb-1.5">{d.title}</h3>
                 <p class="text-text-2 text-sm leading-relaxed max-w-xl">{d.desc}</p>
               </div>
             </li>
@@ -206,10 +207,13 @@ const faqsHome = [
       </div>
     </Section>
 
-    <!-- MODELO DE ENGAGEMENT -->
+    <!-- BEFORE / AFTER AI -->
+    <BeforeAfter />
+
+    <!-- ENGAGEMENT MODEL -->
     <EngagementModel />
 
-    <!-- FEATURES / EJEMPLOS -->
+    <!-- FEATURES / EXAMPLES -->
     <FeaturesDeliverablesGrid />
 
     <!-- SOCIAL PROOF -->
@@ -218,7 +222,7 @@ const faqsHome = [
     <!-- FAQs -->
     <FaqSection faqs={faqsHome} />
 
-    <!-- CTA FINAL -->
+    <!-- FINAL CTA -->
     <Section bg="surface" labelledby="cta-final-heading">
       <div class="text-center max-w-2xl mx-auto">
         <h2
