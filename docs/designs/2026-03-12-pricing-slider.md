@@ -1,7 +1,14 @@
 # Design: Pricing Slider con descuento por volumen
 Date: 2026-03-12
-Status: Approved
+Status: ⛔ Superseded (2026-06-30)
 Approach: Slider único con syncs incluidos por tier
+
+> **SUPERSEDED — 2026-06-30.** Este diseño pertenece al modelo abandonado de "features bajo
+> retainer mensual". El componente `PricingSlider.astro` fue eliminado. Beco pivotó a una
+> consultoría forward-deployed por fases (Diagnóstico → Construcción → Evolución); el pricing
+> ahora vive en `src/components/EngagementModel.astro`.
+> Ver: `docs/designs/2026-06-30-pivote-consultoria.md` y `docs/business-model.md`.
+> Se conserva como registro histórico.
 
 ## Problem
 La sección de planes actual tiene 3 tarjetas fijas (Mínimo, Estándar, Pro) con precios
