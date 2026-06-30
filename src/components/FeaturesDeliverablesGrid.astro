@@ -48,7 +48,7 @@ const deliverables = [
       <h2
         id="features-heading"
         class="font-display text-text-1"
-        style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.08;"
+        style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; line-height: 1.08;"
       >
         Del problema de negocio<br class="hidden sm:block" /> a un sistema <em class="text-copper">funcionando</em>
       </h2>
@@ -128,26 +128,31 @@ const deliverables = [
     display: flex;
     flex-direction: column;
     padding: 1.75rem;
-    border-radius: 1rem;
-    border: 1px solid transparent;
-    background:
-      linear-gradient(var(--color-surface-2), var(--color-surface-2)) padding-box,
-      linear-gradient(
-        135deg,
-        color-mix(in srgb, var(--color-copper) 20%, transparent),
-        transparent 50%,
-        color-mix(in srgb, var(--color-copper) 8%, transparent)
-      ) border-box;
-    transition: box-shadow 250ms ease, transform 250ms ease;
-    min-height: 220px;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-text-3) 16%, transparent);
+    background: var(--color-surface-2);
+    transition:
+      border-color 400ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    min-height: 210px;
   }
 
   .bento-card:hover {
+    border-color: color-mix(in srgb, var(--color-copper) 28%, transparent);
+    transform: translateY(-3px);
     box-shadow:
-      0 0 0 1px color-mix(in srgb, var(--color-copper) 25%, transparent),
-      0 8px 32px color-mix(in srgb, var(--color-copper) 10%, transparent),
-      0 2px 8px rgba(0, 0, 0, 0.4);
-    transform: translateY(-2px);
+      inset 0 1px 0 color-mix(in srgb, var(--color-copper) 16%, transparent),
+      0 18px 40px -16px rgba(0, 0, 0, 0.55);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bento-card {
+      transition: none;
+    }
+    .bento-card:hover {
+      transform: none;
+    }
   }
 
   /* Large cards get a bigger quote */

@@ -17,15 +17,16 @@
   --font-family-jakarta: "Plus Jakarta Sans", sans-serif;
 }
 
-/* Serif display (Fraunces) — editorial headlines only, paired with the sans body */
+/* Display (Space Grotesk) — technical grotesque for headlines, paired with the sans body */
 .font-display {
-  font-family: "Fraunces", Georgia, "Times New Roman", serif;
-  font-optical-sizing: auto;
-  letter-spacing: -0.02em;
+  font-family: "Space Grotesk", "Plus Jakarta Sans", sans-serif;
+  letter-spacing: -0.035em;
 }
+/* Accent words use copper, never synthetic italic */
 .font-display em,
 .font-display i {
-  font-style: italic;
+  font-style: normal;
+  color: var(--color-copper);
 }
 
 /* Eyebrow / section label — uppercase, tracked (Palantir/Linear systematic feel) */

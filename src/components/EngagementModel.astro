@@ -6,7 +6,7 @@ const fases = [
   {
     paso: '01',
     nombre: 'Diagnóstico',
-    precio: 'COP $3,500,000',
+    precio: 'COP $3.500.000',
     formato: 'Pago único · 1–2 semanas',
     descripcion:
       'Nos incrustamos en tu operación, mapeamos tus procesos y te entregamos un roadmap priorizado de qué construir y por dónde empezar.',
@@ -21,7 +21,7 @@ const fases = [
   {
     paso: '02',
     nombre: 'Construcción',
-    precio: 'Desde COP $8,000,000',
+    precio: 'Desde $8.000.000',
     formato: 'Por proyecto · precio cerrado',
     descripcion:
       'Tomamos la oportunidad de mayor retorno del roadmap y la construimos: del prototipo a un sistema funcionando dentro de tu operación.',
@@ -36,7 +36,7 @@ const fases = [
   {
     paso: '03',
     nombre: 'Evolución',
-    precio: 'Desde COP $2,500,000',
+    precio: 'Desde $2.500.000',
     formato: 'Mensual · opcional, sin permanencia',
     descripcion:
       'Una vez el sistema vive en producción, lo mantenemos, lo escalamos y construimos lo siguiente del roadmap. A tu ritmo.',
@@ -54,60 +54,54 @@ const fases = [
 <section id="modelo" class="bg-surface-2" aria-labelledby="modelo-heading">
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 md:py-32">
 
-    <div class="text-center mb-14">
+    <div class="max-w-2xl mb-14">
       <p class="eyebrow text-copper mb-4 reveal">Cómo trabajamos</p>
       <h2
         id="modelo-heading"
         class="font-display text-text-1 reveal"
-        style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.08; transition-delay: 60ms;"
+        style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; line-height: 1.06; transition-delay: 60ms;"
       >
-        Diagnóstico, construcción y <em class="text-copper">evolución</em>
+        Diagnóstico, construcción y <em>evolución</em>.
       </h2>
-      <p class="text-text-2 mt-4 max-w-xl mx-auto reveal" style="transition-delay: 80ms;">
-        No vendemos horas ni "features" sueltas. Entramos a tu operación, encontramos el problema y lo resolvemos — paso a paso.
+      <p class="text-text-2 mt-5 leading-relaxed reveal" style="transition-delay: 120ms;">
+        No vendemos horas ni "features" sueltas. Entramos a tu operación, encontramos el problema
+        y lo resolvemos — paso a paso.
       </p>
     </div>
 
     <!-- Phase cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       {fases.map((fase, i) => (
         <article
-          class:list={[
-            'phase-card group reveal flex flex-col',
-            fase.destacado && 'phase-card--featured',
-          ]}
-          style={`transition-delay: ${(i + 1) * 80}ms;`}
+          class:list={['phase-card group reveal flex flex-col', fase.destacado && 'phase-card--featured']}
+          style={`transition-delay: ${(i + 1) * 70}ms;`}
         >
-          <!-- Flow connector arrow (desktop, between cards) -->
-          {i < fases.length - 1 && (
-            <span class="phase-arrow hidden md:flex" aria-hidden="true">→</span>
-          )}
-
-          <div class="flex items-center justify-between mb-5">
+          <div class="flex items-center justify-between mb-6">
             <span class="font-mono text-xs text-copper tracking-widest">{fase.paso}</span>
             {fase.destacado && (
-              <span class="rounded-full border border-copper/30 bg-copper/10 px-3 py-1 text-copper text-[11px] font-semibold uppercase tracking-wide">
-                Empieza aquí
-              </span>
+              <span class="eyebrow text-copper" style="font-size: 0.625rem;">Empieza aquí</span>
             )}
           </div>
 
-          <h3 class="text-text-1 text-xl font-bold mb-1">{fase.nombre}</h3>
-          <p class="text-text-3 text-xs font-mono mb-5">{fase.formato}</p>
+          <h3 class="text-text-1 text-lg font-semibold mb-1">{fase.nombre}</h3>
+          <p class="text-text-3 text-xs font-mono mb-6">{fase.formato}</p>
 
-          <div class="mb-5">
-            <span class="text-text-1 font-extrabold tabular-nums" style="font-size: clamp(1.5rem, 3vw, 1.875rem);">
+          <div class="mb-6">
+            <span
+              class="font-display text-text-1"
+              style="font-size: clamp(1.5rem, 2.6vw, 1.875rem); font-weight: 500; letter-spacing: -0.03em;"
+            >
               {fase.precio}
             </span>
           </div>
 
-          <p class="text-text-2 text-sm leading-relaxed mb-6">{fase.descripcion}</p>
+          <p class="text-text-2 text-sm leading-relaxed mb-7">{fase.descripcion}</p>
 
-          <ul class="space-y-2.5 mt-auto" role="list">
+          <ul class="space-y-3 mt-auto" role="list">
             {fase.bullets.map((b) => (
-              <li class="flex items-start gap-2 text-text-2 text-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper shrink-0 mt-0.5" aria-hidden="true">
-                  <path d="M15 10l-4 4l-2-2"/><circle cx="12" cy="12" r="10"/>
+              <li class="flex items-start gap-2.5 text-text-2 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper shrink-0 mt-1" aria-hidden="true">
+                  <path d="M20 6L9 17l-5-5"/>
                 </svg>
                 <span>{b}</span>
               </li>
@@ -118,11 +112,11 @@ const fases = [
     </div>
 
     <!-- CTA -->
-    <div class="mt-12 text-center reveal" style="transition-delay: 320ms;">
+    <div class="mt-12 reveal" style="transition-delay: 320ms;">
       <CalButton size="lg" ariaLabel="Agenda mi llamada gratis con Beco 360">
-        Agenda mi llamada gratis →
+        Agenda tu llamada gratis →
       </CalButton>
-      <p class="text-text-3 text-xs mt-3">
+      <p class="text-text-3 text-xs mt-4">
         20 minutos · Sin compromiso · Definimos juntos por dónde empezar
       </p>
     </div>
@@ -133,44 +127,42 @@ const fases = [
 <style>
   .phase-card {
     position: relative;
-    padding: 2rem;
-    border-radius: 1rem;
-    border: 1px solid var(--color-surface-3);
+    padding: 1.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-text-3) 16%, transparent);
     background: var(--color-surface);
-    transition: box-shadow 250ms ease, transform 250ms ease, border-color 250ms ease;
+    transition:
+      border-color 400ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-
   .phase-card:hover {
     border-color: color-mix(in srgb, var(--color-copper) 30%, transparent);
-    box-shadow: 0 8px 32px color-mix(in srgb, var(--color-copper) 8%, transparent);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--color-copper) 18%, transparent),
+      0 18px 40px -16px rgba(0, 0, 0, 0.55);
   }
 
-  /* Featured (entry) phase gets a copper-tinted border */
+  /* Featured (entry) phase — subtle copper gradient hairline */
   .phase-card--featured {
-    border-color: color-mix(in srgb, var(--color-copper) 35%, transparent);
+    border: 1px solid transparent;
     background:
       linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
       linear-gradient(
-        135deg,
-        color-mix(in srgb, var(--color-copper) 30%, transparent),
-        transparent 60%
-      ) border-box;
-    border: 1px solid transparent;
+          160deg,
+          color-mix(in srgb, var(--color-copper) 45%, transparent),
+          color-mix(in srgb, var(--color-copper) 6%, transparent) 55%
+        )
+        border-box;
   }
 
-  /* Flow arrow between cards on desktop */
-  .phase-arrow {
-    position: absolute;
-    top: 50%;
-    right: -1.55rem;
-    transform: translateY(-50%);
-    align-items: center;
-    justify-content: center;
-    color: color-mix(in srgb, var(--color-copper) 55%, transparent);
-    font-size: 1.25rem;
-    font-weight: 700;
-    z-index: 1;
-    pointer-events: none;
+  @media (prefers-reduced-motion: reduce) {
+    .phase-card {
+      transition: none;
+    }
+    .phase-card:hover {
+      transform: none;
+    }
   }
 </style>
