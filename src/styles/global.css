@@ -2,13 +2,13 @@
 
 @theme {
   --color-surface: #0f0f0f;
-  --color-surface-2: #1a1a1a;
-  --color-surface-3: #2a2a2a;
+  --color-surface-2: #161514;
+  --color-surface-3: #2a2724;
   --color-copper: #d4755e;
   --color-copper-dark: #c4654e;
-  --color-text-1: #f5f5f5;
-  --color-text-2: #adadad;
-  --color-text-3: #888888;
+  --color-text-1: #f5f3f0;
+  --color-text-2: #b3ada6;
+  --color-text-3: #8a8378;
 
   /* Status badge tokens */
   --color-status-active: #4ade80;
@@ -17,13 +17,48 @@
   --font-family-jakarta: "Plus Jakarta Sans", sans-serif;
 }
 
-/* Reveal animations — only active when JS is loaded (html.js class added by script) */
+/* Serif display (Fraunces) — editorial headlines only, paired with the sans body */
+.font-display {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+}
+.font-display em,
+.font-display i {
+  font-style: italic;
+}
+
+/* Eyebrow / section label — uppercase, tracked (Palantir/Linear systematic feel) */
+.eyebrow {
+  font-family: var(--font-family-jakarta);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Subtle film grain — gives the dark surfaces depth instead of flat black.
+   Static layer, pointer-events none so it never blocks interaction. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Reveal animations — only active when JS is loaded (html.js class added by script).
+   Slower, softer ease-out for a calm, cinematic feel (vs. the generic fast fade-up). */
 html.js .reveal {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(12px);
   transition:
-    opacity 300ms ease,
-    transform 300ms ease;
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 html.js .reveal.visible {
@@ -35,6 +70,9 @@ html.js .reveal.visible {
   html.js .reveal {
     transition-duration: 0ms !important;
     transition-delay: 0ms !important;
+  }
+  body::before {
+    display: none;
   }
 }
 
@@ -54,4 +92,9 @@ html.js .reveal.visible {
 }
 .nav-link:hover::after {
   width: 100%;
+}
+
+/* Hairline divider used to structure editorial sections */
+.hairline {
+  border-color: color-mix(in srgb, var(--color-text-3) 22%, transparent);
 }

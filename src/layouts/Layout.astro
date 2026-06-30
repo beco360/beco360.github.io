@@ -21,7 +21,12 @@ const { title, description, noindex = false } = Astro.props;
 
     <!-- Resource hints: warm up third-party origins. Fonts are LCP-critical (full
          preconnect); analytics/cal only need DNS resolved so they don't compete with LCP. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap"
+    />
     <link rel="dns-prefetch" href="https://app.cal.com" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://connect.facebook.net" />
