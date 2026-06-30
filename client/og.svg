@@ -18,15 +18,15 @@
   <rect x="80" y="500" width="480" height="1" fill="#2A2A2A"/>
 
   <!-- Tagline -->
-  <text x="80" y="545" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="400" fill="#9B9B9B">Programador experimentado · 1 salario mínimo/mes</text>
+  <text x="80" y="545" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="400" fill="#9B9B9B">Consultoría de transformación con IA · para PyMEs</text>
 
   <!-- Right side decorative element -->
   <rect x="900" y="120" width="1" height="390" fill="#2A2A2A"/>
-  <text x="940" y="220" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="500" fill="#6B6B6B">Features en 5 días hábiles</text>
+  <text x="940" y="220" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="500" fill="#6B6B6B">En días, no meses</text>
   <text x="940" y="280" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="500" fill="#6B6B6B">Sin contratos de permanencia</text>
   <text x="940" y="340" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="500" fill="#6B6B6B">Impulsado por AI</text>
   <text x="940" y="400" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="500" fill="#6B6B6B">Bogotá, Colombia</text>
 
   <!-- Domain -->
-  <text x="940" y="510" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="600" fill="#D4755E">beco360.co</text>
+  <text x="940" y="510" font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="600" fill="#D4755E">www.beco360.com</text>
 </svg>
