@@ -1,5 +1,4 @@
 ---
-import Badge from './Badge.astro';
 
 const productos = [
   {
@@ -63,7 +62,8 @@ const marqueeItems = [
   { name: 'Clientes internos', sector: 'Facturación' },
   { name: 'Beco Bots', sector: 'Chatbots' },
 ];
-const track = [...marqueeItems, ...marqueeItems];
+// 4 copies so one half of the track is always wider than the viewport (no gap on the right)
+const track = [...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItems];
 ---
 
 <section id="portafolio" class="bg-surface-2" aria-labelledby="portafolio-heading">
@@ -99,7 +99,13 @@ const track = [...marqueeItems, ...marqueeItems];
             aria-label={p.href ? `${p.nombre} — ${p.descripcion}` : undefined}
           >
             <div class="flex items-start justify-between mb-6">
-              <Badge text={p.badgeText} variant={p.badge} />
+              <span class="inline-flex items-center gap-2">
+                <span
+                  class="h-1.5 w-1.5 rounded-full shrink-0"
+                  style={`background: ${p.badge === 'active' ? 'var(--color-status-active)' : 'var(--color-status-beta)'};`}
+                />
+                <span class="font-mono text-[11px] text-text-3 tracking-wider uppercase">{p.badgeText}</span>
+              </span>
               {p.href && (
                 <span class="inline-flex items-center gap-1 text-xs text-text-3 group-hover:text-copper transition-colors duration-200">
                   Ver producto
