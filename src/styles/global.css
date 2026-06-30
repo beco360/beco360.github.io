@@ -20,7 +20,7 @@
 /* Display (Space Grotesk) — technical grotesque for headlines, paired with the sans body */
 .font-display {
   font-family: "Space Grotesk", "Plus Jakarta Sans", sans-serif;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
 }
 /* Accent words use copper, never synthetic italic */
 .font-display em,
