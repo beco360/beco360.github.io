@@ -1,10 +1,12 @@
 ---
+import CalButton from './CalButton.astro';
+
 const navLinks = [
-  { label: 'Servicios', href: '/#features' },
-  { label: 'Productos', href: '/#productos' },
+  { label: 'Cómo trabajamos', href: '/#modelo' },
+  { label: 'Lo que construimos', href: '/#features' },
   { label: 'Portafolio', href: '/#portafolio' },
   { label: 'FAQs', href: '/faqs' },
-]
+];
 ---
 
 <nav
@@ -35,15 +37,9 @@ const navLinks = [
 
       <!-- Desktop CTA -->
       <div class="hidden md:flex">
-        <button
-          type="button"
-          class="inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 font-semibold text-sm bg-copper text-surface hover:bg-copper-dark transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer"
-          data-cal-link="beco360/llamada-inicial"
-          data-cal-config='{"layout":"month_view"}'
-          
-        >
+        <CalButton size="sm">
           Agenda una llamada
-        </button>
+        </CalButton>
       </div>
 
       <!-- Mobile hamburger -->
@@ -104,15 +100,9 @@ const navLinks = [
     </ul>
 
     <div class="px-6 pb-6 mt-auto">
-      <button
-        type="button"
-        class="w-full inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-sm bg-copper text-surface hover:bg-copper-dark transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer"
-        data-cal-link="beco360/llamada-inicial"
-          data-cal-config='{"layout":"month_view"}'
-        
-      >
+      <CalButton size="md" block>
         Agenda una llamada
-      </button>
+      </CalButton>
     </div>
   </div>
 

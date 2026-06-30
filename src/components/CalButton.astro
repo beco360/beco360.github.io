@@ -1,0 +1,33 @@
+---
+// Single source of truth for the "agenda una llamada" CTA (Cal.com popup).
+// Replaces the button markup that was duplicated across pages with inconsistent formatting.
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  block?: boolean;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const { size = 'md', block = false, ariaLabel, class: extra = '' } = Astro.props;
+
+const sizes = {
+  sm: 'px-5 py-2.5 text-sm',
+  md: 'px-6 py-3 text-sm',
+  lg: 'px-8 py-4 text-base',
+};
+---
+
+<button
+  type="button"
+  data-cal-link="beco360/llamada-inicial"
+  data-cal-config='{"layout":"month_view"}'
+  aria-label={ariaLabel}
+  class:list={[
+    'inline-flex items-center justify-center gap-2 rounded-md font-semibold bg-copper text-surface hover:bg-copper-dark transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer',
+    sizes[size],
+    block && 'w-full',
+    extra,
+  ]}
+>
+  <slot />
+</button>

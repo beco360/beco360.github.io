@@ -1,16 +1,16 @@
 ---
 interface Props {
-  faqs: { pregunta: string; respuesta: string }[]
+  faqs: { pregunta: string; respuesta: string }[];
 }
 
-const { faqs } = Astro.props
+const { faqs } = Astro.props;
 ---
 
 <section class="bg-surface-2" aria-labelledby="faq-section-heading">
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 md:py-32">
 
     <div class="text-center mb-16 reveal">
-      <p class="font-mono text-xs text-copper/70 tracking-[0.2em] uppercase mb-3">FAQ</p>
+      <p class="font-mono text-xs text-copper tracking-[0.2em] uppercase mb-3">FAQ</p>
       <h2
         id="faq-section-heading"
         class="text-text-1 font-bold"
@@ -58,11 +58,11 @@ const { faqs } = Astro.props
             role="tabpanel"
             id={`fpanel-${i}`}
             aria-labelledby={`ftab-${i}`}
-            class="faq-panel-desktop absolute inset-0 transition-all duration-300"
+            class="faq-panel-desktop absolute inset-0"
             data-index={i}
           >
             <div class="border-l-2 border-copper pl-8 pt-1">
-              <p class="font-mono text-xs text-copper/70 tracking-[0.15em] uppercase mb-4">
+              <p class="font-mono text-xs text-copper tracking-[0.15em] uppercase mb-4">
                 {String(i + 1).padStart(2, '0')} / {String(faqs.length).padStart(2, '0')}
               </p>
               <h3 class="text-text-1 font-bold text-xl leading-snug mb-5">
@@ -88,7 +88,7 @@ const { faqs } = Astro.props
             data-mob-index={i}
           >
             <div class="flex items-center gap-3">
-              <span class="font-mono text-xs text-copper/60 shrink-0 tabular-nums">
+              <span class="font-mono text-xs text-copper shrink-0 tabular-nums">
                 {String(i + 1).padStart(2, '0')}
               </span>
               <span class="text-text-1 text-sm font-medium">{faq.pregunta}</span>
@@ -145,16 +145,25 @@ const { faqs } = Astro.props
     font-weight: 600;
   }
 
-  /* Desktop panels: hidden by default, shown when active */
+  /* Desktop panels: hidden by default, shown when active.
+     visibility:hidden removes inactive panels from the a11y tree and tab order;
+     the 300ms delay on hide preserves the fade-out before it disappears. */
   .faq-panel-desktop {
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
     transform: translateY(6px);
+    transition: opacity 300ms ease, transform 300ms ease, visibility 0s linear 300ms;
   }
   .faq-panel-desktop[data-active="true"] {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
     transform: translateY(0);
+    transition: opacity 300ms ease, transform 300ms ease, visibility 0s;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faq-panel-desktop { transition: none; }
   }
 
   /* Mobile panel collapsed */

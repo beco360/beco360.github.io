@@ -1,21 +1,15 @@
 ---
 interface Props {
-  id?: string
-  bg?: 'surface' | 'surface-2'
-  class?: string
-  tag?: 'section' | 'div'
-  labelledby?: string
+  id?: string;
+  bg?: 'surface' | 'surface-2';
+  class?: string;
+  tag?: 'section' | 'div';
+  labelledby?: string;
 }
 
-const {
-  id,
-  bg = 'surface',
-  class: className = '',
-  tag: Tag = 'section',
-  labelledby,
-} = Astro.props
+const { id, bg = 'surface', class: className = '', tag: Tag = 'section', labelledby } = Astro.props;
 
-const bgClass = bg === 'surface-2' ? 'bg-surface-2' : 'bg-surface'
+const bgClass = bg === 'surface-2' ? 'bg-surface-2' : 'bg-surface';
 ---
 
 <Tag

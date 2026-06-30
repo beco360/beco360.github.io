@@ -1,12 +1,14 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import Nav from '../components/Nav.astro'
-import Footer from '../components/Footer.astro'
+import CalButton from '../components/CalButton.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
   title="404 — Página no encontrada | Beco 360"
   description="Esta página no existe todavía. Pero si tienes una idea, podemos construirla."
+  noindex
 >
   <Nav />
 
@@ -34,15 +36,9 @@ import Footer from '../components/Footer.astro'
           >
             ← Volver al inicio
           </a>
-          <button
-            type="button"
-            class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-sm bg-copper text-surface hover:bg-copper-dark transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer"
-            data-cal-link="beco360/llamada-inicial"
-          data-cal-config='{"layout":"month_view"}'
-            
-          >
+          <CalButton size="md">
             Agenda una llamada
-          </button>
+          </CalButton>
         </div>
       </div>
     </section>

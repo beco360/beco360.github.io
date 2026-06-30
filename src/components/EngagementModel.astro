@@ -1,0 +1,176 @@
+---
+import CalButton from './CalButton.astro';
+
+// Modelo de engagement forward-deployed: Diagnóstico → Construcción → Evolución
+const fases = [
+  {
+    paso: '01',
+    nombre: 'Diagnóstico',
+    precio: 'COP $3,500,000',
+    formato: 'Pago único · 1–2 semanas',
+    descripcion:
+      'Nos incrustamos en tu operación, mapeamos tus procesos y te entregamos un roadmap priorizado de qué construir y por dónde empezar.',
+    bullets: [
+      'Entrevistas + mapeo de tu operación',
+      'Roadmap priorizado por retorno',
+      'Es tuyo, lo contrates o no a Beco',
+      'Se acredita si avanzas a construir',
+    ],
+    destacado: true,
+  },
+  {
+    paso: '02',
+    nombre: 'Construcción',
+    precio: 'Desde COP $8,000,000',
+    formato: 'Por proyecto · precio cerrado',
+    descripcion:
+      'Tomamos la oportunidad de mayor retorno del roadmap y la construimos: del prototipo a un sistema funcionando dentro de tu operación.',
+    bullets: [
+      'Precio cerrado según el alcance',
+      'Primer prototipo en días',
+      'Integrado a tus sistemas',
+      'Trabajamos hombro a hombro contigo',
+    ],
+    destacado: false,
+  },
+  {
+    paso: '03',
+    nombre: 'Evolución',
+    precio: 'Desde COP $2,500,000',
+    formato: 'Mensual · opcional, sin permanencia',
+    descripcion:
+      'Una vez el sistema vive en producción, lo mantenemos, lo escalamos y construimos lo siguiente del roadmap. A tu ritmo.',
+    bullets: [
+      'Soporte y monitoreo del sistema',
+      'Nuevas oportunidades del roadmap',
+      'Mejoras continuas con IA',
+      'Cancelas con 15 días de aviso',
+    ],
+    destacado: false,
+  },
+];
+---
+
+<section id="modelo" class="bg-surface-2" aria-labelledby="modelo-heading">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 md:py-32">
+
+    <div class="text-center mb-14">
+      <p class="font-mono text-xs text-copper tracking-[0.2em] uppercase mb-3">Cómo trabajamos</p>
+      <h2
+        id="modelo-heading"
+        class="text-text-1 font-bold reveal"
+        style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
+      >
+        Diagnóstico, construcción y evolución
+      </h2>
+      <p class="text-text-2 mt-4 max-w-xl mx-auto reveal" style="transition-delay: 80ms;">
+        No vendemos horas ni "features" sueltas. Entramos a tu operación, encontramos el problema y lo resolvemos — paso a paso.
+      </p>
+    </div>
+
+    <!-- Phase cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {fases.map((fase, i) => (
+        <article
+          class:list={[
+            'phase-card group reveal flex flex-col',
+            fase.destacado && 'phase-card--featured',
+          ]}
+          style={`transition-delay: ${(i + 1) * 80}ms;`}
+        >
+          <!-- Flow connector arrow (desktop, between cards) -->
+          {i < fases.length - 1 && (
+            <span class="phase-arrow hidden md:flex" aria-hidden="true">→</span>
+          )}
+
+          <div class="flex items-center justify-between mb-5">
+            <span class="font-mono text-xs text-copper tracking-widest">{fase.paso}</span>
+            {fase.destacado && (
+              <span class="rounded-full border border-copper/30 bg-copper/10 px-3 py-1 text-copper text-[11px] font-semibold uppercase tracking-wide">
+                Empieza aquí
+              </span>
+            )}
+          </div>
+
+          <h3 class="text-text-1 text-xl font-bold mb-1">{fase.nombre}</h3>
+          <p class="text-text-3 text-xs font-mono mb-5">{fase.formato}</p>
+
+          <div class="mb-5">
+            <span class="text-text-1 font-extrabold tabular-nums" style="font-size: clamp(1.5rem, 3vw, 1.875rem);">
+              {fase.precio}
+            </span>
+          </div>
+
+          <p class="text-text-2 text-sm leading-relaxed mb-6">{fase.descripcion}</p>
+
+          <ul class="space-y-2.5 mt-auto" role="list">
+            {fase.bullets.map((b) => (
+              <li class="flex items-start gap-2 text-text-2 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-copper shrink-0 mt-0.5" aria-hidden="true">
+                  <path d="M15 10l-4 4l-2-2"/><circle cx="12" cy="12" r="10"/>
+                </svg>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 text-center reveal" style="transition-delay: 320ms;">
+      <CalButton size="lg" ariaLabel="Agenda mi llamada gratis con Beco 360">
+        Agenda mi llamada gratis →
+      </CalButton>
+      <p class="text-text-3 text-xs mt-3">
+        20 minutos · Sin compromiso · Definimos juntos por dónde empezar
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .phase-card {
+    position: relative;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-surface-3);
+    background: var(--color-surface);
+    transition: box-shadow 250ms ease, transform 250ms ease, border-color 250ms ease;
+  }
+
+  .phase-card:hover {
+    border-color: color-mix(in srgb, var(--color-copper) 30%, transparent);
+    box-shadow: 0 8px 32px color-mix(in srgb, var(--color-copper) 8%, transparent);
+    transform: translateY(-2px);
+  }
+
+  /* Featured (entry) phase gets a copper-tinted border */
+  .phase-card--featured {
+    border-color: color-mix(in srgb, var(--color-copper) 35%, transparent);
+    background:
+      linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+      linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--color-copper) 30%, transparent),
+        transparent 60%
+      ) border-box;
+    border: 1px solid transparent;
+  }
+
+  /* Flow arrow between cards on desktop */
+  .phase-arrow {
+    position: absolute;
+    top: 50%;
+    right: -1.55rem;
+    transform: translateY(-50%);
+    align-items: center;
+    justify-content: center;
+    color: color-mix(in srgb, var(--color-copper) 55%, transparent);
+    font-size: 1.25rem;
+    font-weight: 700;
+    z-index: 1;
+    pointer-events: none;
+  }
+</style>

@@ -1,15 +1,16 @@
 ---
-import { AstroFont } from 'astro-font'
-import Analytics from '@vercel/analytics/astro'
-import '../styles/global.css'
-import ChatWidget from '../components/ChatWidget'
+import Analytics from '@vercel/analytics/astro';
+import { AstroFont } from 'astro-font';
+import '../styles/global.css';
+import ChatWidget from '../components/ChatWidget';
 
 interface Props {
-  title: string
-  description: string
+  title: string;
+  description: string;
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props
+const { title, description, noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,20 +18,33 @@ const { title, description } = Astro.props
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Resource hints: warm up third-party origins. Fonts are LCP-critical (full
+         preconnect); analytics/cal only need DNS resolved so they don't compete with LCP. -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://app.cal.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://connect.facebook.net" />
+
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
 
-    <link rel="canonical" href={Astro.url.href} />
+    {noindex ? (
+      <meta name="robots" content="noindex, follow" />
+    ) : (
+      <link rel="canonical" href={Astro.url.href} />
+    )}
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://beco360.co/og.svg" />
+    <meta property="og:image" content="https://www.beco360.com/og.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Beco 360 — Programador experimentado por 1 salario mínimo al mes" />
+    <meta property="og:image:alt" content="Beco 360 — Consultoría de transformación con IA para PyMEs" />
     <meta property="og:locale" content="es_CO" />
     <meta property="og:site_name" content="Beco 360" />
 
@@ -38,8 +52,8 @@ const { title, description } = Astro.props
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://beco360.co/og.svg" />
-    <meta name="twitter:image:alt" content="Beco 360 — Programador experimentado por 1 salario mínimo al mes" />
+    <meta name="twitter:image" content="https://www.beco360.com/og.png" />
+    <meta name="twitter:image:alt" content="Beco 360 — Consultoría de transformación con IA para PyMEs" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/assets/brand/favicon.ico" type="image/x-icon" />
@@ -81,10 +95,10 @@ const { title, description } = Astro.props
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Beco 360",
-      "url": "https://beco360.co",
-      "logo": "https://beco360.co/assets/brand/logo-dark.svg",
-      "image": "https://beco360.co/og.svg",
-      "description": "Estudio de desarrollo de software colombiano. Features de software entregadas en 5 días hábiles bajo modelo de retainer mensual, impulsado por AI.",
+      "url": "https://www.beco360.com",
+      "logo": "https://www.beco360.com/assets/brand/logo-dark.svg",
+      "image": "https://www.beco360.com/og.png",
+      "description": "Consultoría de transformación con IA para PyMEs colombianas. Diagnosticamos dónde tu negocio pierde tiempo y plata, y construimos el sistema de software que lo resuelve, impulsados por AI.",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Bogotá",
@@ -97,17 +111,17 @@ const { title, description } = Astro.props
         "contactType": "customer service",
         "availableLanguage": "Spanish"
       },
-      "offers": {
+      "makesOffer": {
         "@type": "Offer",
-        "name": "Retainer mensual de features",
-        "description": "Desarrollo de software por features. Desde COP $950,000 por feature al mes.",
+        "name": "Diagnóstico de transformación con IA",
+        "description": "Diagnóstico embebido de 1–2 semanas con roadmap priorizado de automatización e IA para tu negocio. Puerta de entrada a la consultoría de Beco.",
         "priceCurrency": "COP",
-        "price": "950000",
+        "price": "3500000",
         "priceSpecification": {
           "@type": "UnitPriceSpecification",
           "priceCurrency": "COP",
-          "price": "950000",
-          "unitText": "feature/mes"
+          "price": "3500000",
+          "unitText": "diagnóstico"
         }
       },
       "areaServed": {

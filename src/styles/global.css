@@ -1,35 +1,35 @@
 @import "tailwindcss";
 
 @theme {
-  --color-surface: #0F0F0F;
-  --color-surface-2: #1A1A1A;
-  --color-surface-3: #2A2A2A;
-  --color-copper: #D4755E;
-  --color-copper-dark: #C4654E;
-  --color-text-1: #F5F5F5;
-  --color-text-2: #ADADAD;
+  --color-surface: #0f0f0f;
+  --color-surface-2: #1a1a1a;
+  --color-surface-3: #2a2a2a;
+  --color-copper: #d4755e;
+  --color-copper-dark: #c4654e;
+  --color-text-1: #f5f5f5;
+  --color-text-2: #adadad;
   --color-text-3: #888888;
 
   /* Status badge tokens */
   --color-status-active: #4ade80;
   --color-status-beta: #facc15;
 
-  --font-family-jakarta: 'Plus Jakarta Sans', sans-serif;
+  --font-family-jakarta: "Plus Jakarta Sans", sans-serif;
 }
 
 /* Reveal animations — only active when JS is loaded (html.js class added by script) */
 html.js .reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 300ms ease, transform 300ms ease;
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
   will-change: opacity, transform;
-}
-html.js .reveal.visible {
-  will-change: auto;
 }
 html.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 @media (prefers-reduced-motion: reduce) {
   html.js .reveal {
@@ -43,7 +43,7 @@ html.js .reveal.visible {
   position: relative;
 }
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;

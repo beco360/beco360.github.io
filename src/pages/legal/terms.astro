@@ -1,19 +1,19 @@
 ---
-import Layout from '../../layouts/Layout.astro'
-import Nav from '../../components/Nav.astro'
-import Footer from '../../components/Footer.astro'
-import Section from '../../components/Section.astro'
+import Footer from '../../components/Footer.astro';
+import Nav from '../../components/Nav.astro';
+import Section from '../../components/Section.astro';
+import Layout from '../../layouts/Layout.astro';
 
-const lastUpdated = '12 de marzo de 2026'
+const lastUpdated = '30 de junio de 2026';
 ---
 
 <Layout
   title="Términos y Condiciones | Beco 360"
-  description="Términos y condiciones del servicio de retainer mensual de Beco 360. Colombia."
+  description="Términos y condiciones de los servicios de consultoría de Beco 360: diagnóstico, construcción y evolución. Colombia."
 >
   <Nav />
 
-  <main>
+  <main id="main-content">
     <Section bg="surface" labelledby="terms-heading">
       <div class="max-w-3xl mx-auto prose-custom">
         <div class="pt-16 pb-8">
@@ -32,24 +32,29 @@ const lastUpdated = '12 de marzo de 2026'
           <section aria-labelledby="terms-1">
             <h2 id="terms-1" class="text-text-1 font-semibold text-lg mb-3">1. Partes del Contrato</h2>
             <p>
-              Estos términos regulan la relación entre <strong class="text-text-1">Beco 360</strong> (en adelante "el Proveedor"), empresa colombiana de desarrollo de software e implementación de inteligencia artificial, y el <strong class="text-text-1">Cliente</strong>, persona natural o jurídica que contrata los servicios bajo el modelo de retainer mensual.
+              Estos términos regulan la relación entre <strong class="text-text-1">Beco 360</strong> (en adelante "el Proveedor"), empresa colombiana de consultoría, desarrollo de software e implementación de inteligencia artificial, y el <strong class="text-text-1">Cliente</strong>, persona natural o jurídica que contrata los servicios de consultoría por fases.
             </p>
           </section>
 
           <section aria-labelledby="terms-2">
             <h2 id="terms-2" class="text-text-1 font-semibold text-lg mb-3">2. Descripción del Servicio</h2>
             <p>
-              Beco 360 presta servicios de desarrollo de software, automatizaciones e implementación de AI bajo un modelo de <strong class="text-text-1">retainer por capacidad mensual</strong>. El cliente contrata una capacidad mensual expresada en "features" — unidades de trabajo acotables ejecutables en aproximadamente 3 horas con ayuda de herramientas de inteligencia artificial.
+              Beco 360 presta servicios de consultoría, desarrollo de software, automatizaciones e implementación de AI bajo un modelo de <strong class="text-text-1">consultoría por fases</strong>, organizado en tres etapas:
             </p>
+            <ul class="mt-3 space-y-2 list-disc pl-5">
+              <li><strong class="text-text-1">Diagnóstico:</strong> servicio de descubrimiento de precio fijo en el que el Proveedor evalúa la operación del Cliente y entrega un informe con un roadmap priorizado de oportunidades.</li>
+              <li><strong class="text-text-1">Construcción:</strong> desarrollo e implementación de las soluciones priorizadas, contratado por proyecto con un alcance y precio cerrados definidos por escrito antes de iniciar.</li>
+              <li><strong class="text-text-1">Evolución:</strong> servicio mensual opcional de mantenimiento, soporte y mejora continua de las soluciones en producción.</li>
+            </ul>
             <p class="mt-3">
-              Los planes disponibles son: Plan Mínimo, Plan Estándar y Plan Pro. Las características específicas de cada plan están publicadas en el sitio web y pueden ser actualizadas con 30 días de anticipación.
+              El alcance y las características específicas de cada fase se acuerdan por escrito con el Cliente. Las tarifas vigentes están publicadas en el sitio web y pueden ser actualizadas con 30 días de anticipación.
             </p>
           </section>
 
           <section aria-labelledby="terms-3">
             <h2 id="terms-3" class="text-text-1 font-semibold text-lg mb-3">3. Facturación y Pago</h2>
             <p>
-              El pago del retainer es mensual y se realiza en los primeros 5 días hábiles del mes. El incumplimiento en el pago suspende la prestación del servicio hasta que se regularice la situación.
+              El Diagnóstico se factura como pago único al inicio de la fase y, si el Cliente avanza a la fase de Construcción, su valor se acredita al primer proyecto. La Construcción se factura por proyecto según lo acordado por escrito. La Evolución se factura de forma mensual en los primeros 5 días hábiles del mes. El incumplimiento en el pago suspende la prestación del servicio hasta que se regularice la situación.
             </p>
             <p class="mt-3">
               Los precios están denominados en pesos colombianos (COP) e incluyen todos los impuestos aplicables. Beco 360 se reserva el derecho de ajustar tarifas con 30 días de anticipación escrita.
@@ -59,27 +64,27 @@ const lastUpdated = '12 de marzo de 2026'
           <section aria-labelledby="terms-4">
             <h2 id="terms-4" class="text-text-1 font-semibold text-lg mb-3">4. Política de Cancelación</h2>
             <p>
-              El Cliente puede cancelar el servicio en cualquier momento mediante notificación escrita con <strong class="text-text-1">15 días calendario de anticipación</strong>. No hay penalizaciones por cancelación. Las features del mes en curso quedan disponibles hasta la fecha de terminación.
+              La fase de Evolución no tiene permanencia: el Cliente puede cancelarla en cualquier momento mediante notificación escrita con <strong class="text-text-1">15 días calendario de anticipación</strong>, sin penalizaciones. El servicio queda disponible hasta la fecha de terminación.
             </p>
             <p class="mt-3">
-              La capacidad mensual no es acumulable ni reembolsable. Las features no utilizadas en un período no se transfieren al siguiente mes.
+              El Diagnóstico y los proyectos de Construcción ya iniciados se ejecutan hasta su entrega según el alcance acordado. Los pagos correspondientes a fases ya prestadas no son reembolsables.
             </p>
           </section>
 
           <section aria-labelledby="terms-5">
             <h2 id="terms-5" class="text-text-1 font-semibold text-lg mb-3">5. Entregables y Revisiones</h2>
             <p>
-              Cada feature incluye una (1) ronda de revisión y ajustes sin costo adicional. Solicitudes de cambio que modifiquen sustancialmente el alcance original se consideran nuevas features.
+              Cada proyecto de Construcción se entrega contra el alcance definido por escrito en el Diagnóstico o en el acuerdo del proyecto, e incluye los ajustes necesarios para cumplir esa definición sin costo adicional. Las solicitudes de cambio que modifiquen sustancialmente el alcance original se consideran un nuevo proyecto.
             </p>
             <p class="mt-3">
-              El turnaround (tiempo de entrega) aplica desde que el Cliente confirma formalmente la feature en el sync mensual o por el canal de comunicación acordado.
+              Los tiempos de entrega aplican desde que el Cliente confirma formalmente el inicio del proyecto por el canal de comunicación acordado.
             </p>
           </section>
 
           <section aria-labelledby="terms-6">
             <h2 id="terms-6" class="text-text-1 font-semibold text-lg mb-3">6. Propiedad Intelectual</h2>
             <p>
-              Una vez completado el pago del mes correspondiente, el Cliente recibe los derechos de uso completos sobre el código y entregables producidos durante ese período. Beco 360 retiene el derecho de reutilizar componentes genéricos no específicos del negocio del Cliente.
+              Una vez completado el pago de la fase correspondiente, el Cliente recibe los derechos de uso completos sobre el código y entregables producidos en esa fase. Beco 360 retiene el derecho de reutilizar componentes genéricos no específicos del negocio del Cliente.
             </p>
           </section>
 
@@ -93,7 +98,7 @@ const lastUpdated = '12 de marzo de 2026'
           <section aria-labelledby="terms-8">
             <h2 id="terms-8" class="text-text-1 font-semibold text-lg mb-3">8. Limitación de Responsabilidad</h2>
             <p>
-              La responsabilidad de Beco 360 se limita al valor del mes de retainer correspondiente. El Proveedor no asume responsabilidad por daños indirectos, lucro cesante o pérdida de datos derivados del uso de los entregables.
+              La responsabilidad de Beco 360 se limita al valor de la fase correspondiente efectivamente pagada por el Cliente. El Proveedor no asume responsabilidad por daños indirectos, lucro cesante o pérdida de datos derivados del uso de los entregables.
             </p>
           </section>
 

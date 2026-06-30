@@ -1,8 +1,8 @@
-import { defineConfig } from 'astro/config'
-import sitemap from '@astrojs/sitemap'
-import tailwindcss from '@tailwindcss/vite'
-import vercel from '@astrojs/vercel'
-import react from '@astrojs/react'
+import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
+import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   site: 'https://www.beco360.com',
@@ -12,4 +12,4 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-})
+});

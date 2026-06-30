@@ -1,8 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import Nav from '../components/Nav.astro'
-import Footer from '../components/Footer.astro'
-import Section from '../components/Section.astro'
+import CalButton from '../components/CalButton.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import Section from '../components/Section.astro';
+import Layout from '../layouts/Layout.astro';
 
 const valores = [
   {
@@ -15,7 +16,7 @@ const valores = [
     emoji: '⏰',
     titulo: 'Asincrónico por defecto',
     descripcion:
-      'Resultados, no reuniones. Trabajamos en bloques de concentración sin interrupciones. Los syncs están programados y son cortos. La comunicación es async por email — directa y sin ruido.',
+      'Resultados, no reuniones. Trabajamos en bloques de concentración sin interrupciones. Las reuniones de avance están programadas y son cortas. La comunicación es async por email — directa y sin ruido.',
   },
   {
     emoji: '🔍',
@@ -27,7 +28,7 @@ const valores = [
     emoji: '✅',
     titulo: 'Calidad antes de velocidad',
     descripcion:
-      'Cada feature pasa por revisión antes de entregarse. Rápido no significa descuidado — significa que usamos AI para hacer en horas lo que antes tomaba días, con el mismo estándar de calidad.',
+      'Cada entrega pasa por revisión antes de salir a producción. Rápido no significa descuidado — significa que usamos AI para hacer en horas lo que antes tomaba días, con el mismo estándar de calidad.',
   },
   {
     emoji: '🇨🇴',
@@ -37,11 +38,11 @@ const valores = [
   },
   {
     emoji: '📦',
-    titulo: 'El producto como protagonista',
+    titulo: 'Diagnosticamos para construir',
     descripcion:
-      'No vendemos slides ni presentaciones. Vendemos software que funciona. Alfil y Cotejo existen porque creemos en construir — no solo en consultar. Nuestro portafolio habla por nosotros.',
+      'No entregamos un PDF con recomendaciones y desaparecemos. Diagnosticamos para construir lo que recomendamos y dejarlo funcionando. Alfil y Cotejo existen porque creemos en construir, no solo en aconsejar. Nuestro portafolio habla por nosotros.',
   },
-]
+];
 ---
 
 <Layout
@@ -90,15 +91,9 @@ const valores = [
           <p class="text-text-2 text-sm mb-6">
             Construyamos algo juntos.
           </p>
-          <button
-            type="button"
-            class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-sm bg-copper text-surface hover:bg-copper-dark transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer"
-            data-cal-link="beco360/llamada-inicial"
-          data-cal-config='{"layout":"month_view"}'
-            
-          >
+          <CalButton size="md">
             Agenda una llamada
-          </button>
+          </CalButton>
         </div>
       </div>
     </Section>

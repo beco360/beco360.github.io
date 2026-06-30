@@ -1,67 +1,74 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import Nav from '../components/Nav.astro'
-import Footer from '../components/Footer.astro'
-import Section from '../components/Section.astro'
-import PricingSlider from '../components/PricingSlider.astro'
-import FeaturesDeliverablesGrid from '../components/FeaturesDeliverablesGrid.astro'
-import SocialProof from '../components/SocialProof.astro'
-import FaqSection from '../components/FaqSection.astro'
-
-
+import CalButton from '../components/CalButton.astro';
+import EngagementModel from '../components/EngagementModel.astro';
+import FaqSection from '../components/FaqSection.astro';
+import FeaturesDeliverablesGrid from '../components/FeaturesDeliverablesGrid.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import Section from '../components/Section.astro';
+import SocialProof from '../components/SocialProof.astro';
+import Layout from '../layouts/Layout.astro';
 
 const pasos = [
   {
     numero: '01',
-    titulo: 'Agenda tu llamada',
-    descripcion: 'Cuéntanos qué necesitas. Primera llamada gratis. Sin compromisos.',
+    titulo: 'Diagnóstico',
+    descripcion:
+      'Nos metemos en tu operación 1–2 semanas y te entregamos un roadmap de qué automatizar y por dónde empezar.',
   },
   {
     numero: '02',
-    titulo: 'Pide tu feature',
-    descripcion: 'Descríbela en un mensaje. Sin tecnicismos. Nosotros la construimos.',
+    titulo: 'Construcción',
+    descripcion:
+      'Tomamos la oportunidad de mayor retorno y la construimos hasta dejarla funcionando en tu negocio.',
   },
   {
     numero: '03',
-    titulo: 'Recíbela lista',
-    descripcion: 'En días, no semanas. Con AI trabajando de nuestro lado.',
+    titulo: 'Evolución',
+    descripcion:
+      'Mantenemos el sistema vivo y construimos lo siguiente del roadmap. A tu ritmo, sin permanencia.',
   },
-]
+];
 
 const stats = [
   { valor: '3+', label: 'empresas activas' },
-  { valor: '20+', label: 'features entregadas' },
-  { valor: '5 días', label: 'tiempo promedio de entrega' },
-  { valor: '100%', label: 'satisfacción garantizada' },
-]
+  { valor: '20+', label: 'soluciones en producción' },
+  { valor: 'Días', label: 'del diagnóstico al prototipo' },
+  { valor: '100%', label: 'enfocados en tu resultado' },
+];
 
 const faqsHome = [
   {
-    pregunta: '¿Cuánto tarda en entregarse una feature?',
-    respuesta: 'El plan Mínimo garantiza entrega en 7 días hábiles, el Estándar en 5 y el Pro en 3. En la práctica, features simples (formulario, sección nueva, integración) salen antes. Siempre te avisamos antes de empezar si hay algo que pueda tardar más.',
+    pregunta: '¿Qué es exactamente el diagnóstico?',
+    respuesta:
+      'Nos incrustamos 1–2 semanas en tu operación: entrevistamos a tu equipo, observamos cómo trabajan hoy y mapeamos tus sistemas. Salimos con un roadmap priorizado de qué automatizar o construir y por dónde empezar, con el retorno estimado. Es tuyo, lo contrates o no el resto a Beco.',
   },
   {
-    pregunta: '¿Puedo cancelar cuando quiera?',
-    respuesta: 'Sí, sin penalidad ni período mínimo. Avisas con 15 días de anticipación y cerramos el mes en curso. No hay contratos de permanencia.',
+    pregunta: '¿Cuánto cuesta trabajar con Beco?',
+    respuesta:
+      'Toda relación arranca con un diagnóstico de precio fijo (COP $3,500,000), que se acredita si avanzas a construir. De ahí, la construcción se cotiza por proyecto cerrado según el alcance (desde COP $8,000,000), y la evolución es un mensual opcional. Te decimos el número exacto antes de empezar — sin sorpresas.',
   },
   {
     pregunta: '¿Necesito saber de tecnología para trabajar con Beco?',
-    respuesta: 'Para nada. Describes lo que quieres en español normal — "quiero que cuando alguien llene el formulario me llegue un WhatsApp" — y nosotros lo traducimos a código. Si algo no es claro, preguntamos antes de empezar.',
+    respuesta:
+      'Para nada. Tú describes el problema de negocio en español normal — "se me va media mañana pasando pedidos a Excel" — y nosotros diagnosticamos y construimos la solución. Si algo no es claro, preguntamos antes de empezar.',
   },
   {
-    pregunta: '¿Qué pasa si el resultado no me gusta?',
-    respuesta: 'Hacemos ajustes hasta que quede como lo imaginaste. Si describiste la feature y el resultado no cumple con esa descripción, la corregimos sin costo. El objetivo es que cada feature cierre como entregada y aprobada por ti.',
+    pregunta: '¿Por qué pagar por un diagnóstico y no solo cotizar lo que pido?',
+    respuesta:
+      'Porque construir lo que pediste sin entender el problema casi siempre termina en software que no mueve la aguja. El diagnóstico asegura que invertimos en la oportunidad de mayor retorno primero. Y si avanzas a construir, se acredita — no lo pagas dos veces.',
   },
   {
-    pregunta: '¿Por qué es tan barato comparado con una agencia o un freelancer?',
-    respuesta: 'Porque trabajamos con AI como parte del equipo, lo que multiplica la velocidad de ejecución. Además, el modelo de retainer nos da previsibilidad — sabemos cuánta capacidad tenemos cada mes y podemos planificar sin sorpresas. No es barato: es eficiente.',
+    pregunta: '¿Puedo cancelar la evolución cuando quiera?',
+    respuesta:
+      'Sí, sin permanencia ni penalidad. La evolución continúa porque el sistema te sigue dando valor, no porque te ata un contrato. Avisas con 15 días de anticipación y cerramos el mes en curso.',
   },
-]
+];
 ---
 
 <Layout
-  title="Beco 360 — Programador experimentado por 1 salario mínimo al mes"
-  description="Contrata un programador experimentado por 1 salario mínimo al mes. Convierte tus ideas de negocio en realidad con AI. Sin prestaciones. Sin liquidaciones. Sin drama."
+  title="Beco 360 — Consultoría de transformación con IA para PyMEs"
+  description="Diagnosticamos dónde tu negocio pierde tiempo y plata, y construimos el sistema con IA que lo resuelve. Consultoría de tecnología forward-deployed para PyMEs colombianas."
 >
   <Nav />
 
@@ -71,32 +78,25 @@ const faqsHome = [
       <div class="max-w-4xl mx-auto px-6 md:px-8 pt-40 pb-32 md:pt-48 md:pb-40 text-center">
         <h1
           id="hero-heading"
-          class="text-text-1 font-extrabold leading-tight reveal"
+          class="text-text-1 font-extrabold leading-tight"
           style="font-size: clamp(2.5rem, 6vw, 4.5rem);"
         >
-          Contrata un programador experimentado<br />por 1 salario mínimo al mes.
+          Diagnosticamos tu negocio<br />y construimos lo que le falta.
         </h1>
 
-        <p class="text-text-3 text-sm mt-4 font-mono reveal" style="transition-delay: 80ms;">
-          COP $2,921,000/mes · el costo real de un empleado al salario mínimo
+        <p class="text-text-3 text-sm mt-4 font-mono">
+          Consultoría de tecnología con IA · para PyMEs colombianas
         </p>
 
-        <p class="text-text-2 text-xl max-w-2xl mx-auto mt-6 leading-relaxed reveal" style="transition-delay: 160ms;">
-          Convierte tus ideas de negocio en realidad con AI.<br />
-          Sin prestaciones. Sin liquidaciones. Sin drama.
+        <p class="text-text-2 text-xl max-w-2xl mx-auto mt-6 leading-relaxed">
+          Nos metemos en tu operación, encontramos dónde pierdes tiempo y plata,<br />
+          y construimos el sistema con IA que lo resuelve. En días, no meses.
         </p>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 reveal" style="transition-delay: 240ms;">
-          <button
-            type="button"
-            class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-sm bg-copper text-surface hover:bg-copper-dark transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer"
-            data-cal-link="beco360/llamada-inicial"
-          data-cal-config='{"layout":"month_view"}'
-            
-            aria-label="Agenda mi llamada gratis con Beco 360"
-          >
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+          <CalButton size="md" ariaLabel="Agenda mi llamada gratis con Beco 360">
             Agenda mi llamada gratis →
-          </button>
+          </CalButton>
           <a
             href="#como-funciona"
             class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-sm border border-surface-3 text-text-2 hover:border-copper hover:text-copper transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper"
@@ -106,7 +106,7 @@ const faqsHome = [
         </div>
 
         <!-- Microcopy de fricción -->
-        <p class="text-text-3 text-xs mt-4 reveal" style="transition-delay: 320ms;">
+        <p class="text-text-3 text-xs mt-4">
           20 minutos · Sin compromiso · Sin tarjeta de crédito
         </p>
       </div>
@@ -139,10 +139,10 @@ const faqsHome = [
           class="text-text-1 font-bold reveal"
           style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
         >
-          Cómo funciona
+          Cómo trabajamos
         </h2>
         <p class="text-text-2 mt-4 max-w-xl mx-auto reveal" style="transition-delay: 80ms;">
-          Tres pasos para convertir tu próxima idea en realidad.
+          Del diagnóstico a un sistema funcionando — y evolucionando contigo.
         </p>
       </div>
 
@@ -159,8 +159,8 @@ const faqsHome = [
       </div>
     </Section>
 
-    <!-- PLANES -->
-    <PricingSlider />
+    <!-- MODELO DE ENGAGEMENT -->
+    <EngagementModel />
 
     <!-- FEATURES / EJEMPLOS -->
     <FeaturesDeliverablesGrid />
@@ -179,22 +179,15 @@ const faqsHome = [
           class="text-text-1 font-bold reveal"
           style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
         >
-          ¿Listo para convertir tu próxima idea en realidad?
+          ¿Listo para saber qué automatizar primero?
         </h2>
         <p class="text-text-2 text-xl mt-4 reveal" style="transition-delay: 80ms;">
-          Primera llamada gratis. Sin compromisos.
+          Empieza con una llamada gratis de 20 minutos. Sin compromisos.
         </p>
         <div class="mt-10 reveal" style="transition-delay: 160ms;">
-          <button
-            type="button"
-            class="inline-flex items-center justify-center gap-2 rounded-md px-8 py-4 font-semibold text-base bg-copper text-surface hover:bg-copper-dark transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer"
-            data-cal-link="beco360/llamada-inicial"
-          data-cal-config='{"layout":"month_view"}'
-            
-            aria-label="Agenda mi llamada gratis con Beco 360"
-          >
+          <CalButton size="lg" ariaLabel="Agenda mi llamada gratis con Beco 360">
             Agenda mi llamada gratis →
-          </button>
+          </CalButton>
           <p class="text-text-3 text-xs mt-3">20 minutos · Sin compromiso · Sin tarjeta de crédito</p>
         </div>
       </div>

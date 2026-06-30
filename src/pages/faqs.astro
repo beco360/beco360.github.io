@@ -1,67 +1,68 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import Nav from '../components/Nav.astro'
-import Footer from '../components/Footer.astro'
-import Section from '../components/Section.astro'
-import FaqItem from '../components/FaqItem.astro'
+import CalButton from '../components/CalButton.astro';
+import FaqItem from '../components/FaqItem.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import Section from '../components/Section.astro';
+import Layout from '../layouts/Layout.astro';
 
 const faqs = [
   {
-    pregunta: '¿Qué es una "feature"?',
+    pregunta: '¿Qué hace Beco exactamente?',
     respuesta:
-      'Una feature es cualquier mejora o funcionalidad descrita en 1 oración con un resultado claro. Por ejemplo: "Quiero que me llegue un WhatsApp cuando alguien llene el formulario de contacto." Si se puede describir en una oración y el resultado es medible, es una feature.',
+      'Somos una consultoría de tecnología "forward-deployed" para PyMEs colombianas. En vez de venderte features sueltas, nos metemos en tu operación, diagnosticamos dónde pierdes tiempo y plata, y construimos el sistema con IA que lo resuelve — y lo dejamos funcionando en producción.',
   },
   {
-    pregunta: '¿Qué pasa si mi idea es muy grande para 1 feature?',
+    pregunta: '¿Qué es el diagnóstico y por qué se paga?',
     respuesta:
-      'La dividimos juntos en el sync mensual. Tú priorizas cuál va primero. Un e-commerce completo, por ejemplo, son 8-10 features. Las construimos en el orden que más valor te genere.',
+      'Es la puerta de entrada: 1–2 semanas en las que nos incrustamos en tu operación, entrevistamos a tu equipo, mapeamos procesos y te entregamos un roadmap priorizado de qué construir y por dónde empezar. Cuesta COP $3,500,000 y se acredita al primer proyecto de construcción si avanzas. Se paga porque construir sin entender el problema casi siempre termina en software que no mueve la aguja.',
   },
   {
-    pregunta: '¿Puedo cancelar cuando quiera?',
+    pregunta: '¿Cuánto cuesta trabajar con Beco?',
     respuesta:
-      'Sí. Sin contratos de permanencia. Cancelas con 15 días de anticipación y listo. No hay penalizaciones ni letras pequeñas.',
+      'Tres fases: Diagnóstico (COP $3,500,000, pago único y acreditable), Construcción (desde COP $8,000,000 por proyecto, precio cerrado según alcance) y Evolución (desde COP $2,500,000/mes, opcional y sin permanencia). Te damos el número exacto antes de empezar — sin sorpresas.',
   },
   {
-    pregunta: '¿Las features que no uso en el mes se acumulan?',
+    pregunta: '¿Cuánto tardan en entregar?',
     respuesta:
-      'No. El modelo es como un gimnasio: la capacidad no acumula. Úsala o la pierdes. Esto nos permite planificar mejor y darte un servicio más predecible.',
+      'Del diagnóstico salimos con un roadmap en 1–2 semanas; el primer prototipo funcionando en días. Con AI como parte del equipo ejecutamos en un sprint lo que una agencia tradicional haría en meses.',
+  },
+  {
+    pregunta: '¿Necesito saber de tecnología?',
+    respuesta:
+      'Para nada. Tú describes el problema de negocio que tienes; nosotros diagnosticamos y construimos la solución. Si algo no es claro, preguntamos antes de empezar.',
+  },
+  {
+    pregunta: '¿Y si lo que necesito es muy grande (un e-commerce, una app)?',
+    respuesta:
+      'Justo para eso es el diagnóstico. En vez de construir todo de una, identificamos qué parte resolver primero por mayor retorno — casi siempre hay una oportunidad puntual y de alto impacto dentro del pedido grande. Después seguimos con el resto del roadmap a tu ritmo.',
   },
   {
     pregunta: '¿Qué tecnologías usan?',
     respuesta:
-      'Las que mejor resuelven tu problema. Web, mobile, automatizaciones, AI, integraciones — sin restricción de stack. Usamos las herramientas más modernas y las que AI puede acelerar mejor.',
+      'Las que mejor resuelven tu problema. Web, mobile, automatizaciones, IA, integraciones — sin restricción de stack. Usamos las herramientas más modernas y las que AI puede acelerar mejor.',
   },
   {
-    pregunta: '¿Cuánto tarda cada feature?',
+    pregunta: '¿Puedo cancelar la evolución cuando quiera?',
     respuesta:
-      'El turnaround depende del plan: 7 días hábiles (Plan Mínimo), 5 días hábiles (Plan Estándar), 3 días hábiles (Plan Pro). Empezamos a contar desde que confirmas la feature en el sync.',
+      'Sí. La fase de Evolución no tiene permanencia: continúa porque el sistema te sigue dando valor, no porque te ata un contrato. Cancelas con 15 días de anticipación y listo. No hay penalizaciones ni letras pequeñas.',
   },
   {
-    pregunta: '¿Cómo les digo qué quiero?',
+    pregunta: '¿Qué pasa si el sistema no queda como esperaba?',
     respuesta:
-      'En el sync mensual o por email. No necesitas saber de tecnología — describes el problema que tienes o el resultado que quieres, nosotros lo traducimos a código.',
-  },
-  {
-    pregunta: '¿Qué pasa si la feature no queda como esperaba?',
-    respuesta:
-      'Incluye 1 ronda de ajustes sin costo adicional. Si describiste claramente el resultado esperado y no lo logramos, lo corregimos. Eso es parte del compromiso.',
+      'La construcción se cierra contra el alcance que definimos juntos en el diagnóstico. Ajustamos hasta cumplir esa definición sin costo adicional. Si quieres algo distinto a lo acordado, eso es un nuevo sprint — pero siempre lo conversamos antes.',
   },
   {
     pregunta: '¿Tienen experiencia con empresas de mi sector?',
     respuesta:
       'Hemos trabajado con ingeniería civil, e-commerce, política, deportes y más. Cada sector tiene sus particularidades — agenda una llamada y cuéntanos tu caso específico.',
   },
-  {
-    pregunta: '¿Por qué "1 salario mínimo"?',
-    respuesta:
-      'Porque eso es exactamente lo que te cuesta un empleado al mínimo cuando sumas prestaciones, ARL y todo lo demás: COP $2,921,000 al mes. Por ese mismo valor tienes un desarrollador senior con AI — sin los dolores de cabeza de tener un empleado directo.',
-  },
-]
+];
 ---
 
 <Layout
   title="FAQs — Preguntas frecuentes | Beco 360"
-  description="Respuestas a las preguntas más comunes sobre el modelo de retainer de Beco 360: features, planes, cancelación y más."
+  description="Respuestas a las preguntas más comunes sobre la consultoría de Beco 360: el diagnóstico, los precios por fase, tiempos de entrega, cancelación y más."
 >
   <Nav />
 
@@ -110,15 +111,9 @@ const faqs = [
           <p class="text-text-2 mb-6">
             ¿No encontraste tu respuesta? Agenda una llamada — la primera es gratis.
           </p>
-          <button
-            type="button"
-            class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-sm bg-copper text-surface hover:bg-copper-dark transition-all duration-200 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper cursor-pointer"
-            data-cal-link="beco360/llamada-inicial"
-          data-cal-config='{"layout":"month_view"}'
-            
-          >
+          <CalButton size="md">
             Agenda una llamada
-          </button>
+          </CalButton>
         </div>
       </div>
     </Section>
