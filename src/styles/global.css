@@ -14,12 +14,17 @@
   --color-status-active: #4ade80;
   --color-status-beta: #facc15;
 
-  --font-family-jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-family-jakarta: var(--font-jakarta), sans-serif;
+}
+
+/* Base document font (self-hosted Plus Jakarta Sans via Astro Fonts API) */
+html {
+  font-family: var(--font-jakarta), system-ui, sans-serif;
 }
 
 /* Display (Space Grotesk) — technical grotesque for headlines, paired with the sans body */
 .font-display {
-  font-family: "Space Grotesk", "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-space), "Plus Jakarta Sans", sans-serif;
   letter-spacing: -0.02em;
 }
 /* Accent words use copper, never synthetic italic */

@@ -78,8 +78,6 @@ const faqsHome = [
   <main id="main-content">
     <!-- HERO -->
     <section class="bg-surface relative overflow-hidden" aria-labelledby="hero-heading">
-      <div class="hero-glow" aria-hidden="true"></div>
-
       <div class="max-w-6xl mx-auto px-6 md:px-8 pt-36 pb-24 md:pt-44 md:pb-32 relative z-10">
         <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-20 items-center">
 
@@ -124,8 +122,7 @@ const faqsHome = [
               alt="Los procesos de un negocio convergiendo en un núcleo impulsado por IA"
               width="900"
               height="900"
-              class="w-full max-w-md h-auto select-none pointer-events-none"
-              style="mask-image: radial-gradient(circle at 50% 48%, #000 42%, transparent 70%); -webkit-mask-image: radial-gradient(circle at 50% 48%, #000 42%, transparent 70%);"
+              class="w-full max-w-lg h-auto select-none pointer-events-none"
               loading="eager"
               decoding="async"
             />
@@ -233,58 +230,4 @@ const faqsHome = [
   </main>
 
   <Footer />
-
-  <style>
-    /* Soft copper light beam behind the hero — depth, not flat black */
-    .hero-glow {
-      position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 46rem;
-      height: 46rem;
-      max-width: 95vw;
-      background: radial-gradient(
-        circle,
-        color-mix(in srgb, var(--color-copper) 16%, transparent),
-        transparent 62%
-      );
-      filter: blur(30px);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Hero process pipeline */
-    .hero-pipeline {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .hero-step {
-      display: grid;
-      grid-template-columns: 2.25rem 1fr;
-      gap: 1.1rem;
-      padding: 1.3rem 0;
-      border-bottom: 1px solid color-mix(in srgb, var(--color-text-3) 20%, transparent);
-    }
-    .hero-step-num {
-      font-family: "Space Grotesk", ui-monospace, monospace;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--color-copper);
-      font-variant-numeric: tabular-nums;
-      line-height: 1.5;
-    }
-    .hero-step-title {
-      color: var(--color-text-1);
-      font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 0.2rem;
-    }
-    .hero-step-desc {
-      color: var(--color-text-2);
-      font-size: 0.875rem;
-      line-height: 1.55;
-      max-width: 22rem;
-    }
-  </style>
 </Layout>

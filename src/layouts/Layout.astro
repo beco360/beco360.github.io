@@ -1,6 +1,6 @@
 ---
+import { Font } from 'astro:assets';
 import Analytics from '@vercel/analytics/astro';
-import { AstroFont } from 'astro-font';
 import '../styles/global.css';
 import ChatWidget from '../components/ChatWidget';
 
@@ -19,14 +19,12 @@ const { title, description, noindex = false } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Resource hints: warm up third-party origins. Fonts are LCP-critical (full
-         preconnect); analytics/cal only need DNS resolved so they don't compete with LCP. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    />
+    <!-- Self-hosted fonts (Astro Fonts API): downloaded + cached at build, with
+         optimized fallbacks and preload — no external font requests at runtime. -->
+    <Font cssVariable="--font-jakarta" preload />
+    <Font cssVariable="--font-space" preload />
+
+    <!-- Resource hints for non-critical third parties (analytics / cal) -->
     <link rel="dns-prefetch" href="https://app.cal.com" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://connect.facebook.net" />
@@ -65,35 +63,6 @@ const { title, description, noindex = false } = Astro.props;
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
     <title>{title}</title>
-
-    <!-- Plus Jakarta Sans via astro-font -->
-    <AstroFont
-      config={[
-        {
-          name: 'Plus Jakarta Sans',
-          src: [
-            {
-              weight: '400',
-              style: 'normal',
-              path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_KU7NSg.woff2',
-            },
-            {
-              weight: '600',
-              style: 'normal',
-              path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Rk9NSg.woff2',
-            },
-            {
-              weight: '700',
-              style: 'normal',
-              path: 'https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_f09NSg.woff2',
-            },
-          ],
-          display: 'swap',
-          selector: 'html',
-          fallback: 'sans-serif',
-        },
-      ]}
-    />
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify({
