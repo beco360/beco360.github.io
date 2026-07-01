@@ -15,8 +15,8 @@
 - Surface base: #0F0F0F (negro cálido)
 - Surface elevado: #161514 (carbón cálido)
 - Surface borde: #2A2724 (cálido)
-- Primary accent: #D4755E (cobre)
-- Accent hover: #C4654E
+- Primary accent: #CC8354 (cobre — coincide con el logo)
+- Accent hover: #BC7344
 - Texto primario: #F5F3F0 (off-white cálido)
 - Texto secundario: #B3ADA6
 - Texto muted: #8A8378
