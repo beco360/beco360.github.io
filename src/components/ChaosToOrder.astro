@@ -1,0 +1,143 @@
+---
+// Scroll-driven "chaos → order → spark" vector illustration.
+// Lightweight (SVG, a few KB), crisp at any DPI, animates as the section
+// scrolls through the viewport. Falls back to the resolved (final) state when
+// the user prefers reduced motion.
+const chaos = [
+  'M120,180 C160,120 210,140 190,200 C175,250 130,240 150,190',
+  'M240,140 C300,120 320,180 270,200 C230,215 210,160 250,150',
+  'M160,300 C120,260 180,240 210,280 C235,315 190,340 165,305',
+  'M300,320 C260,300 280,250 320,270 C355,288 340,340 305,325',
+  'M200,240 C250,220 300,250 260,280 C225,305 175,275 205,245',
+  'M340,200 C380,170 410,210 375,235 C345,258 315,225 345,205',
+  'M130,250 C100,220 140,200 165,230',
+  'M280,180 C320,160 350,190 315,210',
+  'M220,340 C260,320 290,350 255,365',
+  'M360,290 C395,270 415,300 385,315',
+];
+
+const streams = [
+  'M120,170 C300,180 520,215 830,250',
+  'M150,320 C320,300 560,285 830,250',
+  'M180,120 C360,150 600,220 830,250',
+  'M140,250 C340,250 580,250 830,250',
+  'M205,385 C380,340 620,300 830,250',
+  'M170,215 C360,205 600,240 830,250',
+  'M165,285 C360,270 610,262 830,250',
+  'M195,150 C370,175 605,232 830,250',
+];
+---
+
+<div class="chaos-order" data-chaos-order>
+  <svg
+    viewBox="0 0 1000 500"
+    fill="none"
+    class="w-full h-auto select-none pointer-events-none"
+    aria-hidden="true"
+  >
+    <defs>
+      <radialGradient id="coSpark" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffd9b8" stop-opacity="1" />
+        <stop offset="25%" stop-color="#cc8354" stop-opacity="0.9" />
+        <stop offset="100%" stop-color="#cc8354" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+
+    <g class="co-chaos" stroke="#8a8378" stroke-width="1.5" stroke-linecap="round">
+      {chaos.map((d) => <path d={d} />)}
+    </g>
+
+    <g class="co-streams" stroke="#cc8354" stroke-width="2.2" stroke-linecap="round">
+      {streams.map((d) => <path d={d} />)}
+    </g>
+
+    <g class="co-spark">
+      <circle class="co-glow" cx="830" cy="250" r="60" fill="url(#coSpark)" />
+      <g class="co-rays" stroke="#ffd9b8" stroke-width="2" stroke-linecap="round">
+        <line x1="830" y1="250" x2="830" y2="205" />
+        <line x1="830" y1="250" x2="830" y2="295" />
+        <line x1="830" y1="250" x2="785" y2="250" />
+        <line x1="830" y1="250" x2="875" y2="250" />
+        <line x1="830" y1="250" x2="800" y2="220" />
+        <line x1="830" y1="250" x2="860" y2="280" />
+        <line x1="830" y1="250" x2="860" y2="220" />
+        <line x1="830" y1="250" x2="800" y2="280" />
+      </g>
+      <circle class="co-core" cx="830" cy="250" r="6" fill="#fff3e8" />
+    </g>
+  </svg>
+</div>
+
+<style>
+  .chaos-order {
+    width: 100%;
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+  /* Initial paint before JS: hide chaos, show nothing jumping. The script sets
+     the correct state immediately on load, so avoid a flash of the full scene. */
+  .co-streams path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .co-spark { opacity: 0; }
+</style>
+
+<script>
+  function initChaosOrder() {
+    const root = document.querySelector('[data-chaos-order]');
+    if (!root) return;
+    const container = root; // narrowed (non-null) for use inside closures
+    const streams = [...root.querySelectorAll('.co-streams path')];
+    const chaosPaths = [...root.querySelectorAll('.co-chaos path')];
+    const glow = root.querySelector<SVGCircleElement>('.co-glow');
+    const rays = root.querySelector<SVGGElement>('.co-rays');
+    const core = root.querySelector<SVGCircleElement>('.co-core');
+    const spark = root.querySelector<SVGGElement>('.co-spark');
+    const clamp = (v: number) => Math.max(0, Math.min(1, v));
+
+    // cache path lengths
+    const lens = streams.map((el) => (el as SVGPathElement).getTotalLength());
+    streams.forEach((el, i) => {
+      (el as SVGPathElement).style.strokeDasharray = String(lens[i]);
+    });
+
+    function drive(p: number) {
+      const chaosO = clamp(1 - p / 0.5);
+      chaosPaths.forEach((el) => { (el as SVGPathElement).style.opacity = String(0.5 * chaosO); });
+      const drawT = clamp((p - 0.1) / 0.6);
+      streams.forEach((el, i) => {
+        (el as SVGPathElement).style.strokeDashoffset = String(lens[i] * (1 - drawT));
+      });
+      const sparkT = clamp((p - 0.6) / 0.4);
+      if (spark) spark.style.opacity = '1';
+      if (glow) { glow.style.transformOrigin = '830px 250px'; glow.style.transform = `scale(${0.3 + 0.9 * sparkT})`; glow.style.opacity = String(sparkT); }
+      if (rays) { rays.style.transformOrigin = '830px 250px'; rays.style.transform = `scale(${0.4 + 0.7 * sparkT})`; rays.style.opacity = String(sparkT); }
+      if (core) core.style.opacity = String(sparkT);
+    }
+
+    // reduced motion → show the resolved state, no scroll scrubbing
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      drive(1);
+      return;
+    }
+
+    // progress = how far the illustration has scrolled through a scrub zone:
+    // 0 when its top is at 82% of the viewport, 1 when its top is at 28%.
+    function progress() {
+      const rect = container.getBoundingClientRect();
+      const vh = window.innerHeight;
+      return clamp((0.82 * vh - rect.top) / (0.54 * vh));
+    }
+
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { drive(progress()); ticking = false; });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    drive(progress());
+  }
+
+  if (document.readyState !== 'loading') initChaosOrder();
+  else document.addEventListener('DOMContentLoaded', initChaosOrder);
+</script>
