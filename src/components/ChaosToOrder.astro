@@ -1,126 +1,234 @@
 ---
-// Scroll-driven "chaos → order → spark" vector illustration.
-// Lightweight (SVG, a few KB), crisp at any DPI, animates as the section
-// scrolls through the viewport. Falls back to the resolved (final) state when
-// the user prefers reduced motion.
-const chaos = [
-  'M120,180 C160,120 210,140 190,200 C175,250 130,240 150,190',
-  'M240,140 C300,120 320,180 270,200 C230,215 210,160 250,150',
-  'M160,300 C120,260 180,240 210,280 C235,315 190,340 165,305',
-  'M300,320 C260,300 280,250 320,270 C355,288 340,340 305,325',
-  'M200,240 C250,220 300,250 260,280 C225,305 175,275 205,245',
-  'M340,200 C380,170 410,210 375,235 C345,258 315,225 345,205',
-  'M130,250 C100,220 140,200 165,230',
-  'M280,180 C320,160 350,190 315,210',
-  'M220,340 C260,320 290,350 255,365',
-  'M360,290 C395,270 415,300 385,315',
+// Scroll-driven "manual chaos → AI → outcomes" illustration.
+// Story: unattended WhatsApp messages (grey, piling up) are absorbed by an AI
+// core and emerge as concrete, checked outcomes — Respondido · Agendado ·
+// Facturado. Two layouts share one animation driver: a wide horizontal scene
+// on ≥640px and a vertical scene on phones. Lightweight inline SVG, crisp at
+// any DPI; prefers-reduced-motion shows the resolved final state.
+const ICON = {
+  chat: '<path d="M224,124h0a92,92,0,0,1-92,92H48a8,8,0,0,1-8-8V124a92,92,0,0,1,92-92h0A92,92,0,0,1,224,124Z" opacity="0.2"/><path d="M132,24A100.11,100.11,0,0,0,32,124v84a16,16,0,0,0,16,16h84a100,100,0,0,0,0-200Zm0,184H48V124a84,84,0,1,1,84,84Zm12-80a12,12,0,1,1-12-12A12,12,0,0,1,144,128Zm-44,0a12,12,0,1,1-12-12A12,12,0,0,1,100,128Zm88,0a12,12,0,1,1-12-12A12,12,0,0,1,188,128Z"/>',
+  sparkle: '<path d="M194.82,151.43l-55.09,20.3-20.3,55.09a7.92,7.92,0,0,1-14.86,0l-20.3-55.09-55.09-20.3a7.92,7.92,0,0,1,0-14.86l55.09-20.3,20.3-55.09a7.92,7.92,0,0,1,14.86,0l20.3,55.09,55.09,20.3A7.92,7.92,0,0,1,194.82,151.43Z" opacity="0.2"/><path d="M197.58,129.06,146,110l-19-51.62a15.92,15.92,0,0,0-29.88,0L78,110l-51.62,19a15.92,15.92,0,0,0,0,29.88L78,178l19,51.62a15.92,15.92,0,0,0,29.88,0L146,178l51.62-19a15.92,15.92,0,0,0,0-29.88ZM137,164.22a8,8,0,0,0-4.74,4.74L112,223.85,91.78,169A8,8,0,0,0,87,164.22L32.15,144,87,123.78A8,8,0,0,0,91.78,119L112,64.15,132.22,119a8,8,0,0,0,4.74,4.74L191.85,144ZM144,40a8,8,0,0,1,8-8h16V16a8,8,0,0,1,16,0V32h16a8,8,0,0,1,0,16H184V64a8,8,0,0,1-16,0V48H152A8,8,0,0,1,144,40ZM248,88a8,8,0,0,1-8,8h-8v8a8,8,0,0,1-16,0V96h-8a8,8,0,0,1,0-16h8V72a8,8,0,0,1,16,0v8h8A8,8,0,0,1,248,88Z"/>',
+  plane: '<path d="M223.69,42.18l-58.22,192a8,8,0,0,1-14.92,1.25L108,148,20.58,105.45a8,8,0,0,1,1.25-14.92l192-58.22A8,8,0,0,1,223.69,42.18Z" opacity="0.2"/><path d="M227.32,28.68a16,16,0,0,0-15.66-4.08l-.15,0L19.57,82.84a16,16,0,0,0-2.49,29.8L102,154l41.3,84.87A15.86,15.86,0,0,0,157.74,248q.69,0,1.38-.06a15.88,15.88,0,0,0,14-11.51l58.2-191.94c0-.05,0-.1,0-.15A16,16,0,0,0,227.32,28.68ZM157.83,231.85l-.05.14,0-.07-40.06-82.3,48-48a8,8,0,0,0-11.31-11.31l-48,48L24.08,98.25l-.07,0,.14,0L216,40Z"/>',
+  calendar: '<path d="M216,48V88H40V48a8,8,0,0,1,8-8H208A8,8,0,0,1,216,48Z" opacity="0.2"/><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-38.34-85.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L116,164.69l42.34-42.35A8,8,0,0,1,169.66,122.34Z"/>',
+  receipt: '<path d="M224,56V208l-32-16-32,16-32-16L96,208,64,192,32,208V56a8,8,0,0,1,8-8H216A8,8,0,0,1,224,56Z" opacity="0.2"/><path d="M72,104a8,8,0,0,1,8-8h96a8,8,0,0,1,0,16H80A8,8,0,0,1,72,104Zm8,40h96a8,8,0,0,0,0-16H80a8,8,0,0,0,0,16ZM232,56V208a8,8,0,0,1-11.58,7.15L192,200.94l-28.42,14.21a8,8,0,0,1-7.16,0L128,200.94,99.58,215.15a8,8,0,0,1-7.16,0L64,200.94,35.58,215.15A8,8,0,0,1,24,208V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Zm-16,0H40V195.06l20.42-10.22a8,8,0,0,1,7.16,0L96,199.06l28.42-14.22a8,8,0,0,1,7.16,0L160,199.06l28.42-14.22a8,8,0,0,1,7.16,0L216,195.06Z"/>',
+  check: '<path d="M224,128a96,96,0,1,1-96-96A96,96,0,0,1,224,128Z" opacity="0.2"/><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/>',
+};
+
+const outcomes = [
+  { icon: ICON.plane, label: 'Respondido' },
+  { icon: ICON.calendar, label: 'Agendado' },
+  { icon: ICON.receipt, label: 'Facturado' },
 ];
 
-const streams = [
-  'M120,170 C300,180 520,215 830,250',
-  'M150,320 C320,300 560,285 830,250',
-  'M180,120 C360,150 600,220 830,250',
-  'M140,250 C340,250 580,250 830,250',
-  'M205,385 C380,340 620,300 830,250',
-  'M170,215 C360,205 600,240 830,250',
-  'M165,285 C360,270 610,262 830,250',
-  'M195,150 C370,175 605,232 830,250',
-];
+// message-card markup differs only in placement between the two layouts
+const msgD = [ { x: 58, y: 150, rot: -7 }, { x: 92, y: 212, rot: 6 }, { x: 56, y: 274, rot: -4 } ];
+const msgM = [ { x: 118, y: 34, rot: -6 }, { x: 162, y: 92, rot: 5 }, { x: 110, y: 150, rot: -3 } ];
 ---
 
 <div class="chaos-order" data-chaos-order>
-  <svg
-    viewBox="0 0 1000 500"
-    fill="none"
-    class="w-full h-auto select-none pointer-events-none"
-    aria-hidden="true"
-  >
+  <!-- ===================== DESKTOP (wide) ===================== -->
+  <svg viewBox="0 0 960 500" fill="none" class="co-svg co-desktop" data-scene aria-hidden="true">
     <defs>
-      <radialGradient id="coSpark" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#ffd9b8" stop-opacity="1" />
-        <stop offset="25%" stop-color="#cc8354" stop-opacity="0.9" />
+      <radialGradient id="coGlowD" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#cc8354" stop-opacity="0.55" />
+        <stop offset="55%" stop-color="#cc8354" stop-opacity="0.14" />
         <stop offset="100%" stop-color="#cc8354" stop-opacity="0" />
       </radialGradient>
     </defs>
 
-    <g class="co-chaos" stroke="#8a8378" stroke-width="1.5" stroke-linecap="round">
-      {chaos.map((d) => <path d={d} />)}
+    <g class="co-links-in" stroke="#8a8378" stroke-width="1.5" opacity="0.5" fill="none">
+      <path d="M214,180 C320,210 360,240 416,255" />
+      <path d="M246,244 C330,252 372,258 416,260" />
+      <path d="M212,306 C320,300 366,286 416,268" />
+    </g>
+    <g class="co-links-out" stroke="#cc8354" stroke-width="1.6" fill="none">
+      <path d="M524,252 C566,230 588,196 620,182" />
+      <path d="M524,260 C566,266 588,270 620,276" />
+      <path d="M524,268 C566,296 588,352 620,370" />
     </g>
 
-    <g class="co-streams" stroke="#cc8354" stroke-width="2.2" stroke-linecap="round">
-      {streams.map((d) => <path d={d} />)}
+    <g class="co-chaos">
+      {msgD.map((m) => (
+        <g transform={`rotate(${m.rot} ${m.x + 80} ${m.y + 28})`}>
+          <rect x={m.x} y={m.y} width="160" height="56" rx="12" fill="#1c1a18" stroke="#3a3632" stroke-width="1.5" />
+          <svg x={m.x + 14} y={m.y + 14} width="28" height="28" viewBox="0 0 256 256" fill="#8a8378"><g set:html={ICON.chat} /></svg>
+          <rect x={m.x + 52} y={m.y + 18} width="78" height="7" rx="3.5" fill="#5a554f" />
+          <rect x={m.x + 52} y={m.y + 33} width="52" height="7" rx="3.5" fill="#453f3a" />
+          <circle cx={m.x + 150} cy={m.y + 12} r="6" fill="#e0a878" />
+        </g>
+      ))}
     </g>
 
-    <g class="co-spark">
-      <circle class="co-glow" cx="830" cy="250" r="60" fill="url(#coSpark)" />
-      <g class="co-rays" stroke="#ffd9b8" stroke-width="2" stroke-linecap="round">
-        <line x1="830" y1="250" x2="830" y2="205" />
-        <line x1="830" y1="250" x2="830" y2="295" />
-        <line x1="830" y1="250" x2="785" y2="250" />
-        <line x1="830" y1="250" x2="875" y2="250" />
-        <line x1="830" y1="250" x2="800" y2="220" />
-        <line x1="830" y1="250" x2="860" y2="280" />
-        <line x1="830" y1="250" x2="860" y2="220" />
-        <line x1="830" y1="250" x2="800" y2="280" />
-      </g>
-      <circle class="co-core" cx="830" cy="250" r="6" fill="#fff3e8" />
+    <circle class="co-glow" cx="470" cy="260" r="120" fill="url(#coGlowD)" />
+    <g class="co-core">
+      <circle cx="470" cy="260" r="46" fill="#211c18" stroke="#cc8354" stroke-width="2" />
+      <svg x="440" y="230" width="60" height="60" viewBox="0 0 256 256" fill="#ffd9b8"><g set:html={ICON.sparkle} /></svg>
+    </g>
+    <text class="co-label co-label-core" x="470" y="352" text-anchor="middle">IA</text>
+
+    <g class="co-outs">
+      {outcomes.map((o, i) => (
+        <g class="co-out-item" data-idx={i}>
+          <rect x="620" y={150 + i * 94} width="288" height="64" rx="14" fill="#191512" stroke="#cc8354" stroke-width="1.5" stroke-opacity="0.45" />
+          <svg x="638" y={150 + i * 94 + 16} width="32" height="32" viewBox="0 0 256 256" fill="#cc8354"><g set:html={o.icon} /></svg>
+          <text class="co-label" x="686" y={150 + i * 94 + 40}>{o.label}</text>
+          <svg class="co-badge" x="856" y={150 + i * 94 + 18} width="28" height="28" viewBox="0 0 256 256" fill="#4ade80"><g set:html={ICON.check} /></svg>
+        </g>
+      ))}
+    </g>
+  </svg>
+
+  <!-- ===================== MOBILE (vertical) ===================== -->
+  <svg viewBox="0 0 400 660" fill="none" class="co-svg co-mobile" data-scene aria-hidden="true">
+    <defs>
+      <radialGradient id="coGlowM" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#cc8354" stop-opacity="0.55" />
+        <stop offset="55%" stop-color="#cc8354" stop-opacity="0.14" />
+        <stop offset="100%" stop-color="#cc8354" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+
+    <g class="co-links-in" stroke="#8a8378" stroke-width="1.5" opacity="0.5" fill="none">
+      <path d="M205,190 C205,215 202,235 200,254" />
+    </g>
+    <g class="co-links-out" stroke="#cc8354" stroke-width="1.6" fill="none">
+      <path d="M182,332 C150,360 130,388 120,404" />
+      <path d="M200,346 C200,370 200,390 200,404" />
+      <path d="M218,332 C250,360 270,388 280,404" />
+    </g>
+
+    <g class="co-chaos">
+      {msgM.map((m) => (
+        <g transform={`rotate(${m.rot} ${m.x + 72} ${m.y + 25})`}>
+          <rect x={m.x} y={m.y} width="144" height="50" rx="11" fill="#1c1a18" stroke="#3a3632" stroke-width="1.5" />
+          <svg x={m.x + 12} y={m.y + 12} width="26" height="26" viewBox="0 0 256 256" fill="#8a8378"><g set:html={ICON.chat} /></svg>
+          <rect x={m.x + 46} y={m.y + 16} width="70" height="6" rx="3" fill="#5a554f" />
+          <rect x={m.x + 46} y={m.y + 30} width="46" height="6" rx="3" fill="#453f3a" />
+          <circle cx={m.x + 135} cy={m.y + 11} r="5.5" fill="#e0a878" />
+        </g>
+      ))}
+    </g>
+
+    <circle class="co-glow" cx="200" cy="292" r="110" fill="url(#coGlowM)" />
+    <g class="co-core">
+      <circle cx="200" cy="292" r="44" fill="#211c18" stroke="#cc8354" stroke-width="2" />
+      <svg x="172" y="264" width="56" height="56" viewBox="0 0 256 256" fill="#ffd9b8"><g set:html={ICON.sparkle} /></svg>
+    </g>
+
+    <g class="co-outs">
+      {outcomes.map((o, i) => (
+        <g class="co-out-item" data-idx={i}>
+          <rect x="56" y={406 + i * 82} width="288" height="64" rx="14" fill="#191512" stroke="#cc8354" stroke-width="1.5" stroke-opacity="0.45" />
+          <svg x="74" y={406 + i * 82 + 16} width="32" height="32" viewBox="0 0 256 256" fill="#cc8354"><g set:html={o.icon} /></svg>
+          <text class="co-label" x="122" y={406 + i * 82 + 40}>{o.label}</text>
+          <svg class="co-badge" x="292" y={406 + i * 82 + 18} width="28" height="28" viewBox="0 0 256 256" fill="#4ade80"><g set:html={ICON.check} /></svg>
+        </g>
+      ))}
     </g>
   </svg>
 </div>
 
 <style>
-  .chaos-order {
-    width: 100%;
-    max-width: 44rem;
-    margin-inline: auto;
+  .chaos-order { width: 100%; max-width: 48rem; margin-inline: auto; }
+  .co-svg { width: 100%; height: auto; display: block; }
+
+  .co-desktop { display: none; }
+  .co-mobile { display: block; }
+  @media (min-width: 640px) {
+    .co-desktop { display: block; }
+    .co-mobile { display: none; }
   }
-  /* Initial paint before JS: hide chaos, show nothing jumping. The script sets
-     the correct state immediately on load, so avoid a flash of the full scene. */
-  .co-streams path { stroke-dasharray: 1; stroke-dashoffset: 1; }
-  .co-spark { opacity: 0; }
+
+  .co-label {
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    fill: var(--color-text-1);
+  }
+  .co-label-core { fill: var(--color-copper); font-size: 18px; letter-spacing: 0.15em; }
+
+  /* Pre-JS / initial state to avoid a flash of the resolved scene */
+  .co-links-out path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .co-outs { opacity: 0; }
+  .co-glow { opacity: 0.15; }
+
+  .co-core, .co-chaos, .co-badge, .co-out-item { transform-box: fill-box; transform-origin: center; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .co-chaos { display: none; }
+  }
 </style>
 
 <script>
   function initChaosOrder() {
     const root = document.querySelector('[data-chaos-order]');
     if (!root) return;
-    const container = root; // narrowed (non-null) for use inside closures
-    const streams = [...root.querySelectorAll('.co-streams path')];
-    const chaosPaths = [...root.querySelectorAll('.co-chaos path')];
-    const glow = root.querySelector<SVGCircleElement>('.co-glow');
-    const rays = root.querySelector<SVGGElement>('.co-rays');
-    const core = root.querySelector<SVGCircleElement>('.co-core');
-    const spark = root.querySelector<SVGGElement>('.co-spark');
+    const container = root;
     const clamp = (v: number) => Math.max(0, Math.min(1, v));
+    const seg = (p: number, a: number, b: number) => clamp((p - a) / (b - a));
+    const ranges: [number, number][] = [[0.55, 0.68], [0.66, 0.79], [0.77, 0.9]];
 
-    // cache path lengths
-    const lens = streams.map((el) => (el as SVGPathElement).getTotalLength());
-    streams.forEach((el, i) => {
-      (el as SVGPathElement).style.strokeDasharray = String(lens[i]);
+    // build per-scene refs (desktop + mobile share the same class names)
+    const scenes = [...root.querySelectorAll<SVGSVGElement>('[data-scene]')].map((svg) => {
+      const linksIn = [...svg.querySelectorAll<SVGPathElement>('.co-links-in path')];
+      const linksOut = [...svg.querySelectorAll<SVGPathElement>('.co-links-out path')];
+      [...linksIn, ...linksOut].forEach((el) => {
+        const L = el.getTotalLength();
+        (el as any).__len = L;
+        el.style.strokeDasharray = String(L);
+      });
+      return {
+        linksIn, linksOut,
+        chaos: svg.querySelector<SVGGElement>('.co-chaos'),
+        core: svg.querySelector<SVGGElement>('.co-core'),
+        glow: svg.querySelector<SVGCircleElement>('.co-glow'),
+        outs: svg.querySelector<SVGGElement>('.co-outs'),
+        items: [...svg.querySelectorAll<SVGGElement>('.co-out-item')],
+      };
     });
 
     function drive(p: number) {
-      const chaosO = clamp(1 - p / 0.5);
-      chaosPaths.forEach((el) => { (el as SVGPathElement).style.opacity = String(0.5 * chaosO); });
-      const drawT = clamp((p - 0.1) / 0.6);
-      streams.forEach((el, i) => {
-        (el as SVGPathElement).style.strokeDashoffset = String(lens[i] * (1 - drawT));
+      const inT = seg(p, 0.05, 0.32);
+      const inFade = 1 - seg(p, 0.4, 0.58);
+      const absorb = seg(p, 0.38, 0.58);
+      const cT = seg(p, 0.22, 0.52);
+
+      scenes.forEach((s) => {
+        s.linksIn.forEach((el) => {
+          el.style.strokeDashoffset = String((el as any).__len * (1 - inT));
+          el.style.opacity = String(0.5 * inFade);
+        });
+        if (s.chaos) {
+          s.chaos.style.transform = `scale(${1 - 0.42 * seg(p, 0.3, 0.55)})`;
+          s.chaos.style.opacity = String(1 - absorb);
+        }
+        if (s.core) s.core.style.transform = `scale(${0.55 + 0.45 * cT})`;
+        if (s.glow) s.glow.style.opacity = String(0.15 + 0.75 * cT);
+        s.linksOut.forEach((el, i) => {
+          const t = seg(p, 0.5 + i * 0.04, 0.72 + i * 0.04);
+          el.style.strokeDashoffset = String((el as any).__len * (1 - t));
+        });
+        if (s.outs) s.outs.style.opacity = '1';
+        s.items.forEach((g) => {
+          const idx = Number(g.dataset.idx);
+          const t = seg(p, ranges[idx][0], ranges[idx][1]);
+          g.style.opacity = String(t);
+          g.style.transform = `translateX(${(1 - t) * 22}px)`;
+          const badge = g.querySelector<SVGElement>('.co-badge');
+          if (badge) {
+            const bt = seg(p, ranges[idx][1] - 0.05, ranges[idx][1] + 0.02);
+            badge.style.transform = `scale(${bt})`;
+            badge.style.opacity = String(bt);
+          }
+        });
       });
-      const sparkT = clamp((p - 0.6) / 0.4);
-      if (spark) spark.style.opacity = '1';
-      if (glow) { glow.style.transformOrigin = '830px 250px'; glow.style.transform = `scale(${0.3 + 0.9 * sparkT})`; glow.style.opacity = String(sparkT); }
-      if (rays) { rays.style.transformOrigin = '830px 250px'; rays.style.transform = `scale(${0.4 + 0.7 * sparkT})`; rays.style.opacity = String(sparkT); }
-      if (core) core.style.opacity = String(sparkT);
     }
 
-    // reduced motion → show the resolved state, no scroll scrubbing
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       drive(1);
       return;
     }
 
-    // progress = how far the illustration has scrolled through a scrub zone:
-    // 0 when its top is at 82% of the viewport, 1 when its top is at 28%.
     function progress() {
       const rect = container.getBoundingClientRect();
       const vh = window.innerHeight;
