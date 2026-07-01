@@ -1,13 +1,18 @@
 ---
-// Scroll-driven "manual chaos → AI → outcomes" illustration.
-// Story: unattended WhatsApp messages (grey, piling up) are absorbed by an AI
-// core and emerge as concrete, checked outcomes — Respondido · Agendado ·
-// Facturado. Two layouts share one animation driver: a wide horizontal scene
-// on ≥640px and a vertical scene on phones. Lightweight inline SVG, crisp at
-// any DPI; prefers-reduced-motion shows the resolved final state.
+// Scroll-driven before/after illustration for the impact section.
+// Both sides stay on screen so the contrast is always readable:
+//   SIN IA (left/top)  — unattended WhatsApp messages piling up, unread count,
+//                        a clock counting wasted time.
+//   IA (center)        — an AI core that comes alive (breathing glow, spinning
+//                        ring) and bridges the two sides.
+//   CON IA (right/bot) — concrete outcomes with green checks: Respondido ·
+//                        Agendado · Facturado.
+// Data particles flow along the connectors; check badges pop with a bounce.
+// Two layouts share one driver; prefers-reduced-motion shows the resolved state.
 const ICON = {
   chat: '<path d="M224,124h0a92,92,0,0,1-92,92H48a8,8,0,0,1-8-8V124a92,92,0,0,1,92-92h0A92,92,0,0,1,224,124Z" opacity="0.2"/><path d="M132,24A100.11,100.11,0,0,0,32,124v84a16,16,0,0,0,16,16h84a100,100,0,0,0,0-200Zm0,184H48V124a84,84,0,1,1,84,84Zm12-80a12,12,0,1,1-12-12A12,12,0,0,1,144,128Zm-44,0a12,12,0,1,1-12-12A12,12,0,0,1,100,128Zm88,0a12,12,0,1,1-12-12A12,12,0,0,1,188,128Z"/>',
   sparkle: '<path d="M194.82,151.43l-55.09,20.3-20.3,55.09a7.92,7.92,0,0,1-14.86,0l-20.3-55.09-55.09-20.3a7.92,7.92,0,0,1,0-14.86l55.09-20.3,20.3-55.09a7.92,7.92,0,0,1,14.86,0l20.3,55.09,55.09,20.3A7.92,7.92,0,0,1,194.82,151.43Z" opacity="0.2"/><path d="M197.58,129.06,146,110l-19-51.62a15.92,15.92,0,0,0-29.88,0L78,110l-51.62,19a15.92,15.92,0,0,0,0,29.88L78,178l19,51.62a15.92,15.92,0,0,0,29.88,0L146,178l51.62-19a15.92,15.92,0,0,0,0-29.88ZM137,164.22a8,8,0,0,0-4.74,4.74L112,223.85,91.78,169A8,8,0,0,0,87,164.22L32.15,144,87,123.78A8,8,0,0,0,91.78,119L112,64.15,132.22,119a8,8,0,0,0,4.74,4.74L191.85,144ZM144,40a8,8,0,0,1,8-8h16V16a8,8,0,0,1,16,0V32h16a8,8,0,0,1,0,16H184V64a8,8,0,0,1-16,0V48H152A8,8,0,0,1,144,40ZM248,88a8,8,0,0,1-8,8h-8v8a8,8,0,0,1-16,0V96h-8a8,8,0,0,1,0-16h8V72a8,8,0,0,1,16,0v8h8A8,8,0,0,1,248,88Z"/>',
+  clock: '<path d="M224,128a96,96,0,1,1-96-96A96,96,0,0,1,224,128Z" opacity="0.2"/><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"/>',
   plane: '<path d="M223.69,42.18l-58.22,192a8,8,0,0,1-14.92,1.25L108,148,20.58,105.45a8,8,0,0,1,1.25-14.92l192-58.22A8,8,0,0,1,223.69,42.18Z" opacity="0.2"/><path d="M227.32,28.68a16,16,0,0,0-15.66-4.08l-.15,0L19.57,82.84a16,16,0,0,0-2.49,29.8L102,154l41.3,84.87A15.86,15.86,0,0,0,157.74,248q.69,0,1.38-.06a15.88,15.88,0,0,0,14-11.51l58.2-191.94c0-.05,0-.1,0-.15A16,16,0,0,0,227.32,28.68ZM157.83,231.85l-.05.14,0-.07-40.06-82.3,48-48a8,8,0,0,0-11.31-11.31l-48,48L24.08,98.25l-.07,0,.14,0L216,40Z"/>',
   calendar: '<path d="M216,48V88H40V48a8,8,0,0,1,8-8H208A8,8,0,0,1,216,48Z" opacity="0.2"/><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-38.34-85.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L116,164.69l42.34-42.35A8,8,0,0,1,169.66,122.34Z"/>',
   receipt: '<path d="M224,56V208l-32-16-32,16-32-16L96,208,64,192,32,208V56a8,8,0,0,1,8-8H216A8,8,0,0,1,224,56Z" opacity="0.2"/><path d="M72,104a8,8,0,0,1,8-8h96a8,8,0,0,1,0,16H80A8,8,0,0,1,72,104Zm8,40h96a8,8,0,0,0,0-16H80a8,8,0,0,0,0,16ZM232,56V208a8,8,0,0,1-11.58,7.15L192,200.94l-28.42,14.21a8,8,0,0,1-7.16,0L128,200.94,99.58,215.15a8,8,0,0,1-7.16,0L64,200.94,35.58,215.15A8,8,0,0,1,24,208V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Zm-16,0H40V195.06l20.42-10.22a8,8,0,0,1,7.16,0L96,199.06l28.42-14.22a8,8,0,0,1,7.16,0L160,199.06l28.42-14.22a8,8,0,0,1,7.16,0L216,195.06Z"/>',
@@ -20,108 +25,173 @@ const outcomes = [
   { icon: ICON.receipt, label: 'Facturado' },
 ];
 
-// message-card markup differs only in placement between the two layouts
-const msgD = [ { x: 58, y: 150, rot: -7 }, { x: 92, y: 212, rot: 6 }, { x: 56, y: 274, rot: -4 } ];
-const msgM = [ { x: 118, y: 34, rot: -6 }, { x: 162, y: 92, rot: 5 }, { x: 110, y: 150, rot: -3 } ];
+const msgD = [ { x: 60, y: 150, rot: -4 }, { x: 92, y: 202, rot: 3 }, { x: 62, y: 254, rot: -2 } ];
+const linksInD = [
+  'M250,170 C330,192 384,214 454,232',
+  'M252,226 C338,232 392,236 454,236',
+  'M248,280 C336,272 388,256 454,242',
+];
+const linksOutD = [
+  'M546,228 C590,206 616,186 660,182',
+  'M546,236 C592,242 620,248 660,252',
+  'M546,244 C590,272 616,306 660,322',
+];
+
+const msgM = [ { x: 96, y: 40, rot: -4 }, { x: 148, y: 92, rot: 4 }, { x: 92, y: 144, rot: -2 } ];
+const linksInM = [ 'M205,206 C205,224 202,240 200,256' ];
+const linksOutM = [
+  'M184,330 C150,356 130,384 120,404',
+  'M200,344 C200,368 200,388 200,404',
+  'M216,330 C250,356 270,384 280,404',
+];
 ---
 
 <div class="chaos-order" data-chaos-order>
-  <!-- ===================== DESKTOP (wide) ===================== -->
-  <svg viewBox="0 0 960 500" fill="none" class="co-svg co-desktop" data-scene aria-hidden="true">
+  <!-- ===================== DESKTOP ===================== -->
+  <svg viewBox="0 0 1000 470" fill="none" class="co-svg co-desktop" data-scene aria-hidden="true">
     <defs>
       <radialGradient id="coGlowD" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#cc8354" stop-opacity="0.55" />
-        <stop offset="55%" stop-color="#cc8354" stop-opacity="0.14" />
+        <stop offset="0%" stop-color="#cc8354" stop-opacity="0.5" />
+        <stop offset="55%" stop-color="#cc8354" stop-opacity="0.13" />
         <stop offset="100%" stop-color="#cc8354" stop-opacity="0" />
       </radialGradient>
+      <linearGradient id="coInGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#8a8378" />
+        <stop offset="100%" stop-color="#cc8354" />
+      </linearGradient>
     </defs>
 
-    <g class="co-links-in" stroke="#8a8378" stroke-width="1.5" opacity="0.5" fill="none">
-      <path d="M214,180 C320,210 360,240 416,255" />
-      <path d="M246,244 C330,252 372,258 416,260" />
-      <path d="M212,306 C320,300 366,286 416,268" />
+    <text class="co-side co-side-off" x="66" y="126">SIN IA</text>
+    <text class="co-side co-side-on" x="660" y="126">CON IA</text>
+
+    <!-- connectors -->
+    <g class="co-links-in" stroke="url(#coInGrad)" stroke-width="1.5" opacity="0.6" fill="none">
+      {linksInD.map((d) => <path d={d} />)}
     </g>
     <g class="co-links-out" stroke="#cc8354" stroke-width="1.6" fill="none">
-      <path d="M524,252 C566,230 588,196 620,182" />
-      <path d="M524,260 C566,266 588,270 620,276" />
-      <path d="M524,268 C566,296 588,352 620,370" />
+      {linksOutD.map((d) => <path d={d} />)}
+    </g>
+    <!-- flowing particles -->
+    <g class="co-flow co-flow-in" fill="#c9a98f">
+      {linksInD.map((d, i) => <circle r="2.6" style={`offset-path:path('${d}');animation-delay:${i * 0.5}s`} />)}
+    </g>
+    <g class="co-flow co-flow-out" fill="#ffd9b8">
+      {linksOutD.map((d, i) => <circle r="2.6" style={`offset-path:path('${d}');animation-delay:${i * 0.4}s`} />)}
     </g>
 
-    <g class="co-chaos">
+    <!-- SIN IA: unattended messages -->
+    <g class="co-before">
       {msgD.map((m) => (
-        <g transform={`rotate(${m.rot} ${m.x + 80} ${m.y + 28})`}>
-          <rect x={m.x} y={m.y} width="160" height="56" rx="12" fill="#1c1a18" stroke="#3a3632" stroke-width="1.5" />
-          <svg x={m.x + 14} y={m.y + 14} width="28" height="28" viewBox="0 0 256 256" fill="#8a8378"><g set:html={ICON.chat} /></svg>
-          <rect x={m.x + 52} y={m.y + 18} width="78" height="7" rx="3.5" fill="#5a554f" />
-          <rect x={m.x + 52} y={m.y + 33} width="52" height="7" rx="3.5" fill="#453f3a" />
-          <circle cx={m.x + 150} cy={m.y + 12} r="6" fill="#e0a878" />
+        <g transform={`rotate(${m.rot} ${m.x + 90} ${m.y + 25})`}>
+          <rect x={m.x} y={m.y} width="180" height="50" rx="12" fill="#1c1a18" stroke="#3a3632" stroke-width="1.5" />
+          <svg x={m.x + 14} y={m.y + 13} width="24" height="24" viewBox="0 0 256 256" fill="#8a8378"><g set:html={ICON.chat} /></svg>
+          <rect x={m.x + 48} y={m.y + 16} width="92" height="6" rx="3" fill="#5a554f" />
+          <rect x={m.x + 48} y={m.y + 30} width="60" height="6" rx="3" fill="#453f3a" />
         </g>
       ))}
+      <!-- unread count -->
+      <g class="co-unread">
+        <circle cx="250" cy="150" r="15" fill="#d9633f" />
+        <text x="250" y="155" text-anchor="middle" class="co-badge-num">5</text>
+      </g>
+      <!-- wasted time -->
+      <g class="co-clock">
+        <rect x="60" y="318" width="132" height="32" rx="16" fill="#191512" stroke="#3a3632" stroke-width="1" />
+        <svg x="72" y="326" width="16" height="16" viewBox="0 0 256 256" fill="#b3ada6"><g set:html={ICON.clock} /></svg>
+        <text x="96" y="339" class="co-clocktext">3 h esperando</text>
+      </g>
     </g>
 
-    <circle class="co-glow" cx="470" cy="260" r="120" fill="url(#coGlowD)" />
-    <g class="co-core">
-      <circle cx="470" cy="260" r="46" fill="#211c18" stroke="#cc8354" stroke-width="2" />
-      <svg x="440" y="230" width="60" height="60" viewBox="0 0 256 256" fill="#ffd9b8"><g set:html={ICON.sparkle} /></svg>
+    <!-- IA core -->
+    <g class="co-corewrap">
+      <circle class="co-glow" cx="500" cy="235" r="120" fill="url(#coGlowD)" />
+      <circle class="co-ring" cx="500" cy="235" r="60" stroke="#cc8354" stroke-width="1.2" stroke-opacity="0.5" stroke-dasharray="3 9" fill="none" />
+      <g class="co-core">
+        <circle cx="500" cy="235" r="46" fill="#211c18" stroke="#cc8354" stroke-width="2" />
+        <svg x="470" y="205" width="60" height="60" viewBox="0 0 256 256" fill="#ffd9b8"><g set:html={ICON.sparkle} /></svg>
+      </g>
+      <text class="co-label co-label-core" x="500" y="322" text-anchor="middle">IA</text>
     </g>
-    <text class="co-label co-label-core" x="470" y="352" text-anchor="middle">IA</text>
 
+    <!-- CON IA: outcomes -->
     <g class="co-outs">
       {outcomes.map((o, i) => (
         <g class="co-out-item" data-idx={i}>
-          <rect x="620" y={150 + i * 94} width="288" height="64" rx="14" fill="#191512" stroke="#cc8354" stroke-width="1.5" stroke-opacity="0.45" />
-          <svg x="638" y={150 + i * 94 + 16} width="32" height="32" viewBox="0 0 256 256" fill="#cc8354"><g set:html={o.icon} /></svg>
-          <text class="co-label" x="686" y={150 + i * 94 + 40}>{o.label}</text>
-          <svg class="co-badge" x="856" y={150 + i * 94 + 18} width="28" height="28" viewBox="0 0 256 256" fill="#4ade80"><g set:html={ICON.check} /></svg>
+          <rect x="660" y={150 + i * 72} width="286" height="60" rx="14" fill="#191512" stroke="#cc8354" stroke-width="1.5" stroke-opacity="0.45" />
+          <svg x="678" y={150 + i * 72 + 14} width="30" height="30" viewBox="0 0 256 256" fill="#cc8354"><g set:html={o.icon} /></svg>
+          <text class="co-label" x="722" y={150 + i * 72 + 38}>{o.label}</text>
+          <svg class="co-badge" x="896" y={150 + i * 72 + 16} width="28" height="28" viewBox="0 0 256 256" fill="#4ade80"><g set:html={ICON.check} /></svg>
         </g>
       ))}
     </g>
   </svg>
 
-  <!-- ===================== MOBILE (vertical) ===================== -->
-  <svg viewBox="0 0 400 660" fill="none" class="co-svg co-mobile" data-scene aria-hidden="true">
+  <!-- ===================== MOBILE ===================== -->
+  <svg viewBox="0 0 400 680" fill="none" class="co-svg co-mobile" data-scene aria-hidden="true">
     <defs>
       <radialGradient id="coGlowM" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#cc8354" stop-opacity="0.55" />
-        <stop offset="55%" stop-color="#cc8354" stop-opacity="0.14" />
+        <stop offset="0%" stop-color="#cc8354" stop-opacity="0.5" />
+        <stop offset="55%" stop-color="#cc8354" stop-opacity="0.13" />
         <stop offset="100%" stop-color="#cc8354" stop-opacity="0" />
       </radialGradient>
+      <linearGradient id="coInGradM" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#8a8378" />
+        <stop offset="100%" stop-color="#cc8354" />
+      </linearGradient>
     </defs>
 
-    <g class="co-links-in" stroke="#8a8378" stroke-width="1.5" opacity="0.5" fill="none">
-      <path d="M205,190 C205,215 202,235 200,254" />
+    <text class="co-side co-side-off" x="56" y="26">SIN IA</text>
+    <text class="co-side co-side-on" x="56" y="416">CON IA</text>
+
+    <g class="co-links-in" stroke="url(#coInGradM)" stroke-width="1.5" opacity="0.6" fill="none">
+      {linksInM.map((d) => <path d={d} />)}
     </g>
     <g class="co-links-out" stroke="#cc8354" stroke-width="1.6" fill="none">
-      <path d="M182,332 C150,360 130,388 120,404" />
-      <path d="M200,346 C200,370 200,390 200,404" />
-      <path d="M218,332 C250,360 270,388 280,404" />
+      {linksOutM.map((d) => <path d={d} />)}
+    </g>
+    <g class="co-flow co-flow-in" fill="#c9a98f">
+      {linksInM.map((d) => <circle r="2.6" style={`offset-path:path('${d}')`} />)}
+    </g>
+    <g class="co-flow co-flow-out" fill="#ffd9b8">
+      {linksOutM.map((d, i) => <circle r="2.6" style={`offset-path:path('${d}');animation-delay:${i * 0.4}s`} />)}
     </g>
 
-    <g class="co-chaos">
+    <g class="co-before">
       {msgM.map((m) => (
-        <g transform={`rotate(${m.rot} ${m.x + 72} ${m.y + 25})`}>
-          <rect x={m.x} y={m.y} width="144" height="50" rx="11" fill="#1c1a18" stroke="#3a3632" stroke-width="1.5" />
-          <svg x={m.x + 12} y={m.y + 12} width="26" height="26" viewBox="0 0 256 256" fill="#8a8378"><g set:html={ICON.chat} /></svg>
-          <rect x={m.x + 46} y={m.y + 16} width="70" height="6" rx="3" fill="#5a554f" />
-          <rect x={m.x + 46} y={m.y + 30} width="46" height="6" rx="3" fill="#453f3a" />
-          <circle cx={m.x + 135} cy={m.y + 11} r="5.5" fill="#e0a878" />
+        <g transform={`rotate(${m.rot} ${m.x + 76} ${m.y + 24})`}>
+          <rect x={m.x} y={m.y} width="152" height="48" rx="11" fill="#1c1a18" stroke="#3a3632" stroke-width="1.5" />
+          <svg x={m.x + 12} y={m.y + 12} width="24" height="24" viewBox="0 0 256 256" fill="#8a8378"><g set:html={ICON.chat} /></svg>
+          <rect x={m.x + 44} y={m.y + 15} width="80" height="6" rx="3" fill="#5a554f" />
+          <rect x={m.x + 44} y={m.y + 29} width="52" height="6" rx="3" fill="#453f3a" />
         </g>
       ))}
+      <g class="co-unread">
+        <circle cx="248" cy="40" r="14" fill="#d9633f" />
+        <text x="248" y="45" text-anchor="middle" class="co-badge-num">5</text>
+      </g>
+      <g class="co-clock">
+        <rect x="96" y="196" width="128" height="30" rx="15" fill="#191512" stroke="#3a3632" stroke-width="1" />
+        <svg x="107" y="203" width="15" height="15" viewBox="0 0 256 256" fill="#b3ada6"><g set:html={ICON.clock} /></svg>
+        <text x="129" y="215" class="co-clocktext">3 h esperando</text>
+      </g>
     </g>
 
-    <circle class="co-glow" cx="200" cy="292" r="110" fill="url(#coGlowM)" />
-    <g class="co-core">
-      <circle cx="200" cy="292" r="44" fill="#211c18" stroke="#cc8354" stroke-width="2" />
-      <svg x="172" y="264" width="56" height="56" viewBox="0 0 256 256" fill="#ffd9b8"><g set:html={ICON.sparkle} /></svg>
+    <g class="co-corewrap">
+      <circle class="co-glow" cx="200" cy="300" r="110" fill="url(#coGlowM)" />
+      <circle class="co-ring" cx="200" cy="300" r="58" stroke="#cc8354" stroke-width="1.2" stroke-opacity="0.5" stroke-dasharray="3 9" fill="none" />
+      <g class="co-core">
+        <circle cx="200" cy="300" r="44" fill="#211c18" stroke="#cc8354" stroke-width="2" />
+        <svg x="172" y="272" width="56" height="56" viewBox="0 0 256 256" fill="#ffd9b8"><g set:html={ICON.sparkle} /></svg>
+      </g>
     </g>
 
     <g class="co-outs">
       {outcomes.map((o, i) => (
         <g class="co-out-item" data-idx={i}>
-          <rect x="56" y={406 + i * 82} width="288" height="64" rx="14" fill="#191512" stroke="#cc8354" stroke-width="1.5" stroke-opacity="0.45" />
-          <svg x="74" y={406 + i * 82 + 16} width="32" height="32" viewBox="0 0 256 256" fill="#cc8354"><g set:html={o.icon} /></svg>
-          <text class="co-label" x="122" y={406 + i * 82 + 40}>{o.label}</text>
-          <svg class="co-badge" x="292" y={406 + i * 82 + 18} width="28" height="28" viewBox="0 0 256 256" fill="#4ade80"><g set:html={ICON.check} /></svg>
+          <rect x="56" y={430 + i * 78} width="288" height="62" rx="14" fill="#191512" stroke="#cc8354" stroke-width="1.5" stroke-opacity="0.45" />
+          <svg x="74" y={430 + i * 78 + 15} width="32" height="32" viewBox="0 0 256 256" fill="#cc8354"><g set:html={o.icon} /></svg>
+          <text class="co-label" x="122" y={430 + i * 78 + 38}>{o.label}</text>
+          <svg class="co-badge" x="292" y={430 + i * 78 + 17} width="28" height="28" viewBox="0 0 256 256" fill="#4ade80"><g set:html={ICON.check} /></svg>
         </g>
       ))}
     </g>
@@ -129,7 +199,7 @@ const msgM = [ { x: 118, y: 34, rot: -6 }, { x: 162, y: 92, rot: 5 }, { x: 110, 
 </div>
 
 <style>
-  .chaos-order { width: 100%; max-width: 48rem; margin-inline: auto; }
+  .chaos-order { width: 100%; max-width: 50rem; margin-inline: auto; }
   .co-svg { width: 100%; height: auto; display: block; }
 
   .co-desktop { display: none; }
@@ -139,23 +209,37 @@ const msgM = [ { x: 118, y: 34, rot: -6 }, { x: 162, y: 92, rot: 5 }, { x: 110, 
     .co-mobile { display: none; }
   }
 
-  .co-label {
-    font-family: var(--font-jakarta), system-ui, sans-serif;
-    font-size: 22px;
-    font-weight: 600;
-    fill: var(--color-text-1);
-  }
-  .co-label-core { fill: var(--color-copper); font-size: 18px; letter-spacing: 0.15em; }
+  .co-label { font-family: var(--font-jakarta), system-ui, sans-serif; font-size: 21px; font-weight: 600; fill: var(--color-text-1); }
+  .co-label-core { fill: var(--color-copper); font-size: 17px; letter-spacing: 0.15em; }
+  .co-side { font-family: var(--font-jakarta), system-ui, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; }
+  .co-side-off { fill: var(--color-text-3); }
+  .co-side-on { fill: var(--color-copper); }
+  .co-badge-num { font-family: var(--font-jakarta), system-ui, sans-serif; font-size: 15px; font-weight: 700; fill: #1a0f0a; }
+  .co-clocktext { font-family: var(--font-jakarta), system-ui, sans-serif; font-size: 13px; font-weight: 500; fill: var(--color-text-2); }
 
-  /* Pre-JS / initial state to avoid a flash of the resolved scene */
+  /* Pre-JS / initial state */
   .co-links-out path { stroke-dasharray: 1; stroke-dashoffset: 1; }
   .co-outs { opacity: 0; }
-  .co-glow { opacity: 0.15; }
+  .co-corewrap { opacity: 0; }
+  .co-flow { opacity: 0; }
 
-  .co-core, .co-chaos, .co-badge, .co-out-item { transform-box: fill-box; transform-origin: center; }
+  .co-core, .co-badge, .co-out-item, .co-unread { transform-box: fill-box; transform-origin: center; }
+
+  /* ---- ambient life (only when motion is allowed) ---- */
+  @media (prefers-reduced-motion: no-preference) {
+    .co-glow { animation: coBreathe 3.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .co-ring { animation: coSpin 16s linear infinite; transform-box: fill-box; transform-origin: center; }
+    .co-flow circle { animation: coFlow 2.6s linear infinite; }
+    .co-unread { animation: coPulse 2.2s ease-in-out infinite; }
+  }
+  @keyframes coBreathe { 0%, 100% { opacity: 0.85; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
+  @keyframes coSpin { to { transform: rotate(360deg); } }
+  @keyframes coFlow { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
+  @keyframes coPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
 
   @media (prefers-reduced-motion: reduce) {
-    .co-chaos { display: none; }
+    /* keep the full before/after composition, just drop the moving particles */
+    .co-flow { display: none; }
   }
 </style>
 
@@ -166,9 +250,10 @@ const msgM = [ { x: 118, y: 34, rot: -6 }, { x: 162, y: 92, rot: 5 }, { x: 110, 
     const container = root;
     const clamp = (v: number) => Math.max(0, Math.min(1, v));
     const seg = (p: number, a: number, b: number) => clamp((p - a) / (b - a));
-    const ranges: [number, number][] = [[0.55, 0.68], [0.66, 0.79], [0.77, 0.9]];
+    // easeOutBack for satisfying pops (overshoot then settle)
+    const back = (t: number) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); };
+    const ranges: [number, number][] = [[0.52, 0.66], [0.63, 0.77], [0.74, 0.88]];
 
-    // build per-scene refs (desktop + mobile share the same class names)
     const scenes = [...root.querySelectorAll<SVGSVGElement>('[data-scene]')].map((svg) => {
       const linksIn = [...svg.querySelectorAll<SVGPathElement>('.co-links-in path')];
       const linksOut = [...svg.querySelectorAll<SVGPathElement>('.co-links-out path')];
@@ -179,46 +264,49 @@ const msgM = [ { x: 118, y: 34, rot: -6 }, { x: 162, y: 92, rot: 5 }, { x: 110, 
       });
       return {
         linksIn, linksOut,
-        chaos: svg.querySelector<SVGGElement>('.co-chaos'),
+        before: svg.querySelector<SVGGElement>('.co-before'),
+        unread: svg.querySelector<SVGGElement>('.co-unread'),
+        clock: svg.querySelector<SVGGElement>('.co-clock'),
+        corewrap: svg.querySelector<SVGGElement>('.co-corewrap'),
         core: svg.querySelector<SVGGElement>('.co-core'),
-        glow: svg.querySelector<SVGCircleElement>('.co-glow'),
+        flowIn: svg.querySelector<SVGGElement>('.co-flow-in'),
+        flowOut: svg.querySelector<SVGGElement>('.co-flow-out'),
         outs: svg.querySelector<SVGGElement>('.co-outs'),
         items: [...svg.querySelectorAll<SVGGElement>('.co-out-item')],
       };
     });
 
     function drive(p: number) {
-      const inT = seg(p, 0.05, 0.32);
-      const inFade = 1 - seg(p, 0.4, 0.58);
-      const absorb = seg(p, 0.38, 0.58);
-      const cT = seg(p, 0.22, 0.52);
+      const beforeT = seg(p, 0, 0.18);
+      const unreadT = back(seg(p, 0.08, 0.24));
+      const clockT = seg(p, 0.14, 0.3);
+      const inT = seg(p, 0.15, 0.4);
+      const coreT = seg(p, 0.28, 0.5);
 
       scenes.forEach((s) => {
-        s.linksIn.forEach((el) => {
-          el.style.strokeDashoffset = String((el as any).__len * (1 - inT));
-          el.style.opacity = String(0.5 * inFade);
-        });
-        if (s.chaos) {
-          s.chaos.style.transform = `scale(${1 - 0.42 * seg(p, 0.3, 0.55)})`;
-          s.chaos.style.opacity = String(1 - absorb);
-        }
-        if (s.core) s.core.style.transform = `scale(${0.55 + 0.45 * cT})`;
-        if (s.glow) s.glow.style.opacity = String(0.15 + 0.75 * cT);
+        if (s.before) s.before.style.opacity = String(beforeT);
+        if (s.unread) s.unread.style.transform = `scale(${clamp(unreadT)})`;
+        if (s.clock) s.clock.style.opacity = String(clockT);
+        s.linksIn.forEach((el) => { el.style.strokeDashoffset = String((el as any).__len * (1 - inT)); });
+        if (s.flowIn) s.flowIn.style.opacity = String(0.9 * inT);
+        if (s.corewrap) s.corewrap.style.opacity = String(coreT);
+        if (s.core) s.core.style.transform = `scale(${0.6 + 0.4 * coreT})`;
         s.linksOut.forEach((el, i) => {
-          const t = seg(p, 0.5 + i * 0.04, 0.72 + i * 0.04);
+          const t = seg(p, 0.48 + i * 0.04, 0.7 + i * 0.04);
           el.style.strokeDashoffset = String((el as any).__len * (1 - t));
         });
+        if (s.flowOut) s.flowOut.style.opacity = String(0.9 * seg(p, 0.5, 0.72));
         if (s.outs) s.outs.style.opacity = '1';
         s.items.forEach((g) => {
           const idx = Number(g.dataset.idx);
           const t = seg(p, ranges[idx][0], ranges[idx][1]);
-          g.style.opacity = String(t);
-          g.style.transform = `translateX(${(1 - t) * 22}px)`;
+          g.style.opacity = String(clamp(t * 1.4));
+          g.style.transform = `translateX(${(1 - back(t)) * 20}px)`;
           const badge = g.querySelector<SVGElement>('.co-badge');
           if (badge) {
-            const bt = seg(p, ranges[idx][1] - 0.05, ranges[idx][1] + 0.02);
-            badge.style.transform = `scale(${bt})`;
-            badge.style.opacity = String(bt);
+            const bt = back(seg(p, ranges[idx][1] - 0.04, ranges[idx][1] + 0.04));
+            badge.style.transform = `scale(${clamp(bt)})`;
+            badge.style.opacity = String(clamp(seg(p, ranges[idx][1] - 0.04, ranges[idx][1])));
           }
         });
       });
@@ -232,7 +320,7 @@ const msgM = [ { x: 118, y: 34, rot: -6 }, { x: 162, y: 92, rot: 5 }, { x: 110, 
     function progress() {
       const rect = container.getBoundingClientRect();
       const vh = window.innerHeight;
-      return clamp((0.82 * vh - rect.top) / (0.54 * vh));
+      return clamp((0.84 * vh - rect.top) / (0.56 * vh));
     }
 
     let ticking = false;
