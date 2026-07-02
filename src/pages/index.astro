@@ -5,6 +5,7 @@ import EngagementModel from '../components/EngagementModel.astro';
 import FaqSection from '../components/FaqSection.astro';
 import FeaturesDeliverablesGrid from '../components/FeaturesDeliverablesGrid.astro';
 import Footer from '../components/Footer.astro';
+import HeroIllustration from '../components/HeroIllustration.astro';
 import Nav from '../components/Nav.astro';
 import Section from '../components/Section.astro';
 import SocialProof from '../components/SocialProof.astro';
@@ -115,17 +116,9 @@ const faqsHome = [
             </p>
           </div>
 
-          <!-- Right: AI illustration -->
+          <!-- Right: AI illustration (Beco 360 hub connected to your tools) -->
           <div class="reveal flex items-center justify-center" style="transition-delay: 180ms;">
-            <img
-              src="/assets/illustrations/hero-ai.webp"
-              alt="Los procesos de un negocio convergiendo en un núcleo impulsado por IA"
-              width="900"
-              height="900"
-              class="w-full max-w-lg h-auto select-none pointer-events-none"
-              loading="eager"
-              decoding="async"
-            />
+            <HeroIllustration />
           </div>
 
         </div>
