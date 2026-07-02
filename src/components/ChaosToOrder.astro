@@ -11,7 +11,6 @@
 // Two layouts share one driver; prefers-reduced-motion shows the resolved state.
 const ICON = {
   chat: '<path d="M224,124h0a92,92,0,0,1-92,92H48a8,8,0,0,1-8-8V124a92,92,0,0,1,92-92h0A92,92,0,0,1,224,124Z" opacity="0.2"/><path d="M132,24A100.11,100.11,0,0,0,32,124v84a16,16,0,0,0,16,16h84a100,100,0,0,0,0-200Zm0,184H48V124a84,84,0,1,1,84,84Zm12-80a12,12,0,1,1-12-12A12,12,0,0,1,144,128Zm-44,0a12,12,0,1,1-12-12A12,12,0,0,1,100,128Zm88,0a12,12,0,1,1-12-12A12,12,0,0,1,188,128Z"/>',
-  sparkle: '<path d="M194.82,151.43l-55.09,20.3-20.3,55.09a7.92,7.92,0,0,1-14.86,0l-20.3-55.09-55.09-20.3a7.92,7.92,0,0,1,0-14.86l55.09-20.3,20.3-55.09a7.92,7.92,0,0,1,14.86,0l20.3,55.09,55.09,20.3A7.92,7.92,0,0,1,194.82,151.43Z" opacity="0.2"/><path d="M197.58,129.06,146,110l-19-51.62a15.92,15.92,0,0,0-29.88,0L78,110l-51.62,19a15.92,15.92,0,0,0,0,29.88L78,178l19,51.62a15.92,15.92,0,0,0,29.88,0L146,178l51.62-19a15.92,15.92,0,0,0,0-29.88ZM137,164.22a8,8,0,0,0-4.74,4.74L112,223.85,91.78,169A8,8,0,0,0,87,164.22L32.15,144,87,123.78A8,8,0,0,0,91.78,119L112,64.15,132.22,119a8,8,0,0,0,4.74,4.74L191.85,144ZM144,40a8,8,0,0,1,8-8h16V16a8,8,0,0,1,16,0V32h16a8,8,0,0,1,0,16H184V64a8,8,0,0,1-16,0V48H152A8,8,0,0,1,144,40ZM248,88a8,8,0,0,1-8,8h-8v8a8,8,0,0,1-16,0V96h-8a8,8,0,0,1,0-16h8V72a8,8,0,0,1,16,0v8h8A8,8,0,0,1,248,88Z"/>',
   clock: '<path d="M224,128a96,96,0,1,1-96-96A96,96,0,0,1,224,128Z" opacity="0.2"/><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"/>',
   plane: '<path d="M223.69,42.18l-58.22,192a8,8,0,0,1-14.92,1.25L108,148,20.58,105.45a8,8,0,0,1,1.25-14.92l192-58.22A8,8,0,0,1,223.69,42.18Z" opacity="0.2"/><path d="M227.32,28.68a16,16,0,0,0-15.66-4.08l-.15,0L19.57,82.84a16,16,0,0,0-2.49,29.8L102,154l41.3,84.87A15.86,15.86,0,0,0,157.74,248q.69,0,1.38-.06a15.88,15.88,0,0,0,14-11.51l58.2-191.94c0-.05,0-.1,0-.15A16,16,0,0,0,227.32,28.68ZM157.83,231.85l-.05.14,0-.07-40.06-82.3,48-48a8,8,0,0,0-11.31-11.31l-48,48L24.08,98.25l-.07,0,.14,0L216,40Z"/>',
   calendar: '<path d="M216,48V88H40V48a8,8,0,0,1,8-8H208A8,8,0,0,1,216,48Z" opacity="0.2"/><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-38.34-85.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L116,164.69l42.34-42.35A8,8,0,0,1,169.66,122.34Z"/>',
@@ -105,10 +104,20 @@ const linksOutM = [
     <!-- IA core -->
     <g class="co-corewrap">
       <circle class="co-glow" cx="500" cy="235" r="120" fill="url(#coGlowD)" />
-      <circle class="co-ring" cx="500" cy="235" r="60" stroke="#cc8354" stroke-width="1.2" stroke-opacity="0.5" stroke-dasharray="3 9" fill="none" />
       <g class="co-core">
         <circle cx="500" cy="235" r="46" fill="#211c18" stroke="#cc8354" stroke-width="2" />
-        <svg x="470" y="205" width="60" height="60" viewBox="0 0 256 256" fill="#ffd9b8"><g set:html={ICON.sparkle} /></svg>
+        <g class="co-hub">
+          <g stroke="#cc8354" stroke-width="2" stroke-linecap="round">
+            <line x1="500" y1="235" x2="500" y2="209" /><line x1="500" y1="235" x2="522.5" y2="222" /><line x1="500" y1="235" x2="522.5" y2="248" />
+            <line x1="500" y1="235" x2="500" y2="261" /><line x1="500" y1="235" x2="477.5" y2="248" /><line x1="500" y1="235" x2="477.5" y2="222" />
+          </g>
+          <g fill="#cc8354">
+            <circle cx="500" cy="209" r="4.2" /><circle cx="522.5" cy="222" r="4.2" /><circle cx="522.5" cy="248" r="4.2" />
+            <circle cx="500" cy="261" r="4.2" /><circle cx="477.5" cy="248" r="4.2" /><circle cx="477.5" cy="222" r="4.2" />
+          </g>
+        </g>
+        <circle cx="500" cy="235" r="9" fill="#211c18" stroke="#cc8354" stroke-width="2" />
+        <circle class="co-hubcore" cx="500" cy="235" r="2.6" fill="#ffd9b8" />
       </g>
       <text class="co-label co-label-core" x="500" y="322" text-anchor="middle">IA</text>
     </g>
@@ -178,10 +187,20 @@ const linksOutM = [
 
     <g class="co-corewrap">
       <circle class="co-glow" cx="200" cy="300" r="110" fill="url(#coGlowM)" />
-      <circle class="co-ring" cx="200" cy="300" r="58" stroke="#cc8354" stroke-width="1.2" stroke-opacity="0.5" stroke-dasharray="3 9" fill="none" />
       <g class="co-core">
         <circle cx="200" cy="300" r="44" fill="#211c18" stroke="#cc8354" stroke-width="2" />
-        <svg x="172" y="272" width="56" height="56" viewBox="0 0 256 256" fill="#ffd9b8"><g set:html={ICON.sparkle} /></svg>
+        <g class="co-hub">
+          <g stroke="#cc8354" stroke-width="2" stroke-linecap="round">
+            <line x1="200" y1="300" x2="200" y2="275" /><line x1="200" y1="300" x2="221.65" y2="287.5" /><line x1="200" y1="300" x2="221.65" y2="312.5" />
+            <line x1="200" y1="300" x2="200" y2="325" /><line x1="200" y1="300" x2="178.35" y2="312.5" /><line x1="200" y1="300" x2="178.35" y2="287.5" />
+          </g>
+          <g fill="#cc8354">
+            <circle cx="200" cy="275" r="4" /><circle cx="221.65" cy="287.5" r="4" /><circle cx="221.65" cy="312.5" r="4" />
+            <circle cx="200" cy="325" r="4" /><circle cx="178.35" cy="312.5" r="4" /><circle cx="178.35" cy="287.5" r="4" />
+          </g>
+        </g>
+        <circle cx="200" cy="300" r="8.5" fill="#211c18" stroke="#cc8354" stroke-width="2" />
+        <circle class="co-hubcore" cx="200" cy="300" r="2.5" fill="#ffd9b8" />
       </g>
     </g>
 
@@ -223,12 +242,13 @@ const linksOutM = [
   .co-corewrap { opacity: 0; }
   .co-flow { opacity: 0; }
 
-  .co-core, .co-badge, .co-out-item, .co-unread { transform-box: fill-box; transform-origin: center; }
+  .co-core, .co-badge, .co-out-item, .co-unread, .co-hub, .co-hubcore { transform-box: fill-box; transform-origin: center; }
 
   /* ---- ambient life (only when motion is allowed) ---- */
   @media (prefers-reduced-motion: no-preference) {
     .co-glow { animation: coBreathe 3.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-    .co-ring { animation: coSpin 16s linear infinite; transform-box: fill-box; transform-origin: center; }
+    .co-hub { animation: coSpin 20s linear infinite; }
+    .co-hubcore { animation: coHubPulse 3s ease-in-out infinite; }
     .co-flow circle { animation: coFlow 2.6s linear infinite; }
     .co-unread { animation: coPulse 2.2s ease-in-out infinite; }
   }
@@ -236,6 +256,7 @@ const linksOutM = [
   @keyframes coSpin { to { transform: rotate(360deg); } }
   @keyframes coFlow { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
   @keyframes coPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+  @keyframes coHubPulse { 0%, 100% { opacity: 0.65; transform: scale(1); } 50% { opacity: 1; transform: scale(1.5); } }
 
   @media (prefers-reduced-motion: reduce) {
     /* keep the full before/after composition, just drop the moving particles */
